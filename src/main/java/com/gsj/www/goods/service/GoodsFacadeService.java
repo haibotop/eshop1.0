@@ -1,6 +1,6 @@
 package com.gsj.www.goods.service;
 
-import com.gsj.www.goods.dto.GoodsSkuDTO;
+import com.gsj.www.goods.domain.GoodsSkuDTO;
 
 /**
  * 商品中心对外提供的接口

@@ -1,8 +1,8 @@
 package com.gsj.www.finance.service;
 
-import com.gsj.www.wms.dto.PurchaseInputOrderDTO;
-import com.gsj.www.wms.dto.ReturnGoodsInputOrderDTO;
-import com.gsj.www.wms.dto.SaleDeliveryOrderDTO;
+import com.gsj.www.wms.domain.PurchaseInputOrderDTO;
+import com.gsj.www.wms.domain.ReturnGoodsInputOrderDTO;
+import com.gsj.www.wms.domain.SaleDeliveryOrderDTO;
 
 /**
  * 财务中心对外提供的接口
