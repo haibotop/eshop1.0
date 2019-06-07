@@ -1,6 +1,7 @@
 package com.gsj.www.order.domain;
 
 import java.util.Date;
+import java.util.List;
 
 /**
  * 订单信息DTO
@@ -83,6 +84,10 @@ public class OrderOrderDTO {
      * 销售出库单的修改时间
      */
     private Date gmtModified;
+    /**
+     * 订单包含的订单条目
+     */
+    private List<OrderItemDTO> orderItemDTOList;
 
     public Long getId() {
         return id;
@@ -202,5 +207,12 @@ public class OrderOrderDTO {
         this.gmtModified = gmtModified;
     }
 
+    public List<OrderItemDTO> getOrderItemDTOList() {
+        return orderItemDTOList;
+    }
+
+    public void setOrderItemDTOList(List<OrderItemDTO> orderItemDTOList) {
+        this.orderItemDTOList = orderItemDTOList;
+    }
 }
 
