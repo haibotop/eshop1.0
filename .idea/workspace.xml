@@ -4,6 +4,7 @@
     <list default="true" id="9a0d1102-ba33-4351-81f6-e4b34b8411e0" name="Default" comment="">
       <change beforePath="" afterPath="$PROJECT_DIR$/.idea/compiler.xml" />
       <change beforePath="" afterPath="$PROJECT_DIR$/.idea/encodings.xml" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" />
       <change beforePath="" afterPath="$PROJECT_DIR$/.idea/libraries/Maven__antlr_antlr_2_7_7.xml" />
       <change beforePath="" afterPath="$PROJECT_DIR$/.idea/libraries/Maven__asm_asm_3_3_1.xml" />
       <change beforePath="" afterPath="$PROJECT_DIR$/.idea/libraries/Maven__asm_asm_commons_3_3_1.xml" />
@@ -87,7 +88,9 @@
       <change beforePath="" afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_springframework_spring_web_4_3_13_RELEASE.xml" />
       <change beforePath="" afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_springframework_spring_webmvc_4_3_13_RELEASE.xml" />
       <change beforePath="" afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_yaml_snakeyaml_1_17.xml" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/.idea/misc.xml" />
       <change beforePath="" afterPath="$PROJECT_DIR$/.idea/modules.xml" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/.idea/vcs.xml" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change beforePath="$PROJECT_DIR$/eshop1.0.iml" afterPath="$PROJECT_DIR$/eshop1.0.iml" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/gsj/www/order/domain/OrderOrderDTO.java" afterPath="$PROJECT_DIR$/src/main/java/com/gsj/www/order/domain/OrderOrderDTO.java" />
@@ -416,12 +419,12 @@
       <workItem from="1559899882546" duration="1560000" />
       <workItem from="1559911455464" duration="634000" />
       <workItem from="1559912210243" duration="438000" />
-      <workItem from="1559912684337" duration="282000" />
+      <workItem from="1559912684337" duration="385000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="4596000" />
+    <option name="totallyTimeSpent" value="4699000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="610" y="63" width="768" height="490" extended-state="0" />
