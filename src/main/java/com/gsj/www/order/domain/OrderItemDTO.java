@@ -19,6 +19,10 @@ public class OrderItemDTO {
      */
     private Long goodsSkuId;
     /**
+     * 商品id
+     */
+    private Long goodsId;
+    /**
      * 商品编号
      */
     private String goodsSkuCode;
@@ -89,6 +93,14 @@ public class OrderItemDTO {
 
     public void setGoodsSkuId(Long goodsSkuId) {
         this.goodsSkuId = goodsSkuId;
+    }
+
+    public Long getGoodsId() {
+        return goodsId;
+    }
+
+    public void setGoodsId(Long goodsId) {
+        this.goodsId = goodsId;
     }
 
     public String getGoodsSkuCode() {

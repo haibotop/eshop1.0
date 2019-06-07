@@ -16,6 +16,10 @@ public class OrderOrderDTO {
      */
     private String orderNo;
     /**
+     * 用户姓名
+     */
+    private String username;
+    /**
      * 用户账号id
      */
     private Long userAccountId;
@@ -92,6 +96,15 @@ public class OrderOrderDTO {
     public void setOrderNo(String orderNo) {
         this.orderNo = orderNo;
     }
+
+    public String getUsername() {
+        return username;
+    }
+
+    public void setUsername(String username) {
+        this.username = username;
+    }
+
     public Long getUserAccountId() {
         return userAccountId;
     }
