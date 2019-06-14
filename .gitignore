@@ -1,1 +1,7 @@
 target/
+.idea/*
+*.iml
+*.imi
+*.class
+workspace.xml
+encodings.xml

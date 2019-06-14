@@ -1,4 +1,5 @@
 package com.gsj.www.customer.dto;
+
 import java.util.Date;
 
 /**
