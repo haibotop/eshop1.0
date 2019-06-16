@@ -1,7 +1,14 @@
 target/
+<<<<<<< HEAD
 .idea/*
 *.iml
 *.imi
 *.class
 workspace.xml
 encodings.xml
+=======
+.idea/
+*.imi
+*.iml
+*.class
+>>>>>>> feature/common_api

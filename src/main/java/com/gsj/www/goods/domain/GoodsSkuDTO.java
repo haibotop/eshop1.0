@@ -1,4 +1,4 @@
-package com.gsj.www.goods.dto;
+package com.gsj.www.goods.domain;
 
 import java.util.Date;
 

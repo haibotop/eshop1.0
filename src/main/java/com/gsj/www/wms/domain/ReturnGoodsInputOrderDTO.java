@@ -1,4 +1,4 @@
-package com.gsj.www.wms.dto;
+package com.gsj.www.wms.domain;
 
 import java.util.Date;
 

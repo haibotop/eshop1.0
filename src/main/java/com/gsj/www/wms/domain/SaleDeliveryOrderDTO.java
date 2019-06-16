@@ -1,16 +1,20 @@
-package com.gsj.www.order.dto;
+package com.gsj.www.wms.domain;
 
 import java.util.Date;
 
 /**
- * 订单DTO
+ * 销售出库单DTO
  */
-public class OrderDTO {
+public class SaleDeliveryOrderDTO {
 
     /**
      * id
      */
     private Long id;
+    /**
+     * 订单id
+     */
+    private Long orderId;
     /**
      * 订单编号
      */
@@ -19,10 +23,6 @@ public class OrderDTO {
      * 用户账号id
      */
     private Long userAccountId;
-    /**
-     * 订单状态
-     */
-    private Integer orderStatus;
     /**
      * 收货人
      */
@@ -72,6 +72,14 @@ public class OrderDTO {
      */
     private String orderComment;
     /**
+     * 销售出库单的状态
+     */
+    private Integer saleDeliveryOrderStatus;
+    /**
+     * 实际发货时间
+     */
+    private Date deliveryTime;
+    /**
      * 销售出库单的创建时间
      */
     private Date gmtCreate;
@@ -86,6 +94,12 @@ public class OrderDTO {
     public void setId(Long id) {
         this.id = id;
     }
+    public Long getOrderId() {
+        return orderId;
+    }
+    public void setOrderId(Long orderId) {
+        this.orderId = orderId;
+    }
     public String getOrderNo() {
         return orderNo;
     }
@@ -97,12 +111,6 @@ public class OrderDTO {
     }
     public void setUserAccountId(Long userAccountId) {
         this.userAccountId = userAccountId;
-    }
-    public Integer getOrderStatus() {
-        return orderStatus;
-    }
-    public void setOrderStatus(Integer orderStatus) {
-        this.orderStatus = orderStatus;
     }
     public String getConsignee() {
         return consignee;
@@ -175,6 +183,18 @@ public class OrderDTO {
     }
     public void setOrderComment(String orderComment) {
         this.orderComment = orderComment;
+    }
+    public Integer getSaleDeliveryOrderStatus() {
+        return saleDeliveryOrderStatus;
+    }
+    public void setSaleDeliveryOrderStatus(Integer saleDeliveryOrderStatus) {
+        this.saleDeliveryOrderStatus = saleDeliveryOrderStatus;
+    }
+    public Date getDeliveryTime() {
+        return deliveryTime;
+    }
+    public void setDeliveryTime(Date deliveryTime) {
+        this.deliveryTime = deliveryTime;
     }
     public Date getGmtCreate() {
         return gmtCreate;

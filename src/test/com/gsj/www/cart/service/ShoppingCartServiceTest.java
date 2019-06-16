@@ -4,6 +4,7 @@ import com.gsj.www.cart.dao.ShoppingCartDAO;
 import com.gsj.www.cart.dao.ShoppingCartItemDAO;
 import com.gsj.www.cart.domain.ShoppingCartDO;
 import com.gsj.www.cart.domain.ShoppingCartItemDO;
+import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.mock.mockito.MockBean;
 
@@ -40,12 +41,14 @@ public class ShoppingCartServiceTest {
      * 测试添加购物车商品条目
      * @throws Exception
      */
+    @Test
     public void testAddShoppingCartItem() throws Exception{
         //准备一些参数
         Long userAccountId = 1L;
+        Long goodsSkuId = 1L;
 
         ShoppingCartDO shoppingCartDO = createShoppingCartDO(userAccountId);
-        ShoppingCartItemDO shoppingCartItemDO = createShoppingCartItemDO(shopping)
+        ShoppingCartItemDO shoppingCartItemDO = createShoppingCartItemDO(userAccountId,goodsSkuId);
 
         //mock一下两个dao的行为
         when(shoppingCartDAO.getShoppingCartByUserAccountId(userAccountId)).thenReturn(shoppingCartDO);
