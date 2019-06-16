@@ -46,13 +46,13 @@ public interface ShoppingCartItemMapper {
             "gmt_create," +
             "gmt_modified " +
             "FROM shopping_cart_item " +
-            "WHRER shopping_cart_id=#{shoppingCartId} " +
+            "WHERE shopping_cart_id=#{shoppingCartId} " +
             "AND goods_sku_id=#{goodsSkuId}")
     @Results({
             @Result(column = "id", property = "id", id = true),
             @Result(column = "shopping_cart_id", property = "shoppingCartId"),
             @Result(column = "goods_sku_id", property = "goodsSkuId"),
-            @Result(column = "purchase_quatity", property = "purchaseQuatity"),
+            @Result(column = "purchase_quantity", property = "purchaseQuantity"),
             @Result(column = "gmt_create", property = "gmtCreate"),
             @Result(column = "gmt_modified", property = "gmtModified")
     })
@@ -65,7 +65,7 @@ public interface ShoppingCartItemMapper {
      * @param shoppingCartItemDO 购物车条目DO对象
      */
     @Update("UPDATE shopping_cart_item SET " +
-            "purchase_quatity=#{purchaseQuatity}," +
+            "purchase_quantity=#{purchaseQuantity}," +
             "gmt_modified=#{gmtModified} " +
             "WHERE id=#{id}")
     void updateShoppingCartItem(ShoppingCartItemDO shoppingCartItemDO);

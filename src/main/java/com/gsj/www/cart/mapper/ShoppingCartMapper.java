@@ -42,7 +42,7 @@ public interface ShoppingCartMapper {
             ") VALUES(" +
             "#{userAccountId}," +
             "#{gmtCreate}," +
-            "#{gmtModifie}" +
+            "#{gmtModified}" +
             ")")
     @Options(keyColumn = "id", keyProperty = "id", useGeneratedKeys = true)
     void saveShoppingCart(ShoppingCartDO shoppingCartDO);

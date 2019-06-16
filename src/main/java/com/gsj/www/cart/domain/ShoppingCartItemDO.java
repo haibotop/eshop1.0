@@ -1,7 +1,7 @@
 package com.gsj.www.cart.domain;
 
-import javax.xml.crypto.Data;
 import java.util.Date;
+import java.util.Objects;
 
 /**
  * 购物车条目DO类
@@ -33,7 +33,7 @@ public class ShoppingCartItemDO {
     /**
      * 购物车条目的修改时间
      */
-    private Data gmtModified;
+    private Date gmtModified;
 
     public Long getId() {
         return id;
@@ -75,11 +75,30 @@ public class ShoppingCartItemDO {
         this.gmtCreate = gmtCreate;
     }
 
-    public Data getGmtModified() {
+    public Date getGmtModified() {
         return gmtModified;
     }
 
     public void setGmtModified(Date gmtModified) {
         this.gmtModified = gmtModified;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof ShoppingCartItemDO)) return false;
+        ShoppingCartItemDO that = (ShoppingCartItemDO) o;
+        return Objects.equals(id, that.id) &&
+                Objects.equals(shoppingCartId, that.shoppingCartId) &&
+                Objects.equals(goodsSkuId, that.goodsSkuId) &&
+                Objects.equals(purchaseQuantity, that.purchaseQuantity) &&
+                Objects.equals(gmtCreate, that.gmtCreate) &&
+                Objects.equals(gmtModified, that.gmtModified);
+    }
+
+    @Override
+    public int hashCode() {
+
+        return Objects.hash(id, shoppingCartId, goodsSkuId, purchaseQuantity, gmtCreate, gmtModified);
     }
 }

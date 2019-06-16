@@ -1,6 +1,7 @@
 package com.gsj.www.cart.domain;
 
 import java.util.Date;
+import java.util.Objects;
 
 /**
  * 购物车DO类
@@ -56,5 +57,22 @@ public class ShoppingCartDO {
 
     public void setGmtModified(Date gmtModified) {
         this.gmtModified = gmtModified;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof ShoppingCartDO)) return false;
+        ShoppingCartDO that = (ShoppingCartDO) o;
+        return Objects.equals(id, that.id) &&
+                Objects.equals(userAccountId, that.userAccountId) &&
+                Objects.equals(gmtCreate, that.gmtCreate) &&
+                Objects.equals(gmtModified, that.gmtModified);
+    }
+
+    @Override
+    public int hashCode() {
+
+        return Objects.hash(id, userAccountId, gmtCreate, gmtModified);
     }
 }
