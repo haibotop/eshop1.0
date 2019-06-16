@@ -1,27 +1,18 @@
 package com.gsj.www.common.util;
 
-import org.springframework.stereotype.Component;
-
-import java.text.SimpleDateFormat;
 import java.util.Date;
 
 /**
- * 日期辅助组件
+ * 日期组件接口
  *
  * @author Holy
- * @create 2019 - 06 - 16 18:59
+ * @create 2019 - 06 - 17 6:14
  */
-@Component
-public class DateProvider {
-
+public interface DateProvider {
     /**
      * 获取当前时间
-     * @return 当前时间
+     * @return
      * @throws Exception
      */
-    public Date getDateFormatter() throws Exception {
-        SimpleDateFormat dateFormatter = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-        return dateFormatter.parse(dateFormatter.format(new Date()));
-    }
-
+    Date getDateFormatter() throws Exception;
 }
