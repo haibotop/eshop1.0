@@ -2,6 +2,7 @@ package com.gsj.www.cart.dao;
 
 import com.gsj.www.Application;
 import com.gsj.www.cart.domain.ShoppingCartItemDO;
+import com.gsj.www.common.util.DateProvider;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,7 +11,6 @@ import org.springframework.test.annotation.Rollback;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.text.SimpleDateFormat;
 import java.util.Date;
 
 import static org.hamcrest.Matchers.greaterThan;
@@ -34,6 +34,11 @@ public class ShoppingCartItemDAOTest {
      */
     @Autowired
     private ShoppingCartItemDAO shoppingCartItemDAO;
+    /**
+     * 日期辅助组件
+     */
+    @Autowired
+    private DateProvider dateProvider;
 
     /**
      * 测试新增购物车条目
@@ -87,11 +92,10 @@ public class ShoppingCartItemDAOTest {
         //更新购物车条目的购买数量和修改时间
         Long newPurchaseQuantity = purchaseQuantity + 1L;
 
-        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-        Date newGmtModified = sdf.parse(sdf.format(new Date()));
+        Date currentTime = dateProvider.getDateFormatter();
 
         shoppingCartItemDO.setPurchaseQuantity(newPurchaseQuantity);
-        shoppingCartItemDO.setGmtModified(newGmtModified);
+        shoppingCartItemDO.setGmtModified(currentTime);
 
         shoppingCartItemDAO.updateShoppingCartItem(shoppingCartItemDO);
 
@@ -101,7 +105,7 @@ public class ShoppingCartItemDAOTest {
         System.out.println(shoppingCartItemDAO);
         //断言比较数据是否更新
         assertEquals(newPurchaseQuantity,resultShoppingCartItemDO.getPurchaseQuantity());
-        assertEquals(newGmtModified, resultShoppingCartItemDO.getGmtModified());
+        assertEquals(currentTime, resultShoppingCartItemDO.getGmtModified());
     }
 
     /**
@@ -113,8 +117,7 @@ public class ShoppingCartItemDAOTest {
      * @throws Exception
      */
     private ShoppingCartItemDO createShoppingCartItem(Long shoppingCartId,Long goodsSkuId, Long purchaseQuantity) throws Exception{
-        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-        Date currentTime = sdf.parse(sdf.format(new Date()));
+        Date currentTime = dateProvider.getDateFormatter();
 
         ShoppingCartItemDO shoppingCartItemDO = new ShoppingCartItemDO();
         shoppingCartItemDO.setShoppingCartId(shoppingCartId);

@@ -2,6 +2,7 @@ package com.gsj.www.cart.dao;
 
 import com.gsj.www.Application;
 import com.gsj.www.cart.domain.ShoppingCartDO;
+import com.gsj.www.common.util.DateProvider;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,7 +11,6 @@ import org.springframework.test.annotation.Rollback;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.text.SimpleDateFormat;
 import java.util.Date;
 
 import static org.hamcrest.Matchers.greaterThan;
@@ -34,6 +34,11 @@ public class ShoppingCartDAOTest {
      */
     @Autowired
     private ShoppingCartDAO shoppingCartDAO;
+    /**
+     * 日期辅助组件
+     */
+    @Autowired
+    private DateProvider dateProvider;
 
     /**
      * 测试新增购物车
@@ -71,8 +76,7 @@ public class ShoppingCartDAOTest {
      * @throws Exception
      */
     private ShoppingCartDO createShoppingCart(Long userAccountId) throws Exception{
-        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-        Date currentTime = sdf.parse(sdf.format(new Date()));
+        Date currentTime = dateProvider.getDateFormatter();
 
         ShoppingCartDO shoppingCartDO = new ShoppingCartDO();
         shoppingCartDO.setUserAccountId(userAccountId);
