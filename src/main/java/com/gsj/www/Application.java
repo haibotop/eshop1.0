@@ -1,6 +1,6 @@
 package com.gsj.www;
 
-import com.gsj.www.config.DruidDataSourceConfig;
+import com.gsj.www.common.config.DruidDataSourceConfig;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Import;

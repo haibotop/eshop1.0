@@ -1,9 +1,9 @@
 package com.gsj.www.inventory.service;
 
 
-import com.gsj.www.order.dto.OrderDTO;
-import com.gsj.www.wms.dto.PurchaseInputOrderDTO;
-import com.gsj.www.wms.dto.ReturnGoodsInputOrderDTO;
+import com.gsj.www.order.domain.OrderDTO;
+import com.gsj.www.wms.domain.PurchaseInputOrderDTO;
+import com.gsj.www.wms.domain.ReturnGoodsInputOrderDTO;
 
 /**
  * 库存中心对外提供的接口

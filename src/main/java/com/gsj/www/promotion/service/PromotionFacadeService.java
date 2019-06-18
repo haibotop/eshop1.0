@@ -1,6 +1,6 @@
 package com.gsj.www.promotion.service;
 
-import com.gsj.www.promotion.dto.PromotionActivityDTO;
+import com.gsj.www.promotion.domain.PromotionActivityDTO;
 
 import java.util.List;
 

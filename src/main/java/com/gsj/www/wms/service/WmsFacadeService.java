@@ -1,10 +1,10 @@
 package com.gsj.www.wms.service;
 
 
-import com.gsj.www.order.dto.OrderDTO;
-import com.gsj.www.wms.dto.PurchaseInputOrderDTO;
-import com.gsj.www.wms.dto.ReturnGoodsInputOrderDTO;
-import com.gsj.www.wms.dto.SaleDeliveryOrderDTO;
+import com.gsj.www.order.domain.OrderDTO;
+import com.gsj.www.wms.domain.PurchaseInputOrderDTO;
+import com.gsj.www.wms.domain.ReturnGoodsInputOrderDTO;
+import com.gsj.www.wms.domain.SaleDeliveryOrderDTO;
 
 /**
  * WMS中心对外提供的接口
