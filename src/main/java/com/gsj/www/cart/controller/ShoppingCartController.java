@@ -27,6 +27,7 @@ public class ShoppingCartController {
      * @param goodsSkuId 商品sku id
      * @return 返回结果
      */
+    @RequestMapping("/add")
     public Boolean addShoppingCartItem(Long userAccountId, Long goodsSkuId){
         try {
             return shoppingCartService.addShoppingCartItem(userAccountId,goodsSkuId);

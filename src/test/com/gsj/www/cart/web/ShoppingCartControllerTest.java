@@ -45,7 +45,6 @@ public class ShoppingCartControllerTest {
     @PostMapping("/item/add")
     public Boolean addShoppingCartItem(@RequestBody AddShoppingCartItemQuery query){
         try {
-            System.out.println(shoppingCartService.addShoppingCartItem(query.getUserAccountId(),query.getGoodsSkuId()));
             return shoppingCartService.addShoppingCartItem(query.getUserAccountId(),query.getGoodsSkuId());
         }catch (Exception e){
             logger.error("error",e);
