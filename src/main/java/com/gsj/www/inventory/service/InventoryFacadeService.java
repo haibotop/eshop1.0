@@ -1,9 +1,8 @@
 package com.gsj.www.inventory.service;
 
-
-import com.gsj.www.order.dto.OrderDTO;
-import com.gsj.www.wms.dto.PurchaseInputOrderDTO;
-import com.gsj.www.wms.dto.ReturnGoodsInputOrderDTO;
+import com.gsj.www.order.domain.OrderOrderDTO;
+import com.gsj.www.wms.domain.PurchaseInputOrderDTO;
+import com.gsj.www.wms.domain.ReturnGoodsInputOrderDTO;
 
 /**
  * 库存中心对外提供的接口
@@ -20,24 +19,24 @@ public interface InventoryFacadeService {
 
     /**
      * 通知库存中心，“提交订单”事件发生了
-     * @param orderDTO 订单DTO
+     * @param orderOrderDTO 订单DTO
      * @return 处理结果
      */
-    Boolean informSubmitOrderEvent(OrderDTO orderDTO);
+    Boolean informSubmitOrderEvent(OrderOrderDTO orderOrderDTO);
 
     /**
      * 通知库存中心，“支付订单”事件发生了
-     * @param orderDTO 订单DTO
+     * @param orderOrderDTO 订单DTO
      * @return 处理结果
      */
-    Boolean informPayOrderEvent(OrderDTO orderDTO);
+    Boolean informPayOrderEvent(OrderOrderDTO orderOrderDTO);
 
     /**
      * 通知库存中心，“取消订单”事件发生了
-     * @param orderDTO 订单DTO
+     * @param orderOrderDTO 订单DTO
      * @return 处理结果
      */
-    Boolean informCancelOrderEvent(OrderDTO orderDTO);
+    Boolean informCancelOrderEvent(OrderOrderDTO orderOrderDTO);
 
     /**
      * 通知库存中心，“完成退货入库”事件发生了

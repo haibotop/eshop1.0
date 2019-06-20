@@ -1,5 +1,12 @@
 target/
+<<<<<<< HEAD
 .idea/*
 *.class
 *.imi
 *.iml
+=======
+.idea/
+*.imi
+*.iml
+*.class
+>>>>>>> feature/common_api
