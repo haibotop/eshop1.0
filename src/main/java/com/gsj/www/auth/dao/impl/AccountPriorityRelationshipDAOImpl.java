@@ -1,7 +1,10 @@
 package com.gsj.www.auth.dao.impl;
 
 import com.gsj.www.auth.dao.AccountPriorityRelationshipDAO;
+import com.gsj.www.auth.domain.AccountPriorityRelationshipDO;
 import com.gsj.www.auth.mapper.AccountPriorityRelationshipMapper;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
@@ -13,12 +16,13 @@ import org.springframework.stereotype.Repository;
  */
 @Repository
 public class AccountPriorityRelationshipDAOImpl implements AccountPriorityRelationshipDAO {
+
+    private static final Logger logger = LoggerFactory.getLogger(RolePriorityRelationshipDAOImpl.class);
     /**
      * 账号和权限关系管理模块的mapper组件
      */
     @Autowired
     private AccountPriorityRelationshipMapper accountPriorityRelationshipMapper;
-
     /**
      * 根据权限id查询记录数
      * @param priorityId 权限id
@@ -26,7 +30,26 @@ public class AccountPriorityRelationshipDAOImpl implements AccountPriorityRelati
      */
     @Override
     public Long getCountByPriorityId(Long priorityId) {
-        return accountPriorityRelationshipMapper.getCountByPriorityId(priorityId);
+        try {
+            return accountPriorityRelationshipMapper.getCountByPriorityId(priorityId);
+        }catch (Exception e){
+            logger.error("error",e);
+        }
+        return 0L;
+    }
+    /**
+     * 新增账号和权限的关联关系
+     * @param accountPriorityRelationshipDO
+     */
+    @Override
+    public Boolean save(AccountPriorityRelationshipDO accountPriorityRelationshipDO) {
+        try{
+            accountPriorityRelationshipMapper.save(accountPriorityRelationshipDO);
+        }catch (Exception e){
+            logger.error("error",e);
+            return false;
+        }
+        return true;
     }
 
 }

@@ -1,5 +1,7 @@
 package com.gsj.www.auth.dao;
 
+import com.gsj.www.auth.domain.RolePriorityRelationshipDO;
+
 /**
  * 角色和权限关系管理模块的DAO组件接口
  *
@@ -13,4 +15,9 @@ public interface RolePriorityRelationshipDAO {
      * @return 记录数
      */
     Long getCountByPriorityId(Long priorityId);
+
+    /**
+     * 新增角色和权限的关联关系
+     */
+    Boolean save(RolePriorityRelationshipDO rolePriorityRelationshipDO);
 }

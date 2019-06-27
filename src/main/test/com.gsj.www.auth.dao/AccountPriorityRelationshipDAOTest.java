@@ -13,6 +13,7 @@ import org.springframework.transaction.annotation.Transactional;
 import static org.hamcrest.Matchers.greaterThan;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.assertThat;
 
 /**
  * 账号和权限关系管理模块的DAO组件的单元测试类
@@ -65,7 +66,7 @@ public class AccountPriorityRelationshipDAOTest {
         Long accountId2 = 2L;
         createAccountPriorityRelationshipDO(accountId2, priorityId);
 
-        Long resultCount = accountPriorityRelationshipDAO.countByPriorityId(priorityId);
+        Long resultCount = accountPriorityRelationshipDAO.getCountByPriorityId(priorityId);
 
         assertEquals(2L, resultCount.longValue());
     }

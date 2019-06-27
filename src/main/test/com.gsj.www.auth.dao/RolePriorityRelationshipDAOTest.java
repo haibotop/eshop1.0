@@ -66,7 +66,7 @@ public class RolePriorityRelationshipDAOTest {
         Long roleId2 = 2L;
         createRolePriorityRelationshipDO(roleId2, priorityId);
 
-        Long resultCount = rolePriorityRelationshipDAO.countByPriorityId(priorityId);
+        Long resultCount = rolePriorityRelationshipDAO.getCountByPriorityId(priorityId);
 
         assertEquals(2L, resultCount.longValue());
     }

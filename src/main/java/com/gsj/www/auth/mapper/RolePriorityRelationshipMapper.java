@@ -1,8 +1,7 @@
 package com.gsj.www.auth.mapper;
 
-import org.apache.ibatis.annotations.Mapper;
-import org.apache.ibatis.annotations.Param;
-import org.apache.ibatis.annotations.Select;
+import com.gsj.www.auth.domain.RolePriorityRelationshipDO;
+import org.apache.ibatis.annotations.*;
 
 /**
  * 角色和权限关系管理模块的mapper组件
@@ -21,4 +20,22 @@ public interface RolePriorityRelationshipMapper {
             + "FROM auth_role_priority_relationship "
             + "WHERE priority_id=#{priorityId}")
     Long getCountByPriorityId(@Param("priorityId") Long priorityId);
+
+    /**
+     * 新增角色和权限的关联关系
+     * @param rolePriorityRelationshipDO
+     */
+    @Insert("INSERT INTO auth_role_priority_relationship("
+            + "role_id,"
+            + "priority_id,"
+            + "gmt_create,"
+            + "gmt_modified"
+            + ") VALUES("
+            + "#{roleId},"
+            + "#{priorityId},"
+            + "#{gmtCreate},"
+            + "#{gmtModified}"
+            + ")")
+    @Options(keyColumn = "id", keyProperty = "id", useGeneratedKeys = true)
+    void save(RolePriorityRelationshipDO rolePriorityRelationshipDO);
 }

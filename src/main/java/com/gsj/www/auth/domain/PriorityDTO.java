@@ -5,6 +5,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import java.util.Date;
+import java.util.Objects;
 
 /**
  * 权限DTO类
@@ -114,5 +115,26 @@ public class PriorityDTO {
         BeanCopierUtils.copyProperties(this, target);
 
         return target;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof PriorityDTO)) return false;
+        PriorityDTO that = (PriorityDTO) o;
+        return Objects.equals(id, that.id) &&
+                Objects.equals(code, that.code) &&
+                Objects.equals(url, that.url) &&
+                Objects.equals(priorityComment, that.priorityComment) &&
+                Objects.equals(priorityType, that.priorityType) &&
+                Objects.equals(parentId, that.parentId) &&
+                Objects.equals(gmtCreate, that.gmtCreate) &&
+                Objects.equals(gmtModified, that.gmtModified);
+    }
+
+    @Override
+    public int hashCode() {
+
+        return Objects.hash(id, code, url, priorityComment, priorityType, parentId, gmtCreate, gmtModified);
     }
 }
