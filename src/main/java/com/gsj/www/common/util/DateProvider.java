@@ -3,7 +3,7 @@ package com.gsj.www.common.util;
 import java.util.Date;
 
 /**
- * 日期组件接口
+ * 日期辅助组件接口
  *
  * @author Holy
  * @create 2019 - 06 - 17 6:14
@@ -14,5 +14,21 @@ public interface DateProvider {
      * @return 当前时间
      * @throws Exception
      */
-    Date getDateFormatter() throws Exception;
+    Date getCurrentTime() throws Exception;
+
+    /**
+     * 将Date对象格式化成：yyyy-MM-dd HH:mm:ss
+     * @param date Date对象
+     * @return 格式化日期字符串
+     * @throws Exception
+     */
+    String formatDatetime(Date date) throws Exception;
+
+    /**
+     * 将日期字符串转化为Date对象
+     * @param datetime 日期字符串
+     * @return date对象
+     * @throws Exception
+     */
+    Date parseDatetime(String datetime) throws Exception;
 }
