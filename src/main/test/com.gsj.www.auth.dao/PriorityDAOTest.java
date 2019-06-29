@@ -101,7 +101,7 @@ public class PriorityDAOTest {
         PriorityDO priorityDO = createPriorityDO(parentId);
 
         priorityDO.setCode(priorityDO.getCode() + "_modified");
-        priorityDO.setGmtModified(dateProvider.getDateFormatter());
+        priorityDO.setGmtModified(dateProvider.getCurrentTime());
         priorityDO.setPriorityComment(priorityDO.getPriorityComment() + "_modified");
         priorityDO.setUrl(priorityDO.getUrl() + "_modified");
 
@@ -155,8 +155,8 @@ public class PriorityDAOTest {
 
         PriorityDO priorityDO = new PriorityDO();
         priorityDO.setCode("TEST_" + randomInt);
-        priorityDO.setGmtCreate(dateProvider.getDateFormatter());
-        priorityDO.setGmtModified(dateProvider.getDateFormatter());
+        priorityDO.setGmtCreate(dateProvider.getCurrentTime());
+        priorityDO.setGmtModified(dateProvider.getCurrentTime());
         priorityDO.setParentId(parentId);
         priorityDO.setPriorityComment("TEST_" + randomInt);
         priorityDO.setPriorityType(PriorityType.MENU);

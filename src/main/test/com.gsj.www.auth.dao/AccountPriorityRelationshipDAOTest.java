@@ -82,8 +82,8 @@ public class AccountPriorityRelationshipDAOTest {
                 new AccountPriorityRelationshipDO();
         accountPriorityRelationshipDO.setAccountId(accountId);
         accountPriorityRelationshipDO.setPriorityId(priorityId);
-        accountPriorityRelationshipDO.setGmtCreate(dateProvider.getDateFormatter());
-        accountPriorityRelationshipDO.setGmtModified(dateProvider.getDateFormatter());
+        accountPriorityRelationshipDO.setGmtCreate(dateProvider.getCurrentTime());
+        accountPriorityRelationshipDO.setGmtModified(dateProvider.getCurrentTime());
 
         accountPriorityRelationshipDAO.save(accountPriorityRelationshipDO);
 

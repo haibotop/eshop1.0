@@ -82,8 +82,8 @@ public class RolePriorityRelationshipDAOTest {
                 new RolePriorityRelationshipDO();
         rolePriorityRelationshipDO.setRoleId(roleId);
         rolePriorityRelationshipDO.setPriorityId(priorityId);
-        rolePriorityRelationshipDO.setGmtCreate(dateProvider.getDateFormatter());
-        rolePriorityRelationshipDO.setGmtModified(dateProvider.getDateFormatter());
+        rolePriorityRelationshipDO.setGmtCreate(dateProvider.getCurrentTime());
+        rolePriorityRelationshipDO.setGmtModified(dateProvider.getCurrentTime());
 
         rolePriorityRelationshipDAO.save(rolePriorityRelationshipDO);
 

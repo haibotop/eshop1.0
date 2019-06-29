@@ -6,6 +6,7 @@ import com.gsj.www.auth.domain.PriorityVO;
 import com.gsj.www.auth.service.PriorityService;
 import com.gsj.www.common.util.DateProvider;
 import org.junit.Before;
+import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
@@ -14,13 +15,14 @@ import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.web.servlet.MockMvc;
 
 import java.text.SimpleDateFormat;
-import java.text.spi.DateFormatProvider;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.Random;
 
 import static org.mockito.Mockito.when;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
 
 /**
  * 权限管理模块的controller组件的单元测试类
@@ -64,9 +66,98 @@ public class PriorityControllerTest {
      * 测试查询根权限
      * @throws Exception
      */
+    @Test
     public void testListRootPriorities() throws Exception{
         Long parentId = null;
-        List<PriorityDTO> rootPriorityDTOs =
+        List<PriorityDTO> rootPriorityDTOs = createMockPriorityDTOS(parentId);
+        when(priorityService.listRootPriorities()).thenReturn(rootPriorityDTOs);
+        List<PriorityVO> rootPriorityVOs = convertPriorityDTOs2VOs(rootPriorityDTOs);
+
+        mvc.perform(get("/auth/priority/root"))
+                .andExpect(content()
+                        .json(com.alibaba.fastjson.JSONArray.toJSONString(rootPriorityVOs)));
+    }
+
+    /**
+     * 测试根据父权限id查询子权限
+     * @throws Exception
+     */
+    @Test
+    public void testListChildPriorities() throws Exception{
+        Long parentId = 1L;
+        List<PriorityDTO> childPriorityDTOs = createMockPriorityDTOS(parentId);
+        when(priorityService.listChildPriorities(parentId)).thenReturn(childPriorityDTOs);
+        List<PriorityVO> rootPriorityVOs = convertPriorityDTOs2VOs(childPriorityDTOs);
+
+        mvc.perform(get("/auth/priority/child/{parentId}",parentId))
+                .andExpect(content().json(com.alibaba.fastjson.JSONArray.toJSONString(rootPriorityVOs)));
+    }
+
+    /**
+     * 测试根据id查询权限
+     * @throws Exception
+     */
+    @Test
+    public void testGetPriorityById() throws Exception{
+        Long id = 2L;
+        Long parentId = 1L;
+
+        PriorityDTO priorityDTO = createMockPriorityDTO(id,parentId);
+        PriorityVO priorityVO = convertPriorityDTO2VO(priorityDTO);
+
+        when(priorityService.getPriorityById(id)).thenReturn(priorityDTO);
+
+        mvc.perform(get("/auth/priority/{id}", id))
+                .andExpect(content().json(com.alibaba.fastjson.JSONObject.toJSONString(priorityVO)));
+    }
+
+    /**
+     * 测试新增全信啊
+     * @throws Exception
+     */
+    @Test
+    public void testSavePriority() throws Exception{
+        Long id = 2L;
+        Long parentId = 1L;
+        PriorityDTO priorityDTO = createMockPriorityDTO(id,parentId);
+        PriorityVO priorityVO = convertPriorityDTO2VO(priorityDTO);
+
+        when(priorityService.savePriority(priorityDTO)).thenReturn(true);
+
+        mvc.perform(post("/auth/priority/")
+                .contentType("application/json")
+                .content(com.alibaba.fastjson.JSONObject.toJSONString(priorityVO)))
+                .andExpect(content().string("true"));
+    }
+
+    /**
+     * 测试修改权限
+     * @throws Exception
+     */
+    @Test
+    public void testUpdatePriority() throws Exception{
+        Long id = 2L;
+        Long parentId = 1L;
+        PriorityDTO priorityDTO = createMockPriorityDTO(id,parentId);
+        PriorityVO priorityVO = convertPriorityDTO2VO(priorityDTO);
+
+        when(priorityService.updatePriority(priorityDTO)).thenReturn(true);
+
+        mvc.perform(put("/auth/priority/{id}",id)
+                .contentType("application/json")
+                .content(com.alibaba.fastjson.JSONArray.toJSONString(priorityVO)))
+                .andExpect(content().string("true"));
+    }
+    /**
+     * 测试删除全信啊
+     * @throws Exception
+     */
+    @Test
+    public void testRemovePriority() throws Exception{
+        Long id = 2L;
+        when(priorityService.removePriority(id)).thenReturn(true);
+
+        mvc.perform(delete("/auth/priority/{id}", id)).andExpect(content().string("true"));
     }
 
     /**

@@ -213,8 +213,8 @@ public class PriorityServiceTest {
         PriorityDO priorityDO = new PriorityDO();
         priorityDO.setId(id);
         priorityDO.setCode("TEST " + randomInt);
-        priorityDO.setGmtCreate(dateProvider.getDateFormatter());
-        priorityDO.setGmtModified(dateProvider.getDateFormatter());
+        priorityDO.setGmtCreate(dateProvider.getCurrentTime());
+        priorityDO.setGmtModified(dateProvider.getCurrentTime());
         priorityDO.setParentId(parentId);
         priorityDO.setPriorityComment("TEST" + randomInt);
         priorityDO.setPriorityType(PriorityType.MENU);
