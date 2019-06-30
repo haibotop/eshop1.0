@@ -4,9 +4,6 @@ import java.util.Date;
 
 /**
  * 评论晒图
- *
- * @author Holy
- * @create 2019 - 06 - 30 22:25
  */
 public class CommentPictureDO {
     /**

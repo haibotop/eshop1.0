@@ -4,10 +4,7 @@ import java.util.Date;
 import java.util.Objects;
 
 /**
- * 评论聚合统计信息DO类
- *
- * @author Holy
- * @create 2019 - 06 - 30 22:34
+ * 评论聚合统计信息
  */
 public class CommentAggregateDO {
     /**
@@ -23,13 +20,13 @@ public class CommentAggregateDO {
      */
     private Long totalCommentCount;
     /**
-     * 好评数
+     * 好评论数
      */
     private Long goodCommentCount;
     /**
      * 好评率
      */
-    private Double goodCommentRate;
+    private Double goodsCommentRate;
     /**
      * 晒图评论数
      */
@@ -83,12 +80,12 @@ public class CommentAggregateDO {
         this.goodCommentCount = goodCommentCount;
     }
 
-    public Double getGoodCommentRate() {
-        return goodCommentRate;
+    public Double getGoodsCommentRate() {
+        return goodsCommentRate;
     }
 
-    public void setGoodCommentRate(Double goodCommentRate) {
-        this.goodCommentRate = goodCommentRate;
+    public void setGoodsCommentRate(Double goodsCommentRate) {
+        this.goodsCommentRate = goodsCommentRate;
     }
 
     public Long getShowPicturesCommentCount() {
@@ -140,7 +137,7 @@ public class CommentAggregateDO {
                 Objects.equals(goodsId, that.goodsId) &&
                 Objects.equals(totalCommentCount, that.totalCommentCount) &&
                 Objects.equals(goodCommentCount, that.goodCommentCount) &&
-                Objects.equals(goodCommentRate, that.goodCommentRate) &&
+                Objects.equals(goodsCommentRate, that.goodsCommentRate) &&
                 Objects.equals(showPicturesCommentCount, that.showPicturesCommentCount) &&
                 Objects.equals(mediumCommentCount, that.mediumCommentCount) &&
                 Objects.equals(badCommentCount, that.badCommentCount) &&
@@ -151,6 +148,6 @@ public class CommentAggregateDO {
     @Override
     public int hashCode() {
 
-        return Objects.hash(id, goodsId, totalCommentCount, goodCommentCount, goodCommentRate, showPicturesCommentCount, mediumCommentCount, badCommentCount, gmtCreate, gmtModified);
+        return Objects.hash(id, goodsId, totalCommentCount, goodCommentCount, goodsCommentRate, showPicturesCommentCount, mediumCommentCount, badCommentCount, gmtCreate, gmtModified);
     }
 }
