@@ -168,10 +168,10 @@ public class PriorityController {
      */
     private PriorityDTO convertPriorityVO2DTO(PriorityVO priorityVO) throws Exception{
         PriorityDTO priorityDTO = priorityVO.clone(PriorityDTO.class);
-        if(priorityVO.getGmtCreate() != null){
+        if(priorityVO.getGmtCreate() != null) {
             priorityDTO.setGmtCreate(dateProvider.parseDatetime(priorityVO.getGmtCreate()));
         }
-        if(priorityVO.getGmtModified() != null){
+        if(priorityVO.getGmtModified() != null) {
             priorityDTO.setGmtModified(dateProvider.parseDatetime(priorityVO.getGmtModified()));
         }
         return priorityDTO;

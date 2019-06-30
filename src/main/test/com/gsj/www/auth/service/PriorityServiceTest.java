@@ -14,6 +14,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.test.context.junit4.SpringRunner;
 
+import java.text.SimpleDateFormat;
 import java.util.*;
 
 import static org.junit.Assert.*;
@@ -51,9 +52,14 @@ public class PriorityServiceTest {
     /**
      * 日期辅助组件
      */
-    @Autowired
+    @MockBean
     private DateProvider dateProvider;
 
+    public void setup() throws Exception{
+        SimpleDateFormat dateFormatter = new SimpleDateFormat();
+        Date currentTime = dateFormatter.parse(dateFormatter.format(new Date()));
+        when(dateProvider.getCurrentTime()).thenReturn(currentTime);
+    }
     /**
      * 测试查询根权限
      * @throws Exception
