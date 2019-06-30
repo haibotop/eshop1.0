@@ -9,6 +9,7 @@ import com.gsj.www.auth.domain.PriorityDTO;
 import com.gsj.www.auth.service.PriorityService;
 import com.gsj.www.auth.visitor.PriorityNodeRelateCheckVisitor;
 import com.gsj.www.auth.visitor.PriorityNodeRemoveVisitor;
+import com.gsj.www.common.util.DateProvider;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -42,6 +43,11 @@ public class PriorityServiceImpl implements PriorityService {
      */
     @Autowired
     private AccountPriorityRelationshipDAO accountPriorityRelationshipDAO;
+    /**
+     * 日期辅助组件
+     */
+    @Autowired
+    private DateProvider dateProvider;
 
     /**
      * 查询根权限
@@ -119,6 +125,8 @@ public class PriorityServiceImpl implements PriorityService {
     @Override
     public Boolean savePriority(PriorityDTO priorityDTO) {
         try {
+            priorityDTO.setGmtCreate(dateProvider.getCurrentTime());
+            priorityDTO.setGmtModified(dateProvider.getCurrentTime());
             priorityDAO.savePriority(priorityDTO.clone(PriorityDO.class));
         } catch (Exception e) {
             logger.error("error", e);
@@ -134,6 +142,7 @@ public class PriorityServiceImpl implements PriorityService {
     @Override
     public Boolean updatePriority(PriorityDTO priorityDTO) {
         try {
+            priorityDTO.setGmtModified(dateProvider.getCurrentTime());
             priorityDAO.updatePriority(priorityDTO.clone(PriorityDO.class));
         } catch (Exception e) {
             logger.error("error", e);
