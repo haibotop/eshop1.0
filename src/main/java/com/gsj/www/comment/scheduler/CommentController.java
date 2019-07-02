@@ -1,4 +1,4 @@
-package com.gsj.www.comment.controller;
+package com.gsj.www.comment.scheduler;
 
 import com.gsj.www.comment.constant.ShowPictures;
 import com.gsj.www.comment.domain.CommentInfoDTO;

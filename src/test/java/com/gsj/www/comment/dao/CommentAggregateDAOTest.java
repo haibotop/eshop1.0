@@ -11,14 +11,12 @@ import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.transaction.annotation.Transactional;
 
 import static org.hamcrest.Matchers.greaterThan;
+import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertThat;
 
 /**
  * 评论统计管理模块的DAO组件的单元测试类
- *
- * @author Holy
- * @create 2019 - 07 - 01 21:32
  */
 @RunWith(SpringRunner.class)
 @SpringBootTest
@@ -41,17 +39,47 @@ public class CommentAggregateDAOTest {
      * @throws Exception
      */
     @Test
-    public void testSaveCommentAggregate() throws Exception{
+    public void testSaveCommentAggregate() throws Exception {
         Long goodsId = 1L;
         CommentAggregateDO commentAggregateDO = createCommentAggregateDO(goodsId);
         assertNotNull(commentAggregateDO.getId());
-        assertThat(commentAggregateDO.getId(),greaterThan(0L));
+        assertThat(commentAggregateDO.getId(), greaterThan(0L));
+    }
+
+    /**
+     * 测试根据商品id查询评论统计信息
+     * @throws Exception
+     */
+    @Test
+    public void testGetCommentAggregateByGoodsId() throws Exception{
+        Long goodsId = 1L;
+        CommentAggregateDO commentAggregateDO = createCommentAggregateDO(goodsId);
+        CommentAggregateDO resultCommentAggregateDO = commentAggregateDAO.getCommentAggregateByGoodsId(goodsId);
+
+        assertEquals(commentAggregateDO,resultCommentAggregateDO);
+    }
+
+    /**
+     * 测试更新评论统计信息
+     * @throws Exception
+     */
+    @Test
+    public void testUpdateCommentAggregate() throws Exception{
+        Long goodsId = 1L;
+        CommentAggregateDO commentAggregateDO = createCommentAggregateDO(goodsId);
+
+        commentAggregateDO.setGoodCommentCount(5l);
+        commentAggregateDAO.updateCommentAggregate(commentAggregateDO);
+
+        CommentAggregateDO resultCommentAggregateDO = commentAggregateDAO.getCommentAggregateByGoodsId(goodsId);
+
+        assertEquals(commentAggregateDO,resultCommentAggregateDO);
     }
 
     /**
      * 创建评论统计DO对象
-     * @param goodsId 商品id
-     * @return 评论统计DO对象
+     * @param goodsId
+     * @return
      * @throws Exception
      */
     private CommentAggregateDO createCommentAggregateDO(Long goodsId) throws Exception{
