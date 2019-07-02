@@ -67,7 +67,7 @@ public class AutoPublishCommentTask {
                 }
             }
             //通知订单中心，批量发表了评论
-            orderFacadeService.informBatchPublisCommentEvent(orderInfoIds);
+            orderFacadeService.informBatchPublishCommentEvent(orderInfoIds);
         }catch (Exception e){
             logger.error("error",e);
         }

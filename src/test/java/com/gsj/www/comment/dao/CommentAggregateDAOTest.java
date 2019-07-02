@@ -42,6 +42,7 @@ public class CommentAggregateDAOTest {
     public void testSaveCommentAggregate() throws Exception {
         Long goodsId = 1L;
         CommentAggregateDO commentAggregateDO = createCommentAggregateDO(goodsId);
+        System.out.println(commentAggregateDO.getId());
         assertNotNull(commentAggregateDO.getId());
         assertThat(commentAggregateDO.getId(), greaterThan(0L));
     }
@@ -95,7 +96,7 @@ public class CommentAggregateDAOTest {
         commentAggregateDO.setTotalCommentCount(5L);
 
         commentAggregateDAO.saveCommentAggregate(commentAggregateDO);
-
+        System.out.println(commentAggregateDO);
         return commentAggregateDO;
     }
 }

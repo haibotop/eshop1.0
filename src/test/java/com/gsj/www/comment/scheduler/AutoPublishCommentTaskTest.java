@@ -17,9 +17,7 @@ import org.springframework.test.context.junit4.SpringRunner;
 import java.util.ArrayList;
 import java.util.List;
 
-import static org.mockito.Mockito.verify;
-import static org.mockito.Mockito.when;
-import static sun.misc.PerformanceLogger.times;
+import static org.mockito.Mockito.*;
 
 /**
  * 自动发表评论调度任务的单元测试类
@@ -58,37 +56,37 @@ public class AutoPublishCommentTaskTest {
 
         List<Long> orderInfoIds = new ArrayList<Long>();
         for(OrderOrderDTO orderOrderDTO : orderOrderDTOs) {
-            orderInfoIds.add(OrderOrderDTO.getId());
+            orderInfoIds.add(orderOrderDTO.getId());
         }
 
-        when(orderFacadeService.listNotPublishedCommentOrders()).thenReturn(OrderOrderDTOs);
+        when(orderFacadeService.listNotPublishedCommentOrders()).thenReturn(orderOrderDTOs);
 
         CommentInfoDTO commentInfoDTO1 = new CommentInfoDTO();
-        when(commentInfoService.saveAutoPublishedCommentInfo(OrderOrderDTOs.get(0),
-                orderOrderDTOs.get(0).getOrderItems().get(0))).thenReturn(commentInfoDTO1);
+        when(commentInfoService.saveAutoPublishedCommentInfo(orderOrderDTOs.get(0),
+                orderOrderDTOs.get(0).getOrderItemDTOList().get(0))).thenReturn(commentInfoDTO1);
 
         CommentInfoDTO commentInfoDTO2 = new CommentInfoDTO();
-        when(commentInfoService.saveAutoPublishedCommentInfo(OrderOrderDTOs.get(0),
-                orderOrderDTOs.get(0).getOrderItems().get(1))).thenReturn(commentInfoDTO2);
+        when(commentInfoService.saveAutoPublishedCommentInfo(orderOrderDTOs.get(0),
+                orderOrderDTOs.get(0).getOrderItemDTOList().get(1))).thenReturn(commentInfoDTO2);
 
         CommentInfoDTO commentInfoDTO3 = new CommentInfoDTO();
-        when(commentInfoService.saveAutoPublishedCommentInfo(OrderOrderDTOs.get(1),
-                orderOrderDTOs.get(1).getOrderItems().get(0))).thenReturn(commentInfoDTO3);
+        when(commentInfoService.saveAutoPublishedCommentInfo(orderOrderDTOs.get(1),
+                orderOrderDTOs.get(1).getOrderItemDTOList().get(0))).thenReturn(commentInfoDTO3);
 
         CommentInfoDTO commentInfoDTO4 = new CommentInfoDTO();
-        when(commentInfoService.saveAutoPublishedCommentInfo(OrderOrderDTOs.get(1),
-                orderOrderDTOs.get(1).getOrderItems().get(1))).thenReturn(commentInfoDTO4);
+        when(commentInfoService.saveAutoPublishedCommentInfo(orderOrderDTOs.get(1),
+                orderOrderDTOs.get(1).getOrderItemDTOList().get(1))).thenReturn(commentInfoDTO4);
 
         autoPubliashCommentTask.execute();
 
-        verify(commentInfoService, times(1)).saveAutoPublishedCommentInfo(OrderOrderDTOs.get(0),
-                orderOrderDTOs.get(0).getOrderItems().get(0));
-        verify(commentInfoService, times(1)).saveAutoPublishedCommentInfo(OrderOrderDTOs.get(0),
-                orderOrderDTOs.get(0).getOrderItems().get(1));
-        verify(commentInfoService, times(1)).saveAutoPublishedCommentInfo(OrderOrderDTOs.get(1),
-                orderOrderDTOs.get(1).getOrderItems().get(0));
-        verify(commentInfoService, times(1)).saveAutoPublishedCommentInfo(OrderOrderDTOs.get(1),
-                orderOrderDTOs.get(1).getOrderItems().get(1));
+        verify(commentInfoService, times(1)).saveAutoPublishedCommentInfo(orderOrderDTOs.get(0),
+                orderOrderDTOs.get(0).getOrderItemDTOList().get(0));
+        verify(commentInfoService, times(1)).saveAutoPublishedCommentInfo(orderOrderDTOs.get(0),
+                orderOrderDTOs.get(0).getOrderItemDTOList().get(1));
+        verify(commentInfoService, times(1)).saveAutoPublishedCommentInfo(orderOrderDTOs.get(1),
+                orderOrderDTOs.get(1).getOrderItemDTOList().get(0));
+        verify(commentInfoService, times(1)).saveAutoPublishedCommentInfo(orderOrderDTOs.get(1),
+                orderOrderDTOs.get(1).getOrderItemDTOList().get(1));
         verify(commentAggregateService, times(4)).refreshCommentAggregate(commentInfoDTO1);
         verify(orderFacadeService, times(1)).informBatchPublishCommentEvent(orderInfoIds);
     }
@@ -113,7 +111,7 @@ public class AutoPublishCommentTaskTest {
         orderItemDTOs1.add(orderItemDTO1);
         orderItemDTOs1.add(orderItemDTO2);
 
-        OrderOrderDTO1.setOrderItems(orderItemDTOs1);
+        OrderOrderDTO1.setOrderItemDTOList(orderItemDTOs1);
 
         // 构造第二个订单信息DTO
         OrderOrderDTO orderOrderDTO2 = new OrderOrderDTO();
@@ -129,7 +127,7 @@ public class AutoPublishCommentTaskTest {
         orderItemDTOs2.add(orderItemDTO3);
         orderItemDTOs2.add(orderItemDTO4);
 
-        orderOrderDTO2.setOrderItems(orderItemDTOs2);
+        orderOrderDTO2.setOrderItemDTOList(orderItemDTOs2);
 
         // 构造订单DTO集合
         List<OrderOrderDTO> OrderOrderDTOs = new ArrayList<OrderOrderDTO>();

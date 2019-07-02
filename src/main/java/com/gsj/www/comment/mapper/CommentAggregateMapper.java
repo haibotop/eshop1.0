@@ -13,30 +13,30 @@ public interface CommentAggregateMapper {
      * @param goodsId 商品id
      * @return 评论统计信息
      */
-    @Select("SELECT " +
-            "id," +
-            "goods_id," +
-            "total_comment_count," +
-            "good_comment_count," +
-            "good_comment_rate," +
-            "show_pictures_comment_count," +
-            "medium_comment_count," +
-            "bad_comment_count," +
-            "gmt_create," +
-            "gmt_modified " +
-            "from comment_aggregate " +
-            "where goods_id=#{goodsId}")
+    @Select("SELECT "
+            + "id,"
+            + "goods_id,"
+            + "total_comment_count,"
+            + "good_comment_count,"
+            + "good_comment_rate,"
+            + "show_pictures_comment_count,"
+            + "medium_comment_count,"
+            + "bad_comment_count,"
+            + "gmt_create,"
+            + "gmt_modified "
+            + "FROM comment_aggregate "
+            + "WHERE goods_id=#{goodsId}")
     @Results({
-       @Result(column = "id", property = "id",id=true),
-       @Result(column = "goods_id",property = "goodsId"),
-       @Result(column = "total_comment_count", property = "totalCommentCount"),
-       @Result(column = "good_comment_count", property = "goodCommentCount"),
-       @Result(column = "good_comment_rate", property = "goodCommentRate"),
-       @Result(column = "show_pictures_comment_count", property = "showPictureCommentCount"),
-       @Result(column = "medium_comment_count", property = "mediumCommentCount"),
-       @Result(column = "bad_comment_count", property = "badCommentCount"),
-       @Result(column = "gmt_create", property = "gmtCreate"),
-       @Result(column = "gmt_modified", property = "gmtModified")
+            @Result(column = "id", property = "id", id = true),
+            @Result(column = "goods_id", property = "goodsId"),
+            @Result(column = "total_comment_count", property = "totalCommentCount"),
+            @Result(column = "good_comment_count", property = "goodCommentCount"),
+            @Result(column = "good_comment_rate", property = "goodCommentRate"),
+            @Result(column = "show_pictures_comment_count", property = "showPicturesCommentCount"),
+            @Result(column = "medium_comment_count", property = "mediumCommentCount"),
+            @Result(column = "bad_comment_count", property = "badCommentCount"),
+            @Result(column = "gmt_create", property = "gmtCreate"),
+            @Result(column = "gmt_modified", property = "gmtModified")
     })
     CommentAggregateDO getCommentAggregateByGoodsId(@Param("goodsId") Long goodsId);
 
@@ -44,44 +44,44 @@ public interface CommentAggregateMapper {
      * 新增评论统计信息
      * @param commentAggregateDO 评论统计信息DO对象
      */
-    @Insert("insert into comment_aggregate(" +
-            "goods_id," +
-            "total_comment_count," +
-            "good_comment_count," +
-            "good_comment_rate," +
-            "show_pictures_comment_count," +
-            "medium_comment_count," +
-            "bad_comment_count," +
-            "gmt_create," +
-            "gmt_modified" +
-            ") values(" +
-            "#{goodsId}," +
-            "#{totalCommentCount}," +
-            "#{goodCommentCount}," +
-            "#{goodCommentRate}," +
-            "#{showPicturesCommentCount}," +
-            "#{mediumCommentCount}," +
-            "#{badCommentCount}," +
-            "#{gmtCreate}," +
-            "#{gmtModified}" +
-            ")")
+    @Insert("INSERT INTO comment_aggregate("
+            + "goods_id,"
+            + "total_comment_count,"
+            + "good_comment_count,"
+            + "good_comment_rate,"
+            + "show_pictures_comment_count,"
+            + "medium_comment_count,"
+            + "bad_comment_count,"
+            + "gmt_create,"
+            + "gmt_modified"
+            + ") VALUES("
+            + "#{goodsId},"
+            + "#{totalCommentCount},"
+            + "#{goodCommentCount},"
+            + "#{goodCommentRate},"
+            + "#{showPicturesCommentCount},"
+            + "#{mediumCommentCount},"
+            + "#{badCommentCount},"
+            + "#{gmtCreate},"
+            + "#{gmtModified}"
+            + ")")
     @Options(useGeneratedKeys = true, keyProperty = "id")
     void saveCommentAggregate(CommentAggregateDO commentAggregateDO);
 
     /**
      * 更新评论统计信息
-     * @param commentAggregateDO
+     * @param commentAggregateDO 评论统计信息DO对象
      */
-    @Update("update comment_aggregate set " +
-            "goods_id=#{goodsId}," +
-            "total_comment_count=#{totalCommentCount}," +
-            "good_comment_count=#{goodCommentCount}," +
-            "good_comment_rate=#{goodCommentRate}," +
-            "show_pictures_comment_count=#{showPicturesCommentCount}," +
-            "medium_comment_count=#{mediumCommentCount}," +
-            "bad_comment_count=#{badCommentCount}," +
-            "gmt_create=#{gmtCreate}," +
-            "gmt_modified=#{gmtModified} " +
-            "where id=#{id}")
+    @Update("UPDATE comment_aggregate SET "
+            + "goods_id=#{goodsId},"
+            + "total_comment_count=#{totalCommentCount},"
+            + "good_comment_count=#{goodCommentCount},"
+            + "good_comment_rate=#{goodCommentRate},"
+            + "show_pictures_comment_count=#{showPicturesCommentCount},"
+            + "medium_comment_count=#{mediumCommentCount},"
+            + "bad_comment_count=#{badCommentCount},"
+            + "gmt_create=#{gmtCreate},"
+            + "gmt_modified=#{gmtModified}"
+            + "WHERE id=#{id}")
     void updateCommentAggregate(CommentAggregateDO commentAggregateDO);
 }

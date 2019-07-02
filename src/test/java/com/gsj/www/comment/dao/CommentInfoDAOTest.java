@@ -3,6 +3,7 @@ package com.gsj.www.comment.dao;
 import com.gsj.www.comment.constant.*;
 import com.gsj.www.comment.domain.CommentInfoDO;
 import com.gsj.www.common.util.DateProvider;
+import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -37,6 +38,7 @@ public class CommentInfoDAOTest {
      * 测试新增评论信息
      * @throws Exception
      */
+    @Test
     public void testSaveCommentInfo() throws Exception{
         CommentInfoDO commentInfoDO = createCommentInfoDO();
         Long commentInfoId = commentInfoDAO.saveCommentInfo(commentInfoDO);
@@ -44,6 +46,11 @@ public class CommentInfoDAOTest {
         assertThat(commentInfoId,greaterThan(0L));
     }
 
+    /**
+     * 创建评论信息
+     * @return
+     * @throws Exception
+     */
     private CommentInfoDO createCommentInfoDO() throws Exception{
         CommentInfoDO commentInfoDO = new CommentInfoDO();
 

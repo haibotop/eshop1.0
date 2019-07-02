@@ -97,7 +97,7 @@ public class OrderFacadeServiceImpl implements OrderFacadeService {
      * @return 处理结果
      */
     @Override
-    public Boolean informBatchPublisCommentEvent(List<Long> orderIds) {
+    public Boolean informBatchPublishCommentEvent(List<Long> orderIds) {
         return true;
     }
 }
