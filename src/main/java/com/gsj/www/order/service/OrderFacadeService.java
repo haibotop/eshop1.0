@@ -69,6 +69,6 @@ public interface OrderFacadeService {
      * @param orderIds 订单id集合
      * @return 处理结果
      */
-    Boolean informBatchPublisCommentEvent(List<Long> orderIds);
+    Boolean informBatchPublishCommentEvent(List<Long> orderIds);
 }
 
