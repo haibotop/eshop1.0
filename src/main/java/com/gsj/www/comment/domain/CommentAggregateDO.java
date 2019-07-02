@@ -26,7 +26,7 @@ public class CommentAggregateDO {
     /**
      * 好评率
      */
-    private Double goodsCommentRate;
+    private Double goodCommentRate;
     /**
      * 晒图评论数
      */
@@ -80,12 +80,12 @@ public class CommentAggregateDO {
         this.goodCommentCount = goodCommentCount;
     }
 
-    public Double getGoodsCommentRate() {
-        return goodsCommentRate;
+    public Double getGoodCommentRate() {
+        return goodCommentRate;
     }
 
-    public void setGoodsCommentRate(Double goodsCommentRate) {
-        this.goodsCommentRate = goodsCommentRate;
+    public void setGoodCommentRate(Double goodCommentRate) {
+        this.goodCommentRate = goodCommentRate;
     }
 
     public Long getShowPicturesCommentCount() {
@@ -137,7 +137,7 @@ public class CommentAggregateDO {
                 Objects.equals(goodsId, that.goodsId) &&
                 Objects.equals(totalCommentCount, that.totalCommentCount) &&
                 Objects.equals(goodCommentCount, that.goodCommentCount) &&
-                Objects.equals(goodsCommentRate, that.goodsCommentRate) &&
+                Objects.equals(goodCommentRate, that.goodCommentRate) &&
                 Objects.equals(showPicturesCommentCount, that.showPicturesCommentCount) &&
                 Objects.equals(mediumCommentCount, that.mediumCommentCount) &&
                 Objects.equals(badCommentCount, that.badCommentCount) &&
@@ -148,6 +148,6 @@ public class CommentAggregateDO {
     @Override
     public int hashCode() {
 
-        return Objects.hash(id, goodsId, totalCommentCount, goodCommentCount, goodsCommentRate, showPicturesCommentCount, mediumCommentCount, badCommentCount, gmtCreate, gmtModified);
+        return Objects.hash(id, goodsId, totalCommentCount, goodCommentCount, goodCommentRate, showPicturesCommentCount, mediumCommentCount, badCommentCount, gmtCreate, gmtModified);
     }
 }

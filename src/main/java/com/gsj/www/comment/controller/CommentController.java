@@ -11,6 +11,7 @@ import com.gsj.www.order.service.OrderFacadeService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
@@ -50,6 +51,14 @@ public class CommentController {
     @Autowired
     private MembershipFacadeService membershipFacadeService;
 
+    /**
+     * 手动发表评论
+     * @param request
+     * @param commentInfoVO 评论信息VO对象
+     * @param files
+     * @return 处理结果
+     */
+    @PostMapping("/")
     public Boolean publishComment(HttpServletRequest request, CommentInfoVO commentInfoVO, MultipartFile[] files){
         try {
             //为评论设置是否晒图

@@ -79,7 +79,7 @@ public class CommentAggregateServiceImpl implements CommentAggregateService{
 
         Double goodCommentRate = Double.valueOf(new DecimalFormat("#.00").format(
                 (double) commentAggregateDO.getBadCommentCount() / (double)commentAggregateDO.getTotalCommentCount()));
-        commentAggregateDO.setGoodsCommentRate(goodCommentRate);
+        commentAggregateDO.setGoodCommentRate(goodCommentRate);
 
         if(ShowPictures.YES.equals(commentInfoDTO.getShowPictures())){
             commentAggregateDO.setShowPicturesCommentCount(1L);
@@ -112,7 +112,7 @@ public class CommentAggregateServiceImpl implements CommentAggregateService{
 
         Double goodCommentRate = Double.valueOf(new DecimalFormat("#.00").format((double)commentAggregateDO
         .getGoodCommentCount() / (double)commentAggregateDO.getTotalCommentCount()));
-        commentAggregateDO.setGoodsCommentRate(goodCommentRate);
+        commentAggregateDO.setGoodCommentRate(goodCommentRate);
 
         if(ShowPictures.YES.equals(commentInfoDTO.getShowPictures())){
             commentAggregateDO.setShowPicturesCommentCount(commentAggregateDO.getShowPicturesCommentCount() + 1l);
