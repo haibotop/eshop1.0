@@ -1,5 +1,6 @@
 package com.gsj.www.commodity.domain;
 
+import com.gsj.www.common.util.BeanCopierUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -134,5 +135,17 @@ public class PropertyDO {
                 ", gmtCreate=" + gmtCreate +
                 ", gmtModified=" + gmtModified +
                 '}';
+    }
+
+    public <T> T clone(Class<T> clazz){
+        T target = null;
+        try {
+            target = clazz.newInstance();
+            BeanCopierUtils.copyProperties(this, target);
+        }catch (Exception e){
+            logger.error("error",e);
+            return null;
+        }
+        return target;
     }
 }
