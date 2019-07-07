@@ -7,10 +7,7 @@ import com.gsj.www.commodity.service.PropertyService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -50,6 +47,7 @@ public class PropertyController {
      * @param id 商品属性id
      * @return 商品属性
      */
+    @GetMapping("/{id}")
     public PropertyVO getPropertyById(@PathVariable("id") Long id){
         try {
              PropertyDTO propertyDTO = propertyService.getPropertyById(id);
@@ -58,5 +56,39 @@ public class PropertyController {
             logger.error("error",e);
         }
         return new PropertyVO();
+    }
+
+    /**
+     * 新增商品属性
+     * @param propertyVO 商品属性VO对象
+     * @return 处理结果
+     */
+    @PostMapping("/")
+    public Boolean saveProperty(@RequestBody PropertyVO propertyVO) {
+        try {
+            PropertyDTO propertyDTO = propertyVO.clone(PropertyDTO.class);
+            propertyService.saveProperty(propertyDTO);
+        } catch (Exception e) {
+            logger.error("error", e);
+            return false;
+        }
+        return true;
+    }
+
+    /**
+     * 更新商品属性
+     * @param propertyVO 商品属性VO对象
+     * @return 处理结果
+     */
+    @PutMapping("/{id}")
+    public Boolean updateProperty(@RequestBody PropertyVO propertyVO) {
+        try {
+            PropertyDTO propertyDTO = propertyVO.clone(PropertyDTO.class);
+            propertyService.updateProperty(propertyDTO);
+        } catch (Exception e) {
+            logger.error("error", e);
+            return false;
+        }
+        return true;
     }
 }

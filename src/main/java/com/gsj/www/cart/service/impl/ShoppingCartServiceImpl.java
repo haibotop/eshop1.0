@@ -47,7 +47,7 @@ public class ShoppingCartServiceImpl implements ShoppingCartService{
     @Override
     public Boolean addShoppingCartItem(Long userAccountId, Long goodsSkuId) {
         try {
-            Date currentTime = dateProvider.getDateFormatter();
+            Date currentTime = dateProvider.getCurrentTime();
             //先查询一下用户的购物车
             ShoppingCartDO shoppingCartDO = shoppingCartDAO.getShoppingCartByUserAccountId(userAccountId);
 

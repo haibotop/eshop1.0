@@ -92,7 +92,7 @@ public class ShoppingCartItemDAOTest {
         //更新购物车条目的购买数量和修改时间
         Long newPurchaseQuantity = purchaseQuantity + 1L;
 
-        Date currentTime = dateProvider.getDateFormatter();
+        Date currentTime = dateProvider.getCurrentTime();
 
         shoppingCartItemDO.setPurchaseQuantity(newPurchaseQuantity);
         shoppingCartItemDO.setGmtModified(currentTime);
@@ -117,7 +117,7 @@ public class ShoppingCartItemDAOTest {
      * @throws Exception
      */
     private ShoppingCartItemDO createShoppingCartItem(Long shoppingCartId,Long goodsSkuId, Long purchaseQuantity) throws Exception{
-        Date currentTime = dateProvider.getDateFormatter();
+        Date currentTime = dateProvider.getCurrentTime();
 
         ShoppingCartItemDO shoppingCartItemDO = new ShoppingCartItemDO();
         shoppingCartItemDO.setShoppingCartId(shoppingCartId);

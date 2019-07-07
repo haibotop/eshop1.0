@@ -76,7 +76,7 @@ public class ShoppingCartDAOTest {
      * @throws Exception
      */
     private ShoppingCartDO createShoppingCart(Long userAccountId) throws Exception{
-        Date currentTime = dateProvider.getDateFormatter();
+        Date currentTime = dateProvider.getCurrentTime();
 
         ShoppingCartDO shoppingCartDO = new ShoppingCartDO();
         shoppingCartDO.setUserAccountId(userAccountId);

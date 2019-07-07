@@ -99,7 +99,7 @@ public class ShoppingCartServiceTest {
     private ShoppingCartDO createShoppingCartDO(Long userAccountId) throws Exception{
         Long id = 1L;
         System.out.println(dateProvider);
-        Date currentTime = dateProvider.getDateFormatter();
+        Date currentTime = dateProvider.getCurrentTime();
         System.out.println(dateProvider);
 
         ShoppingCartDO shoppingCartDO = new ShoppingCartDO();
@@ -121,7 +121,7 @@ public class ShoppingCartServiceTest {
     private ShoppingCartItemDO createShoppingCartItemDO(Long shoppingCartId, Long goodsSkuId) throws Exception{
          Long id = 1L;
          Long purchaseQuantity = 1L;
-         Date currentTime = dateProvider.getDateFormatter();
+         Date currentTime = dateProvider.getCurrentTime();
 
          ShoppingCartItemDO shoppingCartItemDO = new ShoppingCartItemDO();
          shoppingCartItemDO.setId(id);
