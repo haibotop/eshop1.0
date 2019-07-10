@@ -1,6 +1,6 @@
 package com.gsj.www.logistics;
 
-import com.gsj.www.goods.domain.GoodsSkuDTO;
+import com.gsj.www.commodity.domain.GoodsSkuDTO;
 
 /**
  * 物流中心对外提供的接口

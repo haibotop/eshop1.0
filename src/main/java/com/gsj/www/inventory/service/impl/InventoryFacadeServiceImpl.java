@@ -4,11 +4,19 @@ import com.gsj.www.inventory.service.InventoryFacadeService;
 import com.gsj.www.order.domain.OrderOrderDTO;
 import com.gsj.www.wms.domain.PurchaseInputOrderDTO;
 import com.gsj.www.wms.domain.ReturnGoodsInputOrderDTO;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 /**
  * 库存中心对外接口service组件
  */
+@Service
 public class InventoryFacadeServiceImpl implements InventoryFacadeService {
+    private static final Logger logger = LoggerFactory.getLogger(InventoryFacadeServiceImpl.class);
+    @Autowired
+    private PurchaseInputStockUpdateFactory<PurchaseInputOrderDTO> purchaseInputStockUpdateCommandFactory;
     /**
      * 通知库存中心，"采购入库完成"事件发生了
      * @param purchaseInputOrderDTO 采购入库单DTO
