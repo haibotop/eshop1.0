@@ -6,12 +6,18 @@ import com.gsj.www.inventory.domain.GoodsStockDO;
 import com.gsj.www.order.domain.OrderItemDTO;
 import com.gsj.www.order.domain.OrderOrderDTO;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+/**
+ * 退货入库库存更新命令的工厂
+ * @param <T>
+ */
+@Component
 public class CancelOrderStockUpdateFactory<T> extends AbstractGoodsStockUpdaterFactory<T> {
     /**
      * 构造函数
