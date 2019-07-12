@@ -1,11 +1,12 @@
-package com.gsj.www.inventory.updater;
+package com.gsj.www.wms.domain;
 
 import com.gsj.www.common.util.DateProvider;
 import com.gsj.www.inventory.dao.GoodsStockDAO;
 import com.gsj.www.inventory.domain.GoodsStockDO;
+import com.gsj.www.inventory.updater.AbstractGoodsStockUpdaterFactory;
+import com.gsj.www.inventory.updater.GoodsStockUpdater;
 import com.gsj.www.order.domain.OrderItemDTO;
 import com.gsj.www.order.domain.OrderOrderDTO;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;
@@ -14,18 +15,17 @@ import java.util.List;
 import java.util.Map;
 
 /**
- * 取消订单库存更新组件工厂
+ * 提交订单库存更新组件工厂
  * @param <T>
  */
 @Component
-public class CancelOrderStockUpdateFactory<T> extends AbstractGoodsStockUpdaterFactory<T> {
+public class SubmitOrderStockUpdaterFactory<T> extends AbstractGoodsStockUpdaterFactory<T> {
     /**
      * 构造函数
      * @param goodsStockDAO 商品库存管理模块的DAO组件
      * @param dateProvider  日期辅助组件
      */
-    @Autowired
-    public CancelOrderStockUpdateFactory(GoodsStockDAO goodsStockDAO, DateProvider dateProvider) {
+    public SubmitOrderStockUpdaterFactory(GoodsStockDAO goodsStockDAO, DateProvider dateProvider) {
         super(goodsStockDAO, dateProvider);
     }
 
@@ -38,12 +38,11 @@ public class CancelOrderStockUpdateFactory<T> extends AbstractGoodsStockUpdaterF
     @Override
     protected List<Long> getGoodsSkuIds(T parameter) throws Exception {
         OrderOrderDTO orderOrderDTO = (OrderOrderDTO) parameter;
-
         List<Long> goodsSkuIds = new ArrayList<Long>();
 
-        List<OrderItemDTO> orderOrderDTOS = orderOrderDTO.getOrderItemDTOList();
-        for (OrderItemDTO orderDTO : orderOrderDTOS) {
-            goodsSkuIds.add(orderDTO.getGoodsId());
+        List<OrderItemDTO> orderItemDTOS = orderOrderDTO.getOrderItemDTOList();
+        for (OrderItemDTO orderItemDTO : orderItemDTOS) {
+            goodsSkuIds.add(orderItemDTO.getGoodsSkuId());
         }
         return goodsSkuIds;
     }
@@ -58,11 +57,11 @@ public class CancelOrderStockUpdateFactory<T> extends AbstractGoodsStockUpdaterF
     @Override
     protected GoodsStockUpdater create(List<GoodsStockDO> goodsStockDOS, T parameter) throws Exception {
         OrderOrderDTO orderOrderDTO = (OrderOrderDTO) parameter;
-
         Map<Long, OrderItemDTO> orderItemDTOMap = new HashMap<Long, OrderItemDTO>();
         for (OrderItemDTO orderItemDTO : orderOrderDTO.getOrderItemDTOList()) {
-            orderItemDTOMap.put(orderItemDTO.getGoodsId(), orderItemDTO);
+            orderItemDTOMap.put(orderItemDTO.getGoodsSkuId(), orderItemDTO);
         }
-        return new PayOrderStockUpdator(goodsStockDOS, goodsStockDAO,dateProvider,orderItemDTOMap);
+
+        return new SubmitOrderStockUpdater(goodsStockDOS,goodsStockDAO,dateProvider,orderItemDTOMap);
     }
 }
