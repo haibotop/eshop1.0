@@ -1,0 +1,41 @@
+package com.gsj.www.comment.dao.impl;
+
+import com.gsj.www.comment.dao.CommentPictureDAO;
+import com.gsj.www.comment.domain.CommentPictureDO;
+import com.gsj.www.comment.mapper.CommentPictureMapper;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Repository;
+
+/**
+ * 评论晒图管理模块的DAO组件
+ *
+ * @author Holy
+ * @create 2019 - 07 - 01 7:21
+ */
+@Repository
+public class CommentPictureDAOImpl implements CommentPictureDAO {
+    private static final Logger logger = LoggerFactory.getLogger(CommentPictureDAOImpl.class);
+
+    /**
+     * 评论晒图管理模块的mapper组件
+     */
+    @Autowired
+    private CommentPictureMapper commentPictureMapper;
+
+    /**
+     * 新增评论晒图
+     * @param commentPictureDO 评论晒图DO对象
+     */
+    @Override
+    public Long saveCommentPicture(CommentPictureDO commentPictureDO) {
+        try {
+            commentPictureMapper.saveCommentPicture(commentPictureDO);
+        } catch (Exception e) {
+            logger.error("error", e);
+            return null;
+        }
+        return commentPictureDO.getId();
+    }
+}

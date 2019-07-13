@@ -4,3 +4,4 @@ target/
 *.class
 *.imi
 *.iml
+.idea/workspace.xml
