@@ -1,11 +1,12 @@
 package com.gsj.www.order.domain;
 
 import java.util.Date;
+import java.util.List;
 
 /**
- * 订单DTO
+ * 订单信息DTO
  */
-public class OrderDTO {
+public class OrderOrderDTO {
 
     /**
      * id
@@ -15,6 +16,10 @@ public class OrderDTO {
      * 订单编号
      */
     private String orderNo;
+    /**
+     * 用户姓名
+     */
+    private String username;
     /**
      * 用户账号id
      */
@@ -79,6 +84,10 @@ public class OrderDTO {
      * 销售出库单的修改时间
      */
     private Date gmtModified;
+    /**
+     * 订单包含的订单条目
+     */
+    private List<OrderItemDTO> orderItemDTOList;
 
     public Long getId() {
         return id;
@@ -92,6 +101,15 @@ public class OrderDTO {
     public void setOrderNo(String orderNo) {
         this.orderNo = orderNo;
     }
+
+    public String getUsername() {
+        return username;
+    }
+
+    public void setUsername(String username) {
+        this.username = username;
+    }
+
     public Long getUserAccountId() {
         return userAccountId;
     }
@@ -189,5 +207,12 @@ public class OrderDTO {
         this.gmtModified = gmtModified;
     }
 
+    public List<OrderItemDTO> getOrderItemDTOList() {
+        return orderItemDTOList;
+    }
+
+    public void setOrderItemDTOList(List<OrderItemDTO> orderItemDTOList) {
+        this.orderItemDTOList = orderItemDTOList;
+    }
 }
 
