@@ -7,7 +7,7 @@ import java.util.Objects;
  * 购物车条目DO类
  *
  * @author Holy
- * @create 2019 - 06 - 28 7:55
+ * @create 2019 - 06 - 14 6:40
  */
 public class ShoppingCartItemDO {
     /**

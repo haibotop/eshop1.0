@@ -1,7 +1,10 @@
 target/
 
 .idea/*
-*.class
-*.imi
 *.iml
-.idea/workspace.xml
+*.imi
+*.class
+workspace.xml
+encodings.xml
+.idea/
+*.class

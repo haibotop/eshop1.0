@@ -1,12 +1,14 @@
-package com.gsj.www.goods.domain;
+package com.gsj.www.commodity.domain;
 
 import java.util.Date;
 
 /**
  * 商品sku DTO
+ *
+ * @author Holy
+ * @create 2019 - 07 - 03 7:48
  */
 public class GoodsSkuDTO {
-
     /**
      * id
      */
@@ -88,6 +90,4 @@ public class GoodsSkuDTO {
     public void setGmtModified(Date gmtModified) {
         this.gmtModified = gmtModified;
     }
-
 }
-
