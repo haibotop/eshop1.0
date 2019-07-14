@@ -6,7 +6,12 @@ import com.gsj.www.commodity.domain.PropertyDO;
 import com.gsj.www.commodity.domain.PropertyQuery;
 import com.gsj.www.common.util.DateProvider;
 import org.junit.Test;
+import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.test.annotation.Rollback;
+import org.springframework.test.context.junit4.SpringRunner;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.HashMap;
 import java.util.List;
@@ -20,6 +25,10 @@ import static org.junit.Assert.*;
  * @author Holy
  * @create 2019 - 07 - 07 22:50
  */
+@RunWith(SpringRunner.class)
+@SpringBootTest
+@Transactional
+@Rollback
 public class PropertyDAOTest {
     /**
      * 属性管理模块DAO组件
@@ -130,12 +139,11 @@ public class PropertyDAOTest {
         propertyDO.setGmtCreate(dateProvider.getCurrentTime());
         propertyDO.setGmtModified(dateProvider.getCurrentTime());
         propertyDO.setInputType(PropertyInputType.MULTIPUT_CHOICE);
-        propertyDO.setInputValue(inputValues);
+        propertyDO.setInputValues(inputValues);
         propertyDO.setPropertyDesc(propertyDesc);
         propertyDO.setPropertyName(propertyName);
-
         propertyDAO.saveProperty(propertyDO);
-
+//        System.out.println(propertyDAO.saveProperty(propertyDO)+"==========");
         return propertyDO;
     }
 }

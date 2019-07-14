@@ -65,7 +65,7 @@ public class CommentAggregateServiceImpl implements CommentAggregateService{
 
         commentAggregateDO.setGoodsId(commentInfoDTO.getGoodsId());
         commentAggregateDO.setTotalCommentCount(1L);
-        commentAggregateDO.setGoodCommentCount(0L);
+        commentAggregateDO.setGoodCommentCount(1L);
         commentAggregateDO.setMediumCommentCount(0L);
         commentAggregateDO.setBadCommentCount(0L);
 
@@ -78,7 +78,7 @@ public class CommentAggregateServiceImpl implements CommentAggregateService{
         }
 
         Double goodCommentRate = Double.valueOf(new DecimalFormat("#.00").format(
-                (double) commentAggregateDO.getBadCommentCount() / (double)commentAggregateDO.getTotalCommentCount()));
+                (double) commentAggregateDO.getGoodCommentCount() / (double)commentAggregateDO.getTotalCommentCount()));
         commentAggregateDO.setGoodCommentRate(goodCommentRate);
 
         if(ShowPictures.YES.equals(commentInfoDTO.getShowPictures())){

@@ -30,12 +30,12 @@ public interface PropertyMapper {
             "a.gmt_modified " +
             "FROM commodity_property a, " +
             "(" +
-            "SELECT id FROM cmmodity_property " +
+            "SELECT id FROM commodity_property " +
             "<if test='propertyName != null'>" +
             "WHERE property_name like '${propertyName}%' " +
             "</if>" +
             "LIMIT #{offset},#{size} " +
-            ") b" +
+            ") b " +
             "WHERE a.id=b.id" +
             "</script>")
     @Results({
@@ -57,7 +57,7 @@ public interface PropertyMapper {
             "property_name," +
             "property_desc," +
             "input_type," +
-            "input_vlaues," +
+            "input_values," +
             "gmt_create," +
             "gmt_modified" +
             ") VALUES(" +
@@ -65,8 +65,9 @@ public interface PropertyMapper {
             "#{propertyDesc}," +
             "#{inputType}," +
             "#{inputValues}," +
-            "#{gmt_create}," +
-            "#{gmt_modified}")
+            "#{gmtCreate}," +
+            "#{gmtModified}" +
+            ")")
     @Options(keyProperty = "id",keyColumn = "id",useGeneratedKeys = true)
     void saveProperty(PropertyDO propertyDO);
 

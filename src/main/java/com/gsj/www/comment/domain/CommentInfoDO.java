@@ -1,6 +1,7 @@
 package com.gsj.www.comment.domain;
 
 import java.util.Date;
+import java.util.Objects;
 
 /**
  * 评论信息DO类
@@ -199,5 +200,62 @@ public class CommentInfoDO {
     }
     public void setGmtModified(Date gmtModified) {
         this.gmtModified = gmtModified;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof CommentInfoDO)) return false;
+        CommentInfoDO that = (CommentInfoDO) o;
+        return Objects.equals(id, that.id) &&
+                Objects.equals(userAccountId, that.userAccountId) &&
+                Objects.equals(username, that.username) &&
+                Objects.equals(orderInfoId, that.orderInfoId) &&
+                Objects.equals(orderItemId, that.orderItemId) &&
+                Objects.equals(goodsId, that.goodsId) &&
+                Objects.equals(goodsSkuId, that.goodsSkuId) &&
+                Objects.equals(goodsSkuSaleProperties, that.goodsSkuSaleProperties) &&
+                Objects.equals(totalScore, that.totalScore) &&
+                Objects.equals(goodsScore, that.goodsScore) &&
+                Objects.equals(customerServiceScore, that.customerServiceScore) &&
+                Objects.equals(logisticsScore, that.logisticsScore) &&
+                Objects.equals(commentContent, that.commentContent) &&
+                Objects.equals(showPictures, that.showPictures) &&
+                Objects.equals(defaultComment, that.defaultComment) &&
+                Objects.equals(commentStatus, that.commentStatus) &&
+                Objects.equals(commentType, that.commentType) &&
+                Objects.equals(gmtCreate, that.gmtCreate) &&
+                Objects.equals(gmtModified, that.gmtModified);
+    }
+
+    @Override
+    public int hashCode() {
+
+        return Objects.hash(id, userAccountId, username, orderInfoId, orderItemId, goodsId, goodsSkuId, goodsSkuSaleProperties, totalScore, goodsScore, customerServiceScore, logisticsScore, commentContent, showPictures, defaultComment, commentStatus, commentType, gmtCreate, gmtModified);
+    }
+
+    @Override
+    public String toString() {
+        return "CommentInfoDO{" +
+                "id=" + id +
+                ", userAccountId=" + userAccountId +
+                ", username='" + username + '\'' +
+                ", orderInfoId=" + orderInfoId +
+                ", orderItemId=" + orderItemId +
+                ", goodsId=" + goodsId +
+                ", goodsSkuId=" + goodsSkuId +
+                ", goodsSkuSaleProperties='" + goodsSkuSaleProperties + '\'' +
+                ", totalScore=" + totalScore +
+                ", goodsScore=" + goodsScore +
+                ", customerServiceScore=" + customerServiceScore +
+                ", logisticsScore=" + logisticsScore +
+                ", commentContent='" + commentContent + '\'' +
+                ", showPictures=" + showPictures +
+                ", defaultComment=" + defaultComment +
+                ", commentStatus=" + commentStatus +
+                ", commentType=" + commentType +
+                ", gmtCreate=" + gmtCreate +
+                ", gmtModified=" + gmtModified +
+                '}';
     }
 }

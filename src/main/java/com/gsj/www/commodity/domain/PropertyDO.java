@@ -34,7 +34,7 @@ public class PropertyDO {
     /**
      * 输入可选值
      */
-    private String inputValue;
+    private String inputValues;
     /**
      * 商品属性的创建时间
      */
@@ -43,10 +43,6 @@ public class PropertyDO {
      * 商品属性的修改时间
      */
     private Date gmtModified;
-
-    public static Logger getLogger() {
-        return logger;
-    }
 
     public Long getId() {
         return id;
@@ -80,12 +76,12 @@ public class PropertyDO {
         this.inputType = inputType;
     }
 
-    public String getInputValue() {
-        return inputValue;
+    public String getInputValues() {
+        return inputValues;
     }
 
-    public void setInputValue(String inputValue) {
-        this.inputValue = inputValue;
+    public void setInputValues(String inputValues) {
+        this.inputValues = inputValues;
     }
 
     public Date getGmtCreate() {
@@ -113,7 +109,7 @@ public class PropertyDO {
                 Objects.equals(propertyName, that.propertyName) &&
                 Objects.equals(propertyDesc, that.propertyDesc) &&
                 Objects.equals(inputType, that.inputType) &&
-                Objects.equals(inputValue, that.inputValue) &&
+                Objects.equals(inputValues, that.inputValues) &&
                 Objects.equals(gmtCreate, that.gmtCreate) &&
                 Objects.equals(gmtModified, that.gmtModified);
     }
@@ -121,20 +117,7 @@ public class PropertyDO {
     @Override
     public int hashCode() {
 
-        return Objects.hash(id, propertyName, propertyDesc, inputType, inputValue, gmtCreate, gmtModified);
-    }
-
-    @Override
-    public String toString() {
-        return "PropertyDO{" +
-                "id=" + id +
-                ", propertyName='" + propertyName + '\'' +
-                ", propertyDesc='" + propertyDesc + '\'' +
-                ", inputType=" + inputType +
-                ", inputValue='" + inputValue + '\'' +
-                ", gmtCreate=" + gmtCreate +
-                ", gmtModified=" + gmtModified +
-                '}';
+        return Objects.hash(id, propertyName, propertyDesc, inputType, inputValues, gmtCreate, gmtModified);
     }
 
     public <T> T clone(Class<T> clazz){
@@ -147,5 +130,18 @@ public class PropertyDO {
             return null;
         }
         return target;
+    }
+
+    @Override
+    public String toString() {
+        return "PropertyDO{" +
+                "id=" + id +
+                ", propertyName='" + propertyName + '\'' +
+                ", propertyDesc='" + propertyDesc + '\'' +
+                ", inputType=" + inputType +
+                ", inputValues='" + inputValues + '\'' +
+                ", gmtCreate=" + gmtCreate +
+                ", gmtModified=" + gmtModified +
+                '}';
     }
 }

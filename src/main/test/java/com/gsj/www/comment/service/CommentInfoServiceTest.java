@@ -43,6 +43,7 @@ public class CommentInfoServiceTest {
     /**
      * 日期辅助组件
      */
+    @MockBean
     private DateProvider dateProvider;
 
     /**
@@ -53,6 +54,7 @@ public class CommentInfoServiceTest {
     public void setup() throws Exception {
         SimpleDateFormat dateFormatter = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
         Date currentTime = dateFormatter.parse(dateFormatter.format(new Date()));
+//        System.out.println(dateProvider.getCurrentTime()+"================="+currentTime);
         when(dateProvider.getCurrentTime()).thenReturn(currentTime);
     }
 

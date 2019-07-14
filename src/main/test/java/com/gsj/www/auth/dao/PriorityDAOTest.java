@@ -52,6 +52,7 @@ public class PriorityDAOTest {
         Long parentId = null;
         Map<Long, PriorityDO> priorityDOMap = createPriorityDOMap(parentId);
         List<PriorityDO> priorityDOs = priorityDAO.listRootPriorities();
+//        System.out.println(priorityDOMap.size()+"========="+priorityDOs.size());
         comparePriorityDOs(priorityDOMap, priorityDOs);
     }
 
@@ -64,6 +65,7 @@ public class PriorityDAOTest {
         Long parentId = 1L;
         Map<Long, PriorityDO> priorityDOMap = createPriorityDOMap(parentId);
         List<PriorityDO> priorityDOs = priorityDAO.listChildPriorities(parentId);
+//        System.out.println(priorityDOMap.size()+"========="+priorityDOs.size());
         comparePriorityDOs(priorityDOMap, priorityDOs);
     }
 

@@ -256,4 +256,29 @@ public class CommentInfoDTO {
 
         return Objects.hash(id, userAccountId, username, orderInfoId, orderItemId, goodsId, goodsSkuId, goodsSkuSaleProperties, totalScore, goodsScore, customerServiceScore, logisticsScore, commentContent, showPictures, defaultComment, commentStatus, commentType, gmtCreate, gmtModified);
     }
+
+    @Override
+    public String toString() {
+        return "CommentInfoDTO{" +
+                "id=" + id +
+                ", userAccountId=" + userAccountId +
+                ", username='" + username + '\'' +
+                ", orderInfoId=" + orderInfoId +
+                ", orderItemId=" + orderItemId +
+                ", goodsId=" + goodsId +
+                ", goodsSkuId=" + goodsSkuId +
+                ", goodsSkuSaleProperties='" + goodsSkuSaleProperties + '\'' +
+                ", totalScore=" + totalScore +
+                ", goodsScore=" + goodsScore +
+                ", customerServiceScore=" + customerServiceScore +
+                ", logisticsScore=" + logisticsScore +
+                ", commentContent='" + commentContent + '\'' +
+                ", showPictures=" + showPictures +
+                ", defaultComment=" + defaultComment +
+                ", commentStatus=" + commentStatus +
+                ", commentType=" + commentType +
+                ", gmtCreate=" + gmtCreate +
+                ", gmtModified=" + gmtModified +
+                '}';
+    }
 }
