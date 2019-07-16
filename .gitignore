@@ -6,5 +6,5 @@ target/
 *.class
 workspace.xml
 encodings.xml
-.idea/
+.idea/workspace.xml
 *.class
