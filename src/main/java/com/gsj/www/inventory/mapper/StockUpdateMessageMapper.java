@@ -60,4 +60,17 @@ public interface StockUpdateMessageMapper {
     })
     List<StockUpdateMessageDO> listByBatch();
 
+    /**
+     * 批量删除库存更新信息
+     * @param messageId 库存更新信息id集合字符串
+     */
+    @Delete("DELETE FROM inventory_offline_stock_update_message WHERE message_id IN（${messageIds}）")
+    void removeByBatch(@Param("messageId") String messageId);
+
+    /**
+     * 查询库存更新消息记录数
+     * @return 库存更新消息记录数
+     */
+    @Select("SELECT count(*) FROM inventory_offline_stock_update_message")
+    Long count();
 }
