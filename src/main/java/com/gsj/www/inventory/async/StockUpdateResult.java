@@ -5,7 +5,7 @@ package com.gsj.www.inventory.async;
  * @author Holy
  * @create 2019 - 07 - 16 21:36
  */
-public class GoodsStockUpdateResult {
+public class StockUpdateResult {
     /**
      * 商品库存更新消息id
      */

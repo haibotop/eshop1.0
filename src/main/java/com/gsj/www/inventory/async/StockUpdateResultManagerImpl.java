@@ -7,22 +7,22 @@ import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 
 /**
- * 商品库存更新结果管理组件
+ * 商品库存更新结果管理组件实现类
  *
  * @author Holy
- * @create 2019 - 07 - 16 21:44
+ * @create 2019 - 07 - 17 6:44
  */
 @Component
-public class GoodsStockUpdateManagerImpl implements GoodsStockUpdateManage{
+public class StockUpdateResultManagerImpl implements StockUpdateResultManager {
     /**
-     * 商品库存更新结果map
+     * 商品缓存更新结果
      */
-    private Map<String, GoodsStockUpdateObservable> observableMap = new ConcurrentHashMap<String, GoodsStockUpdateObservable>();
+    private Map<String,StockUpdateObservable> observableMap = new ConcurrentHashMap<String, StockUpdateObservable>();
     /**
      * 商品库存更新结果观察者
      */
     @Autowired
-    private GoodsStockUpdateObserver observer;
+    private StockUpdateObserver observer;
 
     /**
      * 设置对商品库存更新结果的观察
@@ -30,7 +30,7 @@ public class GoodsStockUpdateManagerImpl implements GoodsStockUpdateManage{
      */
     @Override
     public void observe(String messageId) {
-        GoodsStockUpdateObservable observable = new GoodsStockUpdateObservable(messageId);
+        StockUpdateObservable observable = new StockUpdateObservable(messageId);
         observable.addObserver(observer);
         observableMap.put(messageId,observable);
     }
@@ -42,7 +42,7 @@ public class GoodsStockUpdateManagerImpl implements GoodsStockUpdateManage{
      */
     @Override
     public void inform(String messageId, Boolean resultl) {
-        GoodsStockUpdateObservable observable = observableMap.get(messageId);
+        StockUpdateObservable observable = observableMap.get(messageId);
         observable.setResult(resultl);
         observableMap.remove(messageId);
     }

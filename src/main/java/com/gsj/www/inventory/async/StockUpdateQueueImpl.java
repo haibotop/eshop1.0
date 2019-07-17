@@ -10,11 +10,11 @@ import java.util.concurrent.ArrayBlockingQueue;
  * @create 2019 - 07 - 16 7:22
  */
 @Component
-public class GoodsStockUpdateQueueImpl implements  GoodsStockUpdateQueue{
+public class StockUpdateQueueImpl implements StockUpdateQueue {
     /**
      * 商品库存更新队列
      */
-    private ArrayBlockingQueue<GoodsStockUpdateMessage> queue = new ArrayBlockingQueue<GoodsStockUpdateMessage>(1000);
+    private ArrayBlockingQueue<StockUpdateMessage> queue = new ArrayBlockingQueue<StockUpdateMessage>(1000);
 
     /**
      * 将一个消息放入队列
@@ -22,7 +22,7 @@ public class GoodsStockUpdateQueueImpl implements  GoodsStockUpdateQueue{
      * @throws Exception
      */
     @Override
-    public void put(GoodsStockUpdateMessage message) throws Exception{
+    public void put(StockUpdateMessage message) throws Exception{
         queue.put(message);
     }
 
@@ -32,7 +32,7 @@ public class GoodsStockUpdateQueueImpl implements  GoodsStockUpdateQueue{
      * @throws Exception
      */
     @Override
-    public GoodsStockUpdateMessage get() throws Exception {
+    public StockUpdateMessage get() throws Exception {
         return queue.take();
     }
 }

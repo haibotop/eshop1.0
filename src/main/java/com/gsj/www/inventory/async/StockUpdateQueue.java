@@ -5,18 +5,18 @@ package com.gsj.www.inventory.async;
  * @author Holy
  * @create 2019 - 07 - 16 7:18
  */
-public interface GoodsStockUpdateQueue {
+public interface StockUpdateQueue {
     /**
      * 将一个消息放入队列
      * @param message 消息
      * @throws Exception
      */
-    public void  put(GoodsStockUpdateMessage message) throws Exception;
+    public void  put(StockUpdateMessage message) throws Exception;
 
     /**
      * 从队列中去除一个消息
      * @return
      * @throws Exception
      */
-    public GoodsStockUpdateMessage get() throws  Exception;
+    public StockUpdateMessage get() throws  Exception;
 }

@@ -6,7 +6,7 @@ package com.gsj.www.inventory.async;
  * @author Holy
  * @create 2019 - 07 - 16 21:39
  */
-public interface GoodsStockUpdateManage {
+public interface StockUpdateResultManager {
     /**
      * 设置对商品库存更新结果的观察
      * @param messageId 消息id

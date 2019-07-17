@@ -6,7 +6,7 @@ package com.gsj.www.inventory.async;
  * @author Holy
  * @create 2019 - 07 - 16 7:14
  */
-public class GoodsStockUpdateMessage {
+public class StockUpdateMessage {
     /**
      * 商品库存更新操作
      */
