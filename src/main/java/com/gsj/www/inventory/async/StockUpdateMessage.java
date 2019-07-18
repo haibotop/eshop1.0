@@ -8,6 +8,10 @@ package com.gsj.www.inventory.async;
  */
 public class StockUpdateMessage {
     /**
+     * id
+     */
+    private String id;
+    /**
      * 商品库存更新操作
      */
     private Integer operation;
@@ -15,6 +19,14 @@ public class StockUpdateMessage {
      * 核心参数数据
      */
     private Object parameter;
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
+    }
 
     public Integer getOperation() {
         return operation;
