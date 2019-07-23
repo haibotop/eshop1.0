@@ -1,10 +1,13 @@
 package com.gsj.www.inventory.async;
 
+import com.alibaba.fastjson.JSONObject;
 import com.gsj.www.common.util.DateProvider;
 import com.gsj.www.inventory.dao.StockUpdateMessageDAO;
+import com.gsj.www.inventory.domain.StockUpdateMessageDO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -25,34 +28,98 @@ public class OfflineStorageManagerImpl implements OfflineStorageManager {
      */
     @Autowired
     private DateProvider dateProvider;
-
+    /**
+     * 是否触发离线存储的标识
+     */
+    private Boolean offline = false;
+    /**
+     * 离线存储库存更新消息
+     * @param message 库存更新消息
+     * @throws Exception
+     */
     @Override
     public void store(StockUpdateMessage message) throws Exception {
-
+        StockUpdateMessageDO stockUpdateMessageDO = createStockUpdateMessageDO(message);
+        stockUpdateMessageDAO.save(stockUpdateMessageDO);
     }
 
+    /**
+     *  创建库存更新消息DO对象
+     * @param message 库存更新消息
+     * @return 库存更新消息DO对象
+     * @throws Exception
+     */
+    private StockUpdateMessageDO createStockUpdateMessageDO(StockUpdateMessage message) throws Exception{
+        StockUpdateMessageDO stockUpdateMessageDO = new StockUpdateMessageDO();
+        stockUpdateMessageDO.setMessageId(message.getId());
+        stockUpdateMessageDO.setOperation(message.getOperation());
+        stockUpdateMessageDO.setParameter(JSONObject.toJSONString(message.getParameter()));
+        stockUpdateMessageDO.setParameterClazz(message.getParameter().getClass().getName());
+        stockUpdateMessageDO.setGmtCreate(dateProvider.getCurrentTime());
+        stockUpdateMessageDO.setGmtModified(dateProvider.getCurrentTime());
+        return stockUpdateMessageDO;
+    }
+
+    /**
+     * 获取离线存储标识
+     * @return 离线存储标识
+     */
     @Override
     public Boolean getOffline() {
-        return null;
+        return offline;
     }
 
+    /**
+     * 设置离线存储标识
+     * @param offline 离线存储标识
+     */
     @Override
     public void setOffline(Boolean offline) {
-
+        this.offline = offline;
     }
 
+    /**
+     * 判断是否还有下一批库存更新消息
+     * @return 是否还有下一批库存更新消息
+     */
     @Override
     public Boolean hasNext() {
-        return null;
+        return stockUpdateMessageDAO.count().equals(0L) ? false : true;
     }
 
+    /**
+     * 获取下一批库存更新消息
+     * @return 下一批库存更新消息
+     * @throws Exception
+     */
     @Override
     public List<StockUpdateMessage> getNextBatch() throws Exception {
-        return null;
+        List<StockUpdateMessage> stockUpdateMessages = new ArrayList<StockUpdateMessage>();
+        List<StockUpdateMessageDO> stockUpdateMessageDOS = stockUpdateMessageDAO.listByBatch();
+        for (StockUpdateMessageDO stockUpdateMessageDO : stockUpdateMessageDOS) {
+            StockUpdateMessage stockUpdateMessage = new StockUpdateMessage();
+            stockUpdateMessage.setId(stockUpdateMessageDO.getMessageId());
+            stockUpdateMessage.setOperation(stockUpdateMessageDO.getOperation());
+            stockUpdateMessage.setParameter(JSONObject.parseObject(stockUpdateMessageDO.getParameter(),Class.forName(stockUpdateMessageDO.getParameterClazz())));
+            stockUpdateMessages.add(stockUpdateMessage);
+        }
+        return stockUpdateMessages;
     }
 
+    /**
+     * 批量删除库存更新
+     * @param stockUpdateMessages
+     * @throws Exception
+     */
     @Override
     public void removeByBatch(List<StockUpdateMessage> stockUpdateMessages) throws Exception {
-
+        StringBuilder builder = new StringBuilder("");
+        for (int i = 0;i<stockUpdateMessages.size();i++) {
+            builder.append(stockUpdateMessages.get(i).getId());
+            if(i<stockUpdateMessages.size() - 1){
+                builder.append(",");
+            }
+        }
+        stockUpdateMessageDAO.removeByBatch(builder.toString());
     }
 }
