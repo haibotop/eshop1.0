@@ -1,23 +1,24 @@
 package com.gsj.www.inventory.async;
 
-import com.alibaba.fastjson.JSONObject;
+import java.util.ArrayList;
+import java.util.List;
+
 import com.gsj.www.common.util.DateProvider;
 import com.gsj.www.inventory.dao.StockUpdateMessageDAO;
 import com.gsj.www.inventory.domain.StockUpdateMessageDO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-import java.util.ArrayList;
-import java.util.List;
+import com.alibaba.fastjson.JSONObject;
 
 /**
- * 离线存储管理组件实现类
+ * 离线存储管理组件
+ * @author zhonghuashishan
  *
- * @author Holy
- * @create 2019 - 07 - 17 7:06
  */
 @Component
 public class OfflineStorageManagerImpl implements OfflineStorageManager {
+
     /**
      * 库存更新消息管理模块DAO组件
      */
@@ -28,10 +29,12 @@ public class OfflineStorageManagerImpl implements OfflineStorageManager {
      */
     @Autowired
     private DateProvider dateProvider;
+
     /**
      * 是否触发离线存储的标识
      */
     private Boolean offline = false;
+
     /**
      * 离线存储库存更新消息
      * @param message 库存更新消息
@@ -44,12 +47,13 @@ public class OfflineStorageManagerImpl implements OfflineStorageManager {
     }
 
     /**
-     *  创建库存更新消息DO对象
+     * 创建库存更新消息DO对象
      * @param message 库存更新消息
      * @return 库存更新消息DO对象
      * @throws Exception
      */
-    private StockUpdateMessageDO createStockUpdateMessageDO(StockUpdateMessage message) throws Exception{
+    private StockUpdateMessageDO createStockUpdateMessageDO(
+            StockUpdateMessage message) throws Exception {
         StockUpdateMessageDO stockUpdateMessageDO = new StockUpdateMessageDO();
         stockUpdateMessageDO.setMessageId(message.getId());
         stockUpdateMessageDO.setOperation(message.getOperation());
@@ -90,36 +94,40 @@ public class OfflineStorageManagerImpl implements OfflineStorageManager {
     /**
      * 获取下一批库存更新消息
      * @return 下一批库存更新消息
-     * @throws Exception
      */
     @Override
     public List<StockUpdateMessage> getNextBatch() throws Exception {
-        List<StockUpdateMessage> stockUpdateMessages = new ArrayList<StockUpdateMessage>();
-        List<StockUpdateMessageDO> stockUpdateMessageDOS = stockUpdateMessageDAO.listByBatch();
-        for (StockUpdateMessageDO stockUpdateMessageDO : stockUpdateMessageDOS) {
+        List<StockUpdateMessage> StockUpdateMessages = new ArrayList<StockUpdateMessage>();
+
+        List<StockUpdateMessageDO> stockUpdateMessageDOs =
+                stockUpdateMessageDAO.listByBatch();
+        for(StockUpdateMessageDO stockUpdateMessageDO : stockUpdateMessageDOs) {
             StockUpdateMessage stockUpdateMessage = new StockUpdateMessage();
             stockUpdateMessage.setId(stockUpdateMessageDO.getMessageId());
             stockUpdateMessage.setOperation(stockUpdateMessageDO.getOperation());
-            stockUpdateMessage.setParameter(JSONObject.parseObject(stockUpdateMessageDO.getParameter(),Class.forName(stockUpdateMessageDO.getParameterClazz())));
-            stockUpdateMessages.add(stockUpdateMessage);
+            stockUpdateMessage.setParameter(JSONObject.parseObject(stockUpdateMessageDO.getParameter(),
+                    Class.forName(stockUpdateMessageDO.getParameterClazz())));
+            StockUpdateMessages.add(stockUpdateMessage);
         }
-        return stockUpdateMessages;
+
+        return StockUpdateMessages;
     }
 
     /**
-     * 批量删除库存更新
-     * @param stockUpdateMessages
+     * 批量删除库存更新消息
+     * @param stockUpdateMessages 库存更新消息
      * @throws Exception
      */
     @Override
     public void removeByBatch(List<StockUpdateMessage> stockUpdateMessages) throws Exception {
         StringBuilder builder = new StringBuilder("");
-        for (int i = 0;i<stockUpdateMessages.size();i++) {
+        for(int i = 0; i < stockUpdateMessages.size(); i++) {
             builder.append(stockUpdateMessages.get(i).getId());
-            if(i<stockUpdateMessages.size() - 1){
+            if(i < stockUpdateMessages.size() - 1) {
                 builder.append(",");
             }
         }
         stockUpdateMessageDAO.removeByBatch(builder.toString());
     }
+
 }

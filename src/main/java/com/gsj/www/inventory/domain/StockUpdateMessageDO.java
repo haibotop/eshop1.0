@@ -93,4 +93,5 @@ public class StockUpdateMessageDO {
     public void setGmtModified(Date gmtModified) {
         this.gmtModified = gmtModified;
     }
+
 }
