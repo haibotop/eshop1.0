@@ -71,24 +71,74 @@ public class RoleServiceImpl implements RoleService{
 
             List<RolePriorityRelationshipDO> relations = rolePriorityRelationshipDAO.listByRoleId(id);
             resultRole.setRolePriorityRelations(ObjectUtils.convertList(relations, RolePriorityRelationshipDTO.class));
-        }catch (Exception e){
 
+            return resultRole;
+        }catch (Exception e){
+            logger.error("error",e);
+            return null;
         }
-        return null;
     }
 
+    /**
+     * 新增角色
+     * @param role 角色DO对象
+     * @return
+     */
     @Override
     public Boolean save(RoleDTO role) {
-        return null;
+        try {
+            roleDAO.save(role.clone(RoleDO.class));
+            for (RolePriorityRelationshipDTO rolePriorityRelation : role.getRolePriorityRelations()) {
+                rolePriorityRelationshipDAO.save(rolePriorityRelation.clone(RolePriorityRelationshipDO.class));
+            }
+            return true;
+        }catch (Exception e){
+            logger.error("error",e);
+            return false;
+        }
     }
 
+    /**
+     * 更新角色
+     * @param role 角色DO对象
+     * @return
+     */
     @Override
     public Boolean update(RoleDTO role) {
-        return null;
+        try {
+            roleDAO.update(role.clone(RoleDO.class));
+            rolePriorityRelationshipDAO.removeByRoleId(role.getId());
+
+            for (RolePriorityRelationshipDTO rolePriorityRelation : role.getRolePriorityRelations()) {
+                rolePriorityRelationshipDAO.save(rolePriorityRelation.clone(RolePriorityRelationshipDO.class));
+            }
+            return true;
+        }catch (Exception e){
+            logger.error("error",e);
+            return false;
+        }
     }
 
+    /**
+     * 删除角色
+     * @param id 角色id
+     * @return
+     */
     @Override
     public Boolean remove(Long id) {
-        return null;
+        try{
+            Long count = accountRoleRelationshipDAO.countByRoleId(id);
+            if(count > 0L){
+                return false;
+            }
+
+            roleDAO.remove(id);
+            rolePriorityRelationshipDAO.removeByRoleId(id);
+
+            return true;
+        }catch (Exception e) {
+            logger.error("error",e);
+            return false;
+        }
     }
 }
