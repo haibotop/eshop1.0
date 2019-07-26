@@ -1,11 +1,13 @@
 package com.gsj.www.auth.domain;
 
+import com.gsj.www.common.util.AbstractObject;
+
 import java.util.Date;
 
 /**
  * 账号角色关系DO类
  */
-public class AccountRoleRelationshipDO {
+public class AccountRoleRelationshipDO extends AbstractObject{
     /**
      * id
      */

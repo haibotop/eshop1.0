@@ -2,6 +2,9 @@ package com.gsj.www.auth.domain;
 
 /**
  * 角色查询条件
+ *
+ * @author Holy
+ * @create 2019 - 07 - 25 22:43
  */
 public class RoleQuery {
     /**
@@ -24,31 +27,24 @@ public class RoleQuery {
     public Integer getOffset() {
         return offset;
     }
-
     public void setOffset(Integer offset) {
         this.offset = offset;
     }
-
     public Integer getSize() {
         return size;
     }
-
     public void setSize(Integer size) {
         this.size = size;
     }
-
     public String getCode() {
         return code;
     }
-
     public void setCode(String code) {
         this.code = code;
     }
-
     public String getName() {
         return name;
     }
-
     public void setName(String name) {
         this.name = name;
     }
