@@ -1,5 +1,7 @@
 package com.gsj.www.auth.domain;
 
+import com.gsj.www.common.util.AbstractObject;
+
 import java.util.Date;
 import java.util.List;
 
@@ -9,7 +11,7 @@ import java.util.List;
  * @author Holy
  * @create 2019 - 07 - 23 7:25
  */
-public class RoleDTO {
+public class RoleDTO extends AbstractObject{
     /**
      * id
      */
@@ -37,7 +39,7 @@ public class RoleDTO {
     /**
      * 角色权限关系集合
      */
-    private List<RolePriorityRelationshipDTO> rolePriorityRelationshipDTOS;
+    private List<RolePriorityRelationshipDTO> rolePriorityRelations;
 
     public Long getId() {
         return id;
@@ -87,11 +89,11 @@ public class RoleDTO {
         this.gmtModified = gmtModified;
     }
 
-    public List<RolePriorityRelationshipDTO> getRolePriorityRelationshipDTOS() {
-        return rolePriorityRelationshipDTOS;
+    public List<RolePriorityRelationshipDTO> getRolePriorityRelations() {
+        return rolePriorityRelations;
     }
 
-    public void setRolePriorityRelationshipDTOS(List<RolePriorityRelationshipDTO> rolePriorityRelationshipDTOS) {
-        this.rolePriorityRelationshipDTOS = rolePriorityRelationshipDTOS;
+    public void setRolePriorityRelations(List<RolePriorityRelationshipDTO> rolePriorityRelations) {
+        this.rolePriorityRelations = rolePriorityRelations;
     }
 }

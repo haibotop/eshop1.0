@@ -1,5 +1,7 @@
 package com.gsj.www.auth.domain;
 
+import com.gsj.www.common.util.AbstractObject;
+
 import java.util.Date;
 
 /**
@@ -8,7 +10,7 @@ import java.util.Date;
  * @author Holy
  * @create 2019 - 06 - 21 22:22
  */
-public class RolePriorityRelationshipDO {
+public class RolePriorityRelationshipDO extends AbstractObject{
     /**
      * id
      */
