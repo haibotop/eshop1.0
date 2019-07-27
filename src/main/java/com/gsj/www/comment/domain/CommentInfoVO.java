@@ -1,15 +1,16 @@
 package com.gsj.www.comment.domain;
 
-import com.gsj.www.common.util.BeanCopierUtils;
+import com.gsj.www.common.util.AbstractObject;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import java.util.Date;
+import java.util.List;
 
 /**
  * 评论信息VO类
  */
-public class CommentInfoVO {
+public class CommentInfoVO extends AbstractObject {
     private static final Logger logger = LoggerFactory.getLogger(CommentInfoVO.class);
 
     /**
@@ -88,6 +89,18 @@ public class CommentInfoVO {
      * 评论的修改时间
      */
     private Date gmtModified;
+    /**
+     * 评论图片集合
+     */
+    private List<CommentPictureVO> pictures;
+
+    public List<CommentPictureVO> getPictures() {
+        return pictures;
+    }
+
+    public void setPictures(List<CommentPictureVO> pictures) {
+        this.pictures = pictures;
+    }
 
     public static Logger getLogger() {
         return logger;
@@ -245,15 +258,4 @@ public class CommentInfoVO {
         this.gmtModified = gmtModified;
     }
 
-    public <T> T clone(Class<T> clazz){
-        T target = null;
-        try{
-            target = clazz.newInstance();
-            BeanCopierUtils.copyProperties(this,commentStatus);
-        }catch (Exception e){
-            logger.info("error",e);
-            return null;
-        }
-        return target;
-    }
 }

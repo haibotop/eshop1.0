@@ -1,5 +1,6 @@
 package com.gsj.www.comment.domain;
 
+import com.gsj.www.common.util.AbstractObject;
 import com.gsj.www.common.util.BeanCopierUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -13,7 +14,7 @@ import java.util.Objects;
  * @author Holy
  * @create 2019 - 06 - 30 22:32
  */
-public class CommentInfoDTO {
+public class CommentInfoDTO extends AbstractObject {
     private static final Logger logger = LoggerFactory.getLogger(CommentInfoDTO.class);
 
     /**
@@ -206,23 +207,6 @@ public class CommentInfoDTO {
     }
     public void setGmtModified(Date gmtModified) {
         this.gmtModified = gmtModified;
-    }
-
-    /**
-     * 将自己的数据克隆到指定类型的对象中
-     * @param clazz 指定类型
-     * @return 指定类型的对象
-     */
-    public <T> T clone(Class<T> clazz) {
-        T target = null;
-        try {
-            target = clazz.newInstance();
-            BeanCopierUtils.copyProperties(this, target);
-        } catch (Exception e) {
-            logger.error("error", e);
-            return null;
-        }
-        return target;
     }
 
     @Override

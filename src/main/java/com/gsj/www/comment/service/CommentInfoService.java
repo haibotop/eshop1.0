@@ -1,8 +1,11 @@
 package com.gsj.www.comment.service;
 
 import com.gsj.www.comment.domain.CommentInfoDTO;
+import com.gsj.www.comment.domain.CommentInfoQuery;
 import com.gsj.www.order.domain.OrderItemDTO;
 import com.gsj.www.order.domain.OrderOrderDTO;
+
+import java.util.List;
 
 /**
  * 评论信息管理模块的service组件接口
@@ -25,4 +28,18 @@ public interface CommentInfoService {
      * @return 处理结果
      */
     CommentInfoDTO saveAutoPublishedCommentInfo(OrderOrderDTO orderOrderDTO, OrderItemDTO orderItemDTO);
+
+    /**
+     * 分页查询评论信息
+     * @param query 评论查询条件
+     * @return 评论信息
+     */
+    List<CommentInfoDTO> listByPage(CommentInfoQuery query);
+
+    /**
+     * 根据id查询评论信息
+     * @param id 评论信息id
+     * @return 评论信息
+     */
+    CommentInfoDTO getById(Long id);
 }

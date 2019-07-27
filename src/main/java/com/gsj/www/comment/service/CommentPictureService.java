@@ -1,6 +1,9 @@
 package com.gsj.www.comment.service;
 
+import com.gsj.www.comment.domain.CommentPictureDTO;
 import org.springframework.web.multipart.MultipartFile;
+
+import java.util.List;
 
 /**
  * 评论晒图管理模块的service组件
@@ -17,4 +20,18 @@ public interface CommentPictureService {
      * @return 处理结果
      */
     Boolean saveCommentPicture(String appBasePath, Long commentInfoId, MultipartFile[] files);
+
+    /**
+     * 根据评论信息id查询图片
+     * @param commentId 评论信息id
+     * @return 评论图片
+     */
+    List<CommentPictureDTO> listByCommentId(Long commentId);
+
+    /**
+     * 根据id查询图片
+     * @param id 评论图片id
+     * @return 评论图片
+     */
+    CommentPictureDTO getById(Long id);
 }

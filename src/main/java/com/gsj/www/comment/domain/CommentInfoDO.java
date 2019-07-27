@@ -1,5 +1,7 @@
 package com.gsj.www.comment.domain;
 
+import com.gsj.www.common.util.AbstractObject;
+
 import java.util.Date;
 import java.util.Objects;
 
@@ -9,7 +11,7 @@ import java.util.Objects;
  * @author Holy
  * @create 2019 - 06 - 30 22:26
  */
-public class CommentInfoDO {
+public class CommentInfoDO extends AbstractObject {
     /**
      * id
      */

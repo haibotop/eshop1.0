@@ -1,13 +1,11 @@
 package com.gsj.www.comment.domain;
 
-import com.gsj.www.common.util.AbstractObject;
-
 import java.util.Date;
 
 /**
- * 评论晒图
+ * 评论晒图VO类
  */
-public class CommentPictureDO extends AbstractObject {
+public class CommentPictureVO {
     /**
      * id
      */
@@ -32,40 +30,32 @@ public class CommentPictureDO extends AbstractObject {
     public Long getId() {
         return id;
     }
-
     public void setId(Long id) {
         this.id = id;
     }
-
     public Long getCommentInfoId() {
         return commentInfoId;
     }
-
     public void setCommentInfoId(Long commentInfoId) {
         this.commentInfoId = commentInfoId;
     }
-
     public String getCommentPicturePath() {
         return commentPicturePath;
     }
-
     public void setCommentPicturePath(String commentPicturePath) {
         this.commentPicturePath = commentPicturePath;
     }
-
     public Date getGmtCreate() {
         return gmtCreate;
     }
-
     public void setGmtCreate(Date gmtCreate) {
         this.gmtCreate = gmtCreate;
     }
-
     public Date getGmtModified() {
         return gmtModified;
     }
-
     public void setGmtModified(Date gmtModified) {
         this.gmtModified = gmtModified;
     }
+
 }

@@ -4,14 +4,18 @@ import com.gsj.www.comment.constant.*;
 import com.gsj.www.comment.dao.CommentInfoDAO;
 import com.gsj.www.comment.domain.CommentInfoDO;
 import com.gsj.www.comment.domain.CommentInfoDTO;
+import com.gsj.www.comment.domain.CommentInfoQuery;
 import com.gsj.www.comment.service.CommentInfoService;
 import com.gsj.www.common.util.DateProvider;
+import com.gsj.www.common.util.ObjectUtils;
 import com.gsj.www.order.domain.OrderItemDTO;
 import com.gsj.www.order.domain.OrderOrderDTO;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
 
 /**
  * 评论信息管理模块的service组件
@@ -96,6 +100,42 @@ public class CommentInfoServiceImpl implements CommentInfoService {
             return null;
         }
         return commentInfoDTO;
+    }
+
+    /**
+     * 分页发查询评论信息
+     * @param query 评论查询条件
+     * @return 评论信息集合
+     */
+    @Override
+    public List<CommentInfoDTO> listByPage(CommentInfoQuery query) {
+        try{
+           List<CommentInfoDO> comments = commentInfoDAO.listByPage(query);
+           List<CommentInfoDTO> resultComments = ObjectUtils.convertList(comments, CommentInfoDTO.class);
+
+           return resultComments;
+        }catch (Exception e){
+            logger.error("error",e);
+            return null;
+        }
+    }
+
+    /**
+     * 根据id查询评论信息
+     * @param id 评论信息id
+     * @return 评论信息
+     */
+    @Override
+    public CommentInfoDTO getById(Long id) {
+        try {
+            CommentInfoDO comment = commentInfoDAO.getById(id);
+            CommentInfoDTO resultComment = comment.clone(CommentInfoDTO.class);
+
+            return resultComment;
+        }catch (Exception e){
+            logger.error("error",e);
+            return null;
+        }
     }
 
     /**
