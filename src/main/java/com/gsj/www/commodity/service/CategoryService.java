@@ -20,4 +20,11 @@ public interface CategoryService {
      * @return 子类目集合
      */
     List<CategoryDTO> listChildren(Long id);
+
+    /**
+     * 新增类目
+     * @param category 类目
+     * @return 处理结果
+     */
+    Boolean save(CategoryDTO category);
 }
