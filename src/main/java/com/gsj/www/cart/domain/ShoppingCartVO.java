@@ -3,15 +3,16 @@ package com.gsj.www.cart.domain;
 import com.gsj.www.common.util.AbstractObject;
 
 import java.util.Date;
+import java.util.List;
 import java.util.Objects;
 
 /**
- * 购物车DO类
+ * 购物车VO类
  *
  * @author Holy
  * @create 2019 - 06 - 14 6:36
  */
-public class ShoppingCartDO extends AbstractObject {
+public class ShoppingCartVO extends AbstractObject {
     /**
      * id
      */
@@ -28,6 +29,8 @@ public class ShoppingCartDO extends AbstractObject {
      * 购物车的修改时间
      */
     private Date gmtModified;
+
+    private List<ShoppingCartItemDTO> shoppingCartItemDTOS;
 
     public Long getId() {
         return id;
@@ -61,11 +64,19 @@ public class ShoppingCartDO extends AbstractObject {
         this.gmtModified = gmtModified;
     }
 
+    public List<ShoppingCartItemDTO> getShoppingCartItemDTOS() {
+        return shoppingCartItemDTOS;
+    }
+
+    public void setShoppingCartItemDTOS(List<ShoppingCartItemDTO> shoppingCartItemDTOS) {
+        this.shoppingCartItemDTOS = shoppingCartItemDTOS;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
-        if (!(o instanceof ShoppingCartDO)) return false;
-        ShoppingCartDO that = (ShoppingCartDO) o;
+        if (!(o instanceof ShoppingCartVO)) return false;
+        ShoppingCartVO that = (ShoppingCartVO) o;
         return Objects.equals(id, that.id) &&
                 Objects.equals(userAccountId, that.userAccountId) &&
                 Objects.equals(gmtCreate, that.gmtCreate) &&

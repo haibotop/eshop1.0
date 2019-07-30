@@ -2,6 +2,8 @@ package com.gsj.www.cart.dao;
 
 import com.gsj.www.cart.domain.ShoppingCartItemDO;
 
+import java.util.List;
+
 /**
  * 购物车条目管理模块的DAO组件接口
  *
@@ -31,4 +33,11 @@ public interface ShoppingCartItemDAO {
      * @return
      */
     Boolean updateShoppingCartItem(ShoppingCartItemDO shoppingCartItemDO);
+
+    /**
+     * 查询购物车中的所有条目
+     * @param shoppingCartId 购物车id
+     * @return 商品条目
+     */
+    List<ShoppingCartItemDO> listShoppingCartItemByCartId(Long shoppingCartId);
 }

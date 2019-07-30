@@ -8,6 +8,8 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import java.util.List;
+
 /**
  * 购物车条目管理模块的DAO组件
  *
@@ -71,5 +73,20 @@ public class ShoppingCartItemDAOImpl implements ShoppingCartItemDAO {
             return false;
         }
         return true;
+    }
+
+    /**
+     * 查询购物车中的所有条目
+     * @param shoppingCartId 购物车id
+     * @return 商品条目
+     */
+    @Override
+    public List<ShoppingCartItemDO> listShoppingCartItemByCartId(Long shoppingCartId) {
+        try {
+            return shoppingCartItemMapper.listShoppingCartItemByCartId(shoppingCartId);
+        }catch (Exception e){
+            logger.error("error",e);
+            return null;
+        }
     }
 }

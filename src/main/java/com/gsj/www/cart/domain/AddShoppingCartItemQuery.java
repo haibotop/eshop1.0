@@ -1,13 +1,19 @@
 package com.gsj.www.cart.domain;
 
 /**
- * 封装购物车id和购物车条目id查询类
+ * 增加购物车条目的参数
  *
  * @author Holy
  * @create 2019 - 06 - 17 23:12
  */
 public class AddShoppingCartItemQuery {
+    /**
+     * 用户账号id
+     */
     private Long userAccountId;
+    /**
+     * 商品sku id
+     */
     private Long goodsSkuId;
 
     public Long getUserAccountId() {
