@@ -50,4 +50,15 @@ public class CategoryDAOImpl implements CategoryDAO {
             return null;
         }
     }
+
+    @Override
+    public Long save(CategoryDO category) {
+        try {
+            categoryMapper.save(category);
+            return category.getId();
+        }catch (Exception e){
+            logger.error("error",e);
+            return null;
+        }
+    }
 }

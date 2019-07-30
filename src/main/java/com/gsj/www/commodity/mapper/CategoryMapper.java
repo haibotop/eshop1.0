@@ -59,4 +59,26 @@ public interface CategoryMapper {
             @Result(column = "gmt_modified",property = "gmtModified")
     })
     List<CategoryDO> listChildren(@Param("id") Long id);
+
+    /**
+     * 新增类目
+     * @param category 类目
+     */
+    @Insert("INSERT INTO commodity_category("
+            + "name,"
+            + "description,"
+            + "parent_id,"
+            + "is_leaf,"
+            + "gmt_create,"
+            + "gmt_modified"
+            + ") VALUES("
+            + "#{name},"
+            + "#{description},"
+            + "#{parentId},"
+            + "#{leaf},"
+            + "#{gmtCreate},"
+            + "#{gmtModified}"
+            + ")")
+    @Options(keyColumn = "id", keyProperty = "id", useGeneratedKeys = true)
+    void save(CategoryDO category);
 }

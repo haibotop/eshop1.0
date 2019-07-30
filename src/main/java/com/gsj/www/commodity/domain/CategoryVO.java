@@ -3,6 +3,7 @@ package com.gsj.www.commodity.domain;
 import com.gsj.www.common.util.AbstractObject;
 
 import java.util.Date;
+import java.util.List;
 
 public class CategoryVO extends AbstractObject {
     /**
@@ -33,6 +34,14 @@ public class CategoryVO extends AbstractObject {
      * 修改时间
      */
     private Date gmtModified;
+    /**
+     * 类目与属性的关联关系
+     */
+    private List<CategoryPropertyRelationshipVO> propertyRelations;
+    /**
+     * 属性分组
+     */
+    private List<PropertyGroupVO> propertyGroups;
 
     public Long getId() {
         return id;
@@ -80,4 +89,19 @@ public class CategoryVO extends AbstractObject {
         this.gmtModified = gmtModified;
     }
 
+    public List<CategoryPropertyRelationshipVO> getPropertyRelations() {
+        return propertyRelations;
+    }
+
+    public void setPropertyRelations(List<CategoryPropertyRelationshipVO> propertyRelations) {
+        this.propertyRelations = propertyRelations;
+    }
+
+    public List<PropertyGroupVO> getPropertyGroups() {
+        return propertyGroups;
+    }
+
+    public void setPropertyGroups(List<PropertyGroupVO> propertyGroups) {
+        this.propertyGroups = propertyGroups;
+    }
 }

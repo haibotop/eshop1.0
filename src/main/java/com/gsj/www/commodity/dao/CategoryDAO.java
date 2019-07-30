@@ -20,4 +20,11 @@ public interface CategoryDAO {
      * @return 子类目集合
      */
     List<CategoryDO> listChildren(Long id);
+
+    /**
+     * 新增类目
+     * @param category 类目
+     * @return 主键id
+     */
+    Long save(CategoryDO category);
 }

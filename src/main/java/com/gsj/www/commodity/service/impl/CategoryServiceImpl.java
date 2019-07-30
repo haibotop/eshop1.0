@@ -4,8 +4,7 @@ import com.gsj.www.commodity.dao.CategoryDAO;
 import com.gsj.www.commodity.dao.CategoryPropertyRelationshipDAO;
 import com.gsj.www.commodity.dao.PropertyGroupDAO;
 import com.gsj.www.commodity.dao.PropertyGroupRelationshipDAO;
-import com.gsj.www.commodity.domain.CategoryDO;
-import com.gsj.www.commodity.domain.CategoryDTO;
+import com.gsj.www.commodity.domain.*;
 import com.gsj.www.commodity.service.CategoryService;
 import com.gsj.www.common.util.DateProvider;
 import com.gsj.www.common.util.ObjectUtils;
@@ -88,12 +87,90 @@ public class CategoryServiceImpl implements CategoryService {
     public Boolean save(CategoryDTO category) {
         try{
             //保存类目的基本信息
+            saveCategory(category);
             //保存类目与属性之间的关联关系
+            saveCategoryPropertyRelations(category);
             //保存属性分组
+            savePropertyGroup(category);
             return true;
         }catch (Exception e) {
             logger.error("error",e);
             return false;
+        }
+    }
+
+    /**
+     * 保存类目的基本信息
+     * @param category 类目
+     * @throws Exception
+     */
+    private void saveCategory(CategoryDTO category) throws Exception{
+        category.setGmtCreate(dateProvider.getCurrentTime());
+        category.setGmtModified(dateProvider.getCurrentTime());
+        Long categoryId = categoryDAO.save(category.clone(CategoryDO.class));
+        category.setId(categoryId);
+    }
+
+    /**
+     * 保存类目与属性之间的关联关系
+     * @param category 类目
+     * @throws Exception
+     */
+    private void saveCategoryPropertyRelations(CategoryDTO category) throws Exception{
+        if(category.getPropertyRelations() == null ||
+                category.getPropertyRelations().size() == 0){
+            return;
+        }
+
+        for (CategoryPropertyRelationshipDTO relation : category.getPropertyRelations()) {
+            relation.setCategoryId(category.getId());
+            relation.setGmtCreate(dateProvider.getCurrentTime());
+            relation.setGmtModified(dateProvider.getCurrentTime());
+
+            categoryPropertyRelationshipDAO.save(relation.clone(CategoryPropertyRelationshipDO.class));
+        }
+    }
+
+    /**
+     * 保存属性分组
+     * @param category 类目
+     * @throws Exception
+     */
+    private void savePropertyGroup(CategoryDTO category) throws Exception {
+        if(category.getPropertyGroups() == null ||
+                category.getPropertyGroups().size() == 0) {
+            return;
+        }
+
+        for(PropertyGroupDTO group : category.getPropertyGroups()) {
+            group.setCategoryId(category.getId());
+            group.setGmtCreate(dateProvider.getCurrentTime());
+            group.setGmtModified(dateProvider.getCurrentTime());
+
+            Long groupId = propertyGroupDAO.save(group.clone(PropertyGroupDO.class));
+            group.setId(groupId);
+
+            savePropertyGroupRelations(group);
+        }
+    }
+
+    /**
+     * 保存属性分组与属性的关联关系
+     * @param group 属性分组
+     * @throws Exception
+     */
+    private void savePropertyGroupRelations(PropertyGroupDTO group) throws Exception {
+        if(group.getRelations() == null || group.getRelations().size() == 0) {
+            return;
+        }
+
+        for(PropertyGroupRelationshipDTO relation : group.getRelations()) {
+            relation.setPropertyGroupId(group.getId());
+            relation.setGmtCreate(dateProvider.getCurrentTime());
+            relation.setGmtModified(dateProvider.getCurrentTime());
+
+            propertyGroupRelationshipDAO.save(relation.clone(
+                    PropertyGroupRelationshipDO.class));
         }
     }
 }
