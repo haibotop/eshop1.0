@@ -18,9 +18,33 @@ public class GoodsSkuDTO {
      */
     private Long goodsId;
     /**
+     * 商品名称
+     */
+    private String goodsName;
+    /**
+     * 商品毛重
+     */
+    private Double grossWeight;
+    /**
+     * 商品长度
+     */
+    private Double goodsLength;
+    /**
+     * 商品宽度
+     */
+    private Double goodsWidth;
+    /**
+     * 商品高度
+     */
+    private Double goodsHeight;
+    /**
      * 商品sku编号
      */
     private String goodsSkuCode;
+    /**
+     * 销售属性
+     */
+    private String saleProperties;
     /**
      * 采购价格
      */
@@ -38,7 +62,7 @@ public class GoodsSkuDTO {
      */
     private Date gmtCreate;
     /**
-     * 修改文件
+     * 修改时间
      */
     private Date gmtModified;
 
@@ -89,5 +113,53 @@ public class GoodsSkuDTO {
     }
     public void setGmtModified(Date gmtModified) {
         this.gmtModified = gmtModified;
+    }
+
+    public String getGoodsName() {
+        return goodsName;
+    }
+
+    public void setGoodsName(String goodsName) {
+        this.goodsName = goodsName;
+    }
+
+    public Double getGrossWeight() {
+        return grossWeight;
+    }
+
+    public void setGrossWeight(Double grossWeight) {
+        this.grossWeight = grossWeight;
+    }
+
+    public Double getGoodsLength() {
+        return goodsLength;
+    }
+
+    public void setGoodsLength(Double goodsLength) {
+        this.goodsLength = goodsLength;
+    }
+
+    public Double getGoodsWidth() {
+        return goodsWidth;
+    }
+
+    public void setGoodsWidth(Double goodsWidth) {
+        this.goodsWidth = goodsWidth;
+    }
+
+    public Double getGoodsHeight() {
+        return goodsHeight;
+    }
+
+    public void setGoodsHeight(Double goodsHeight) {
+        this.goodsHeight = goodsHeight;
+    }
+
+    public String getSaleProperties() {
+        return saleProperties;
+    }
+
+    public void setSaleProperties(String saleProperties) {
+        this.saleProperties = saleProperties;
     }
 }

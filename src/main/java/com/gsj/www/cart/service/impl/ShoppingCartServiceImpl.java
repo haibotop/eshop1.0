@@ -3,15 +3,24 @@ package com.gsj.www.cart.service.impl;
 import com.gsj.www.cart.dao.ShoppingCartDAO;
 import com.gsj.www.cart.dao.ShoppingCartItemDAO;
 import com.gsj.www.cart.domain.ShoppingCartDO;
+import com.gsj.www.cart.domain.ShoppingCartDTO;
 import com.gsj.www.cart.domain.ShoppingCartItemDO;
+import com.gsj.www.cart.domain.ShoppingCartItemDTO;
 import com.gsj.www.cart.service.ShoppingCartService;
+import com.gsj.www.commodity.domain.GoodsSkuDTO;
+import com.gsj.www.commodity.service.CommodityFacadeService;
 import com.gsj.www.common.util.DateProvider;
+import com.gsj.www.inventory.service.InventoryFacadeService;
+import com.gsj.www.promotion.domain.PromotionActivityDTO;
+import com.gsj.www.promotion.service.PromotionFacadeService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 /**
  * 购物车管理模块的servi组件
@@ -37,6 +46,21 @@ public class ShoppingCartServiceImpl implements ShoppingCartService{
      */
     @Autowired
     private DateProvider dateProvider;
+    /**
+     * 商品中心对外接口service组件
+     */
+    @Autowired
+    private CommodityFacadeService commodityFacadeService;
+    /**
+     * 库存中心对外接口service组件
+     */
+    @Autowired
+    private InventoryFacadeService inventoryFacadeService;
+    /**
+     * 促销中心对外接口service组件
+     */
+    @Autowired
+    private PromotionFacadeService promotionFacadeService;
 
     /**
      * 添加购物车商品条目
@@ -87,5 +111,86 @@ public class ShoppingCartServiceImpl implements ShoppingCartService{
             return false;
         }
         return true;
+    }
+
+    /**
+     * 查看用户的购物车中的数据
+     * @param userAccountId 用户账号id
+     * @return 购物车DTO对象
+     */
+    @Override
+    public ShoppingCartDTO getShoppingCartDTOByUserAccountId(Long userAccountId) {
+        try {
+            //根据用户账号id查询一下购物车
+            ShoppingCartDO shoppingCartDO = shoppingCartDAO.getShoppingCartByUserAccountId(userAccountId);
+
+            if(shoppingCartDO == null){
+                return new ShoppingCartDTO();
+            }
+
+            ShoppingCartDTO shoppingCartDTO = shoppingCartDO.clone(ShoppingCartDTO.class);
+
+            //查询购物车条目
+            List<ShoppingCartItemDO> shoppingCartItemDOS = shoppingCartItemDAO.listShoppingCartItemByCartId(shoppingCartDTO.getId());
+
+            if(shoppingCartItemDOS == null || shoppingCartItemDOS.size() ==0){
+                return shoppingCartDTO;
+            }
+
+            List<ShoppingCartItemDTO> shoppingCartItemDTOS = new ArrayList<ShoppingCartItemDTO>();
+
+            shoppingCartDTO.setShoppingCartItemDTOS(shoppingCartItemDTOS);
+
+            //为购物车条目填充相关的数据
+            for (ShoppingCartItemDO shoppingCartItemDO : shoppingCartItemDOS) {
+                ShoppingCartItemDTO item = shoppingCartItemDO.clone(ShoppingCartItemDTO.class);
+                setGoodsRelatedData(item);
+                setStockRelatedData(item);
+                setPromotionRelatedData(item);
+                shoppingCartItemDTOS.add(item);
+            }
+            
+            return shoppingCartDTO;
+        }catch (Exception e){
+            logger.error("error",e);
+            return new ShoppingCartDTO();
+        }
+    }
+
+    /**
+     * 给购物车条目设置商品相关的数据
+     * @param item 购物车条目
+     */
+    private void setGoodsRelatedData(ShoppingCartItemDTO item) throws Exception {
+        GoodsSkuDTO goodsSkuDTO = commodityFacadeService.getGoodsSkuById(item.getGoodsSkuId());
+
+        item.setGoodsId(goodsSkuDTO.getGoodsId());
+        item.setGoodsHeight(goodsSkuDTO.getGoodsHeight());
+        item.setGoodsLength(goodsSkuDTO.getGoodsLength());
+        item.setGoodsName(goodsSkuDTO.getGoodsName());
+        item.setGoodsSkuCode(goodsSkuDTO.getGoodsSkuCode());
+        item.setGoodsWidth(goodsSkuDTO.getGoodsWidth());
+        item.setGrossWeight(goodsSkuDTO.getGrossWeight());
+        item.setSalePrice(goodsSkuDTO.getSalePrice());
+    }
+
+    /**
+     * 给购物车条目设置库存相关的数据
+     * @param item 购物车条目
+     */
+    private void setStockRelatedData(ShoppingCartItemDTO item) throws Exception{
+        Long saleStockQuantity = inventoryFacadeService.getSaleStockQuantity(
+                item.getGoodsSkuId());
+        item.setSaleStockQuantity(saleStockQuantity);
+    }
+
+    /**
+     * 给购物车条目设置促销相关的数据
+     * @param item
+     */
+    private void setPromotionRelatedData(ShoppingCartItemDTO item) throws Exception{
+        List<PromotionActivityDTO> promotionActivityDTOs = promotionFacadeService
+                .listPromotionActivitiesByGoodsId(item.getGoodsId());
+        item.setPromotionActivityDTOs(promotionActivityDTOs);
     }
 }
