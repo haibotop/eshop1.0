@@ -4,7 +4,5 @@ target/
 *.iml
 *.imi
 *.class
-workspace.xml
-encodings.xml
 .idea/workspace.xml
-*.class
+eshop1.0.iml

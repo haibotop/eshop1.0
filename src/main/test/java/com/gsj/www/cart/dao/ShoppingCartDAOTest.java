@@ -1,6 +1,7 @@
-package com.gsj.www.cart.dao;
+package java.com.gsj.www.cart.dao;
 
 import com.gsj.www.Application;
+import com.gsj.www.cart.dao.ShoppingCartDAO;
 import com.gsj.www.cart.domain.ShoppingCartDO;
 import com.gsj.www.common.util.DateProvider;
 import org.junit.Test;

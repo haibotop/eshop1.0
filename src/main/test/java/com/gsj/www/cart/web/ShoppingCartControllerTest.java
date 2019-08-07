@@ -1,4 +1,4 @@
-package com.gsj.www.cart.web;
+package java.com.gsj.www.cart.web;
 
 import com.alibaba.fastjson.JSONObject;
 import com.gsj.www.cart.controller.ShoppingCartController;
@@ -74,7 +74,7 @@ public class ShoppingCartControllerTest {
                 .contentType("application/json")
                 .content(JSONObject.toJSONString(query))
         )
-                .andExpect(content().string(""));
+                .andExpect(content().string("true"));
     }
 
 

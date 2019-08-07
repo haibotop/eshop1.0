@@ -1,10 +1,11 @@
-package com.gsj.www.cart.service;
+package java.com.gsj.www.cart.service;
 
 import com.gsj.www.Application;
 import com.gsj.www.cart.dao.ShoppingCartDAO;
 import com.gsj.www.cart.dao.ShoppingCartItemDAO;
 import com.gsj.www.cart.domain.ShoppingCartDO;
 import com.gsj.www.cart.domain.ShoppingCartItemDO;
+import com.gsj.www.cart.service.ShoppingCartService;
 import com.gsj.www.common.util.DateProvider;
 import org.junit.Test;
 import org.junit.runner.RunWith;
