@@ -7,7 +7,7 @@ import com.gsj.www.wms.domain.ReturnGoodsInputOrderDTO;
 /**
  * 库存中心对外提供的接口
  */
-public interface InventoryFacadeService {
+public interface InventoryService {
 
     /**
      * 通知库存中心，“采购入库完成”事件发生了

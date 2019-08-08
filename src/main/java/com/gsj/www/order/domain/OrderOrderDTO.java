@@ -77,6 +77,14 @@ public class OrderOrderDTO {
      */
     private String orderComment;
     /**
+     * 是否发表了评论
+     */
+    private Integer publishedComment;
+    /**
+     * 确认收货时间
+     */
+    private Date confirmReceiptTime;
+    /**
      * 销售出库单的创建时间
      */
     private Date gmtCreate;
@@ -194,6 +202,23 @@ public class OrderOrderDTO {
     public void setOrderComment(String orderComment) {
         this.orderComment = orderComment;
     }
+
+    public Integer getPublishedComment() {
+        return publishedComment;
+    }
+
+    public void setPublishedComment(Integer publishedComment) {
+        this.publishedComment = publishedComment;
+    }
+
+    public Date getConfirmReceiptTime() {
+        return confirmReceiptTime;
+    }
+
+    public void setConfirmReceiptTime(Date confirmReceiptTime) {
+        this.confirmReceiptTime = confirmReceiptTime;
+    }
+
     public Date getGmtCreate() {
         return gmtCreate;
     }

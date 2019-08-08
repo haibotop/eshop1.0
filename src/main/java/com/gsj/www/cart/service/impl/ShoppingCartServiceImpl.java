@@ -10,7 +10,7 @@ import com.gsj.www.cart.service.ShoppingCartService;
 import com.gsj.www.commodity.domain.GoodsSkuDTO;
 import com.gsj.www.commodity.service.CommodityFacadeService;
 import com.gsj.www.common.util.DateProvider;
-import com.gsj.www.inventory.service.InventoryFacadeService;
+import com.gsj.www.inventory.service.InventoryService;
 import com.gsj.www.promotion.domain.PromotionActivityDTO;
 import com.gsj.www.promotion.service.PromotionFacadeService;
 import org.slf4j.Logger;
@@ -55,7 +55,7 @@ public class ShoppingCartServiceImpl implements ShoppingCartService{
      * 库存中心对外接口service组件
      */
     @Autowired
-    private InventoryFacadeService inventoryFacadeService;
+    private InventoryService inventoryService;
     /**
      * 促销中心对外接口service组件
      */
@@ -179,7 +179,7 @@ public class ShoppingCartServiceImpl implements ShoppingCartService{
      * @param item 购物车条目
      */
     private void setStockRelatedData(ShoppingCartItemDTO item) throws Exception{
-        Long saleStockQuantity = inventoryFacadeService.getSaleStockQuantity(
+        Long saleStockQuantity = inventoryService.getSaleStockQuantity(
                 item.getGoodsSkuId());
         item.setSaleStockQuantity(saleStockQuantity);
     }

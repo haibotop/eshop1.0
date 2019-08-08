@@ -2,7 +2,7 @@ package com.gsj.www.inventory.service.impl;
 
 import com.gsj.www.inventory.dao.GoodsStockDAO;
 import com.gsj.www.inventory.domain.GoodsStockDO;
-import com.gsj.www.inventory.service.InventoryFacadeService;
+import com.gsj.www.inventory.service.InventoryService;
 import com.gsj.www.inventory.updater.*;
 import com.gsj.www.order.domain.OrderOrderDTO;
 import com.gsj.www.wms.domain.PurchaseInputOrderDTO;
@@ -17,8 +17,8 @@ import org.springframework.stereotype.Service;
  * 库存中心对外接口service组件
  */
 @Service
-public class InventoryFacadeServiceImpl implements InventoryFacadeService {
-    private static final Logger logger = LoggerFactory.getLogger(InventoryFacadeServiceImpl.class);
+public class InventoryServiceImpl implements InventoryService {
+    private static final Logger logger = LoggerFactory.getLogger(InventoryServiceImpl.class);
     /**
      * 采购入库库存更新命令工厂
      */

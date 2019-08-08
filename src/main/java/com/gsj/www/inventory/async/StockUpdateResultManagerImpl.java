@@ -46,4 +46,14 @@ public class StockUpdateResultManagerImpl implements StockUpdateResultManager {
         observable.setResult(resultl);
         observableMap.remove(messageId);
     }
+
+    /**
+     * 获取库存更新结果观察目标
+     * @param messageId 消息id
+     * @return
+     */
+    @Override
+    public StockUpdateObservable getObservable(String messageId) {
+        return observableMap.get(messageId);
+    }
 }
