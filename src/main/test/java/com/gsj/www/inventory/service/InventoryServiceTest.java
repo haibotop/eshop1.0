@@ -147,6 +147,79 @@ public class InventoryServiceTest {
     }
 
     /**
+     * 测试通知库存中心，"支付订单"时间发生了
+     * @throws Exception
+     */
+    @Test
+    public void testInformPayOrderEvent() throws Exception{
+        //构造函数
+        Long[] goodsSkuIds = new Long[]{7L,8L};
+        Long oldSaleStockQuantity = 100L;
+        Long oldLockedStockQuantity = 50L;
+        Long oldSaledStockQuantity = 200L;
+        Long purchaseQuantity = 5L;
+
+        for (Long goodsSkuId : goodsSkuIds) {
+            createGoodsStock(goodsSkuId, oldSaleStockQuantity, oldLockedStockQuantity, oldSaledStockQuantity);
+        }
+        OrderOrderDTO order = createOrder(goodsSkuIds, purchaseQuantity);
+
+        //执行方法逻辑
+        inventoryService.informPayOrderEvent(order);
+
+        //执行库存变更逻辑的断言
+        for(Long goodsSkuId : goodsSkuIds){
+            assertEquals((long)oldSaledStockQuantity + purchaseQuantity,(long)getSaledStockQuantity(goodsSkuId));
+            assertEquals((long)oldLockedStockQuantity - purchaseQuantity,(long)getLockedStockQuantity(goodsSkuId));
+        }
+
+        assertAsyncOperation();
+    }
+
+    /**
+     * 测试通知库存中心，"取消订单"时间发生了
+     * @throws Exception
+     */
+    @Test
+    public void testInformCancelOrderEvent() throws Exception{
+        //构造函数
+        Long[] goodsSkuIds = new Long[]{9L,10L};
+        Long oldSaleStockQuantity = 100L;
+        Long oldLockedStockQuantity = 50L;
+        Long oldSaledStockQuantity = 200L;
+        Long purchaseQuantity = 5L;
+
+        for (Long goodsSkuId : goodsSkuIds) {
+            createGoodsStock(goodsSkuId, oldSaleStockQuantity, oldLockedStockQuantity, oldSaledStockQuantity);
+        }
+        OrderOrderDTO order = createOrder(goodsSkuIds, purchaseQuantity);
+
+        //执行方法逻辑
+        inventoryService.informCancelOrderEvent(order);
+
+        //执行库存变更逻辑的断言
+        for(Long goodsSkuId : goodsSkuIds){
+            assertEquals((long)oldSaleStockQuantity + purchaseQuantity,(long)getSaledStockQuantity(goodsSkuId));
+            assertEquals((long)oldLockedStockQuantity - purchaseQuantity,(long)getLockedStockQuantity(goodsSkuId));
+        }
+
+        assertAsyncOperation();
+    }
+
+    public void testGetSaleStockQuantity() throws Exception{
+        Long goodsSkuId = 1L;
+        Long saleStockQuantity = 100L;
+        Long lockedStockQuantity = 100L;
+        Long saledStockQuantity = 100L;
+
+        createGoodsStock(goodsSkuId,saleStockQuantity,lockedStockQuantity,saledStockQuantity);
+
+        Long resultSaleStockQuantity = inventoryService.getSaleStockQuantity(goodsSkuId);
+
+        assertEquals(saleStockQuantity, resultSaleStockQuantity);
+    }
+
+    /**
      * 对异步操作进行断言
      */
     private void assertAsyncOperation() throws Exception{
