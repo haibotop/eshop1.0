@@ -1,8 +1,9 @@
-package com.gsj.www.auth.service;
+package java.com.gsj.www.auth.service;
 
 import com.gsj.www.auth.constant.PriorityType;
 import com.gsj.www.auth.domain.PriorityDO;
 import com.gsj.www.auth.domain.PriorityDTO;
+import com.gsj.www.auth.service.PriorityService;
 import com.gsj.www.common.util.DateProvider;
 import com.gsj.www.auth.dao.AccountPriorityRelationshipDAO;
 import com.gsj.www.auth.dao.PriorityDAO;
@@ -164,10 +165,10 @@ public class PriorityServiceTest {
         when(priorityDAO.listChildPriorities(id)).thenReturn(childPriorityDOs);
         when(priorityDAO.listChildPriorities(childId)).thenReturn(new ArrayList<PriorityDO>());
 
-        when(rolePriorityRelationshipDAO.getCountByPriorityId(childId)).thenReturn(0L);
+        when(rolePriorityRelationshipDAO.countByPriorityId(childId)).thenReturn(0L);
         when(accountPriorityRelationshipDAO.getCountByPriorityId(childId)).thenReturn(0L);
 
-        when(rolePriorityRelationshipDAO.getCountByPriorityId(id)).thenReturn(0L);
+        when(rolePriorityRelationshipDAO.countByPriorityId(id)).thenReturn(0L);
         when(accountPriorityRelationshipDAO.getCountByPriorityId(id)).thenReturn(0L);
 
         when(priorityDAO.removePriority(childId)).thenReturn(true);
@@ -180,8 +181,8 @@ public class PriorityServiceTest {
         verify(priorityDAO, times(1)).getPriorityById(id);
         verify(priorityDAO,times(2)).listChildPriorities(id);
         verify(priorityDAO,times(2)).listChildPriorities(childId);
-        verify(rolePriorityRelationshipDAO,times(1)).getCountByPriorityId(id);
-        verify(rolePriorityRelationshipDAO,times(1)).getCountByPriorityId(childId);
+        verify(rolePriorityRelationshipDAO,times(1)).countByPriorityId(id);
+        verify(rolePriorityRelationshipDAO,times(1)).countByPriorityId(childId);
         verify(accountPriorityRelationshipDAO,times(1)).getCountByPriorityId(id);
         verify(accountPriorityRelationshipDAO,times(1)).getCountByPriorityId(childId);
         verify(priorityDAO,times(1)).removePriority(id);

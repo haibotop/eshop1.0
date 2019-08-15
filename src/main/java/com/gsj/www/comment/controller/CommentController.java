@@ -1,5 +1,7 @@
 package com.gsj.www.comment.controller;
 
+import com.gsj.www.comment.constant.CommentApproved;
+import com.gsj.www.comment.constant.CommentStatus;
 import com.gsj.www.comment.constant.ShowPictures;
 import com.gsj.www.comment.domain.*;
 import com.gsj.www.comment.service.CommentAggregateService;
@@ -176,6 +178,41 @@ public class CommentController {
                     logger.error("error", e);
                 }
             }
+        }
+    }
+
+    /**
+     * 审核评论
+     * @param id 评论id
+     * @param approved 允许
+     */
+    @PutMapping("/approve/{id}")
+    public Boolean update(@PathVariable("id") Long id, Integer approved) {
+        try {
+            CommentInfoDTO comment = new CommentInfoDTO();
+            comment.setId(id);
+            comment.setCommentStatus(CommentApproved.YES.equals(approved) ?
+                    CommentStatus.APPROVED : CommentStatus.APPROVE_REJECTED);
+            Boolean result = commentInfoService.update(comment);
+            return result;
+        } catch (Exception e) {
+            logger.error("error", e);
+            return false;
+        }
+    }
+
+    /**
+     * 删除评论
+     * @param id 评论id
+     * @return 处理结果
+     */
+    @DeleteMapping("/{id}")
+    public Boolean remove(@PathVariable("id") Long id) {
+        try {
+            return commentInfoService.remove(id);
+        } catch (Exception e) {
+            logger.error("error", e);
+            return false;
         }
     }
 }

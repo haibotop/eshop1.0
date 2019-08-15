@@ -189,4 +189,21 @@ public interface CommentInfoMapper {
             @Result(column = "gmt_modified", property = "gmtModified")
     })
     CommentInfoDO getById(@Param("id") Long id);
+
+    /**
+     * 更新评论
+     * @param comment 评论信息
+     */
+    @Update("UPDATE comment_info SET "
+            + "comment_status=#{commentStatus},"
+            + "gmt_modified=#{gmtModified} "
+            + "WHERE id=#{id}")
+    void update(CommentInfoDO comment);
+
+    /**
+     * 删除评论
+     * @param id 评论id
+     */
+    @Delete("DELETE FROM comment_info WHERE id=#{id}")
+    void remove(@Param("id") Long id);
 }
