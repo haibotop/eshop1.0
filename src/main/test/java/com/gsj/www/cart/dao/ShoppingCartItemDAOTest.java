@@ -18,9 +18,7 @@ import java.util.List;
 import java.util.Map;
 
 import static org.hamcrest.Matchers.greaterThan;
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertNotNull;
-import static org.junit.Assert.assertThat;
+import static org.junit.Assert.*;
 
 /**
  * 购物车条目管理模块的DAO组件的单元测试类
@@ -143,6 +141,24 @@ public class ShoppingCartItemDAOTest {
             ShoppingCartItemDO targetItem = itemMap.get(resultItem.getId());
             assertEquals(targetItem,resultItem);
         }
+    }
+
+    /**
+     * 测试删除购物车题哦阿木
+     * @throws Exception
+     */
+    @Test
+    private void testRemove() throws Exception{
+        Long shoppingCartId = 1L;
+        Long goodsSkuId = 1L;
+        Long purchaseQuantity = 3L;
+
+        ShoppingCartItemDO item = createShoppingCartItem(shoppingCartId, goodsSkuId, purchaseQuantity);
+        shoppingCartItemDAO.remove(item.getId());
+
+        ShoppingCartItemDO resultItem = shoppingCartItemDAO.getShoppingCartItemByGoodsSkuId(shoppingCartId, goodsSkuId);
+
+        assertNull(resultItem);
     }
 
     /**

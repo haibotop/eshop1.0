@@ -35,7 +35,6 @@ public class ShoppingCartServiceImpl implements ShoppingCartService{
      */
     @Autowired
     private ShoppingCartDAO shoppingCartDAO;
-
     /**
      * 购物车条目管理模块的DAO组件
      */
