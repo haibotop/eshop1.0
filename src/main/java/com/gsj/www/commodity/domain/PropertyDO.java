@@ -1,6 +1,6 @@
 package com.gsj.www.commodity.domain;
 
-import com.gsj.www.common.util.BeanCopierUtils;
+import com.gsj.www.common.util.AbstractObject;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -13,7 +13,7 @@ import java.util.Objects;
  * @author Holy
  * @create 2019 - 07 - 03 7:38
  */
-public class PropertyDO {
+public class PropertyDO extends AbstractObject {
     private static final Logger logger = LoggerFactory.getLogger(PropertyDO.class);
     /**
      * id
@@ -118,18 +118,6 @@ public class PropertyDO {
     public int hashCode() {
 
         return Objects.hash(id, propertyName, propertyDesc, inputType, inputValues, gmtCreate, gmtModified);
-    }
-
-    public <T> T clone(Class<T> clazz){
-        T target = null;
-        try {
-            target = clazz.newInstance();
-            BeanCopierUtils.copyProperties(this, target);
-        }catch (Exception e){
-            logger.error("error",e);
-            return null;
-        }
-        return target;
     }
 
     @Override

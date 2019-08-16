@@ -8,6 +8,8 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import java.util.List;
+
 /**
  * 类目属性管理DAO组件
  */
@@ -32,6 +34,20 @@ public class CategoryPropertyRelationshipDAOImpl implements CategoryPropertyRela
             return true;
         }catch (Exception e) {
             return false;
+        }
+    }
+
+    /**
+     * 根据类目id查询类目与属性的关联关系
+     * @param categoryId 类目id
+     * @return 类目与属性的关联关系
+     */
+    public List<CategoryPropertyRelationshipDO> listByCategoryId(Long categoryId) {
+        try {
+            return categoryPropertyRelationshipMapper.listByCategoryId(categoryId);
+        } catch (Exception e) {
+            logger.error("error", e);
+            return null;
         }
     }
 }

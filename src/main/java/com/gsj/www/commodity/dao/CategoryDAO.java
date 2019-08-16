@@ -27,4 +27,11 @@ public interface CategoryDAO {
      * @return 主键id
      */
     Long save(CategoryDO category);
+
+    /**
+     * 根据id查询类目
+     * @param id 类目id
+     * @return 类目
+     */
+    CategoryDO getById(Long id);
 }

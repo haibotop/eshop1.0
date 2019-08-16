@@ -10,6 +10,8 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import java.util.List;
+
 /**
  * 属性分组与属性关系管理DAO组件
  */
@@ -37,4 +39,20 @@ public class PropertyGroupRelationshipDAOImpl implements PropertyGroupRelationsh
             return false;
         }
     }
+
+    /**
+     * 根据属性分组id查询属性分组与属性的关联关系
+     * @param propertyGroupId 属性分组id
+     * @return 属性分组与属性的关联关系
+     */
+    public List<PropertyGroupRelationshipDO> listByPropertyGroupId(Long propertyGroupId) {
+        try {
+            return propertyGroupRelationshipMapper.listByPropertyGroupId(propertyGroupId);
+        } catch (Exception e) {
+            logger.error("error", e);
+            return null;
+        }
+    }
+
+
 }

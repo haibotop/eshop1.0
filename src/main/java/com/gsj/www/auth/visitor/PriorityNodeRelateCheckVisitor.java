@@ -74,7 +74,7 @@ public class PriorityNodeRelateCheckVisitor implements PriorityNodeVisitor {
      */
     private Boolean relateCheck(PriorityNode node) {
         Long roleRelatedCount = rolePriorityRelationshipDAO
-                .getCountByPriorityId(node.getId());
+                .countByPriorityId(node.getId());
         if(roleRelatedCount != null && roleRelatedCount > 0) {
             return true;
         }

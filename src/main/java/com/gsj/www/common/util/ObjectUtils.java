@@ -10,6 +10,14 @@ import java.util.List;
  * @create 2019 - 07 - 23 7:05
  */
 public class ObjectUtils {
+    /**
+     * 转换集合
+     * @param sourceList 源集合
+     * @param targetClazz 目标集合元素类型
+     * @param <T>
+     * @return 转换后的集合
+     * @throws Exception
+     */
     public static <T> List<T> convertList(List<? extends AbstractObject> sourceList, Class<T> targetClazz) throws Exception{
         List<T> targetList = new ArrayList<T>();
         for (AbstractObject sourceObject : sourceList) {

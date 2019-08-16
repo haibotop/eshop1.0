@@ -29,8 +29,14 @@ public class PropertyGroupDTO extends AbstractObject {
      * 修改时间
      */
     private Date gmtModified;
+    /**
+     * 属性分组与属性的关联关系
+     */
     private List<PropertyGroupRelationshipDTO> relations;
-
+    /**
+     * 属性分组关联的属性
+     */
+    private List<PropertyDTO> properties;
     public Long getId() {
         return id;
     }
@@ -77,5 +83,13 @@ public class PropertyGroupDTO extends AbstractObject {
 
     public void setRelations(List<PropertyGroupRelationshipDTO> relations) {
         this.relations = relations;
+    }
+
+    public List<PropertyDTO> getProperties() {
+        return properties;
+    }
+
+    public void setProperties(List<PropertyDTO> properties) {
+        this.properties = properties;
     }
 }
