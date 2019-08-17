@@ -1,11 +1,14 @@
 package com.gsj.www.purchase.domain;
 
+import com.gsj.www.common.util.AbstractObject;
+
 import java.util.Date;
+import java.util.List;
 
 /**
  * 采购单DTO
  */
-public class PurchaseOrderDTO {
+public class PurchaseOrderDTO extends AbstractObject {
     /**
      * id
      */
@@ -50,6 +53,7 @@ public class PurchaseOrderDTO {
      * 采购单的修改时间
      */
     private Date gmtModified;
+    private List<PurchaseOrderItemDTO> items;
 
     public Long getId() {
         return id;
@@ -116,5 +120,13 @@ public class PurchaseOrderDTO {
     }
     public void setGmtModified(Date gmtModified) {
         this.gmtModified = gmtModified;
+    }
+
+    public List<PurchaseOrderItemDTO> getItems() {
+        return items;
+    }
+
+    public void setItems(List<PurchaseOrderItemDTO> items) {
+        this.items = items;
     }
 }

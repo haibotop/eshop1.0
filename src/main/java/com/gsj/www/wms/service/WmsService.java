@@ -8,7 +8,7 @@ import com.gsj.www.wms.domain.SaleDeliveryOrderDTO;
 /**
  * WMS中心对外提供的接口
  */
-public interface WmsFacadeService {
+public interface WmsService {
 
     /**
      * 创建采购入库单
