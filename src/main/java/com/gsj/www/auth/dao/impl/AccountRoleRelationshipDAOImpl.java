@@ -1,11 +1,14 @@
 package com.gsj.www.auth.dao.impl;
 
 import com.gsj.www.auth.dao.AccountRoleRelationshipDAO;
+import com.gsj.www.auth.domain.AccountRoleRelationshipDO;
 import com.gsj.www.auth.mapper.AccountRoleRelationshipMapper;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
+
+import java.util.List;
 
 /**
  * 账号角色关系管理模块DAO组件
@@ -36,6 +39,34 @@ public class AccountRoleRelationshipDAOImpl implements AccountRoleRelationshipDA
             logger.error("error", e);
             return 0L;
         }
+    }
+
+    /**
+     * 根据账号id查询账号和角色关联关系
+     * @param accountId 账号id
+     * @return 账号和角色关联关系
+     */
+    @Override
+    public List<AccountRoleRelationshipDO> listByAccountId(Long accountId) {
+        return accountRoleRelationMapper.listByAccountId(accountId);
+    }
+
+    /**
+     * 新增账号和角色的关联关系
+     * @param relation 账号和角色的关联关系
+     */
+    @Override
+    public void save(AccountRoleRelationshipDO relation) {
+        accountRoleRelationMapper.save(relation);
+    }
+
+    /**
+     * 根据账号id删除账号和角色的关联关系
+     * @param accountId 账号id
+     */
+    @Override
+    public void removeByAccountId(Long accountId) {
+        accountRoleRelationMapper.removeByAccountId(accountId);
     }
 
 }

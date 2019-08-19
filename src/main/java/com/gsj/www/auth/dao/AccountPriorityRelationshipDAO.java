@@ -2,6 +2,8 @@ package com.gsj.www.auth.dao;
 
 import com.gsj.www.auth.domain.AccountPriorityRelationshipDO;
 
+import java.util.List;
+
 /**
  * 账号和权限关系管理模块的DAO组件接口
  *
@@ -21,4 +23,17 @@ public interface AccountPriorityRelationshipDAO {
      * @param accountPriorityRelationshipDO
      */
     Boolean save(AccountPriorityRelationshipDO accountPriorityRelationshipDO);
+
+    /**
+     * 根据账号id查询账号和权限的关联关系
+     * @param accountId 账号id
+     * @return 账号和权限的关联关系
+     */
+    List<AccountPriorityRelationshipDO> listByAccountId(Long accountId);
+
+    /**
+     * 根据账号id删除账号和权限的关联关系
+     * @param accountId 账号id
+     */
+    void removeByAccountId(Long accountId);
 }

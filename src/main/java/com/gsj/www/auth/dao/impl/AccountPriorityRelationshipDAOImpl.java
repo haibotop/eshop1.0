@@ -8,6 +8,8 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import java.util.List;
+
 /**
  * 账号和权限关系管理模块的DAO组件
  *
@@ -37,6 +39,7 @@ public class AccountPriorityRelationshipDAOImpl implements AccountPriorityRelati
         }
         return 0L;
     }
+
     /**
      * 新增账号和权限的关联关系
      * @param accountPriorityRelationshipDO
@@ -50,6 +53,25 @@ public class AccountPriorityRelationshipDAOImpl implements AccountPriorityRelati
             return false;
         }
         return true;
+    }
+
+    /**
+     * 根据账号id查询账号和权限的关联关系
+     * @param accountId 账号id
+     * @return 账号和权限的关联关系
+     */
+    @Override
+    public List<AccountPriorityRelationshipDO> listByAccountId(Long accountId) {
+        return accountPriorityRelationshipMapper.listByAccountId(accountId);
+    }
+
+    /**
+     * 根据账号id删除账号和权限的关联关系
+     * @param accountId 账号id
+     */
+    @Override
+    public void removeByAccountId(Long accountId) {
+        accountPriorityRelationshipMapper.removeByAccountId(accountId);
     }
 
 }

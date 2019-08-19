@@ -5,12 +5,9 @@ import com.gsj.www.common.util.AbstractObject;
 import java.util.Date;
 
 /**
- * 账号和权限的关联关系DO类
- *
- * @author Holy
- * @create 2019 - 06 - 21 22:22
+ * 账号角色关联关系DTO
  */
-public class AccountPriorityRelationshipDO extends AbstractObject {
+public class AccountRoleRelationshipDTO extends AbstractObject {
     /**
      * id
      */
@@ -20,9 +17,9 @@ public class AccountPriorityRelationshipDO extends AbstractObject {
      */
     private Long accountId;
     /**
-     * 权限id
+     * 角色id
      */
-    private Long priorityId;
+    private Long roleId;
     /**
      * 创建时间
      */
@@ -35,30 +32,39 @@ public class AccountPriorityRelationshipDO extends AbstractObject {
     public Long getId() {
         return id;
     }
+
     public void setId(Long id) {
         this.id = id;
     }
+
     public Long getAccountId() {
         return accountId;
     }
+
     public void setAccountId(Long accountId) {
         this.accountId = accountId;
     }
-    public Long getPriorityId() {
-        return priorityId;
+
+    public Long getRoleId() {
+        return roleId;
     }
-    public void setPriorityId(Long priorityId) {
-        this.priorityId = priorityId;
+
+    public void setRoleId(Long roleId) {
+        this.roleId = roleId;
     }
+
     public Date getGmtCreate() {
         return gmtCreate;
     }
+
     public void setGmtCreate(Date gmtCreate) {
         this.gmtCreate = gmtCreate;
     }
+
     public Date getGmtModified() {
         return gmtModified;
     }
+
     public void setGmtModified(Date gmtModified) {
         this.gmtModified = gmtModified;
     }
