@@ -50,4 +50,12 @@ public class CategoryPropertyRelationshipDAOImpl implements CategoryPropertyRela
             return null;
         }
     }
+
+    /**
+     * 根据类目id删除类目与属性的关联关系
+     * @param categoryId 类目id
+     */
+    public void removeByCategoryId(Long categoryId) throws Exception {
+        categoryPropertyRelationshipMapper.removeByCategoryId(categoryId);
+    }
 }

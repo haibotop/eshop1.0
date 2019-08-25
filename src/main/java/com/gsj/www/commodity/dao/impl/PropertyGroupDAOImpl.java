@@ -50,4 +50,12 @@ public class PropertyGroupDAOImpl implements PropertyGroupDAO {
             return null;
         }
     }
+
+    /**
+     * 根据类目id删除属性分组
+     * @param categoryId 类目id
+     */
+    public void removeByCategoryId(Long categoryId) throws Exception {
+        propertyGroupMapper.removeByCategoryId(categoryId);
+    }
 }

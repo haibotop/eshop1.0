@@ -54,5 +54,11 @@ public class PropertyGroupRelationshipDAOImpl implements PropertyGroupRelationsh
         }
     }
 
-
+    /**
+     * 根据属性分组id删除属性分组与属性的关联关系
+     * @param propertyGroupId 属性分组id
+     */
+    public void removeByPropertyGroupId(Long propertyGroupId) throws Exception {
+        propertyGroupRelationshipMapper.removeByPropertyGroupId(propertyGroupId);
+    }
 }

@@ -212,6 +212,35 @@ public class CategoryServiceImpl implements CategoryService {
     }
 
     /**
+     * 更新类目
+     * @param category 类目
+     * @throws Exception
+     */
+    @Override
+    public void update(CategoryDTO category) throws Exception {
+        category.setGmtModified(dateProvider.getCurrentTime());
+        categoryDAO.update(category.clone(CategoryDO.class));
+
+        categoryPropertyRelationshipDAO.removeByCategoryId(category.getId());
+        saveCategoryPropertyRelations(category);
+
+        removePropertyGroupRelations(category);
+        propertyGroupDAO.removeByCategoryId(category.getId());
+        savePropertyGroup(category);
+    }
+
+    /**
+     * 删除类目的属性分组与属性的关联关系
+     * @param category 类目
+     * @throws Exception
+     */
+    private void removePropertyGroupRelations(CategoryDTO category) throws Exception {
+        for(PropertyGroupDTO propertyGroup : category.getPropertyGroups()) {
+            propertyGroupRelationshipDAO.removeByPropertyGroupId(propertyGroup.getId());
+        }
+    }
+
+    /**
      * 根据类目id查询属性分组
      * @param categoryId 类目id
      * @return 属性分组

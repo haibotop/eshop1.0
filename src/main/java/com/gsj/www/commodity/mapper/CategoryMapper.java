@@ -107,4 +107,21 @@ public interface CategoryMapper {
             @Result(column = "gmt_modified", property = "gmtModified")
     })
     CategoryDO getById(@Param("id") Long id);
+
+    /**
+     * 更新类目
+     * @param category 类目
+     */
+    @Update("UPDATE commodity_category SET "
+            + "description=#{description},"
+            + "gmt_modified=#{gmtModified} "
+            + "WHERE id=#{id}")
+    void update(CategoryDO category);
+
+    /**
+     * 删除类目
+     * @param id 类目id
+     */
+    @Delete("delete from commodity_category where id=#{id}")
+    void remove(@Param("id") Long id);
 }

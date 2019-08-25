@@ -34,4 +34,11 @@ public interface CategoryService {
      * @return 类目
      */
     CategoryDTO getById(Long id);
+
+    /**
+     * 更新类目
+     * @param category 类目
+     * @throws Exception
+     */
+    void update(CategoryDTO category) throws Exception;
 }

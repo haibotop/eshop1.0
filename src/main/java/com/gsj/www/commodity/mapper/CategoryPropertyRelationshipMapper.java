@@ -58,4 +58,11 @@ public interface CategoryPropertyRelationshipMapper {
     })
     List<CategoryPropertyRelationshipDO> listByCategoryId(
             @Param("categoryId") Long categoryId);
+
+    /**
+     * 根据类目id删除类目与属性的关联关系
+     * @param categoryId 类目id
+     */
+    @Delete("DELETE FROM commodity_category_property_relationship WHERE category_id=#{categoryId}")
+    void removeByCategoryId(@Param("categoryId") Long categoryId);
 }

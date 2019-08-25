@@ -49,4 +49,11 @@ public interface PropertyGroupMapper {
     })
     List<PropertyGroupDO> listByCategoryId(
             @Param("categoryId") Long categoryId);
+
+    /**
+     * 根据类目id删除属性分组
+     * @param categoryId 类目id
+     */
+    @Delete("DELETE FROM commodity_property_group WHERE category_id=#{categoryId}")
+    void removeByCategoryId(@Param("categoryId") Long categoryId);
 }

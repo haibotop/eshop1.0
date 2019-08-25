@@ -34,4 +34,17 @@ public interface CategoryDAO {
      * @return 类目
      */
     CategoryDO getById(Long id);
+
+    /**
+     * 更新类目
+     * @param category 类目
+     */
+    void update(CategoryDO category) throws Exception;
+
+    /**
+     * 删除类目
+     * @param id 类目id
+     * @throws Exception
+     */
+    void remove(Long id) throws Exception;
 }

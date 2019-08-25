@@ -67,6 +67,7 @@ public class CategoryDAOImpl implements CategoryDAO {
      * @param id 类目id
      * @return 类目
      */
+    @Override
     public CategoryDO getById(Long id) {
         try {
             return categoryMapper.getById(id);
@@ -74,5 +75,24 @@ public class CategoryDAOImpl implements CategoryDAO {
             logger.error("error", e);
             return null;
         }
+    }
+
+    /**
+     * 更新类目
+     * @param category 类目
+     */
+    @Override
+    public void update(CategoryDO category) throws Exception {
+        categoryMapper.update(category);
+    }
+
+    /**
+     * 删除类目
+     * @param id 类目id
+     * @throws Exception
+     */
+    @Override
+    public void remove(Long id) throws Exception{
+        categoryMapper.remove(id);
     }
 }
