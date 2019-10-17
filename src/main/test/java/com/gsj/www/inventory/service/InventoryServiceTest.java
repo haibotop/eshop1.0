@@ -25,7 +25,7 @@ import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
 
 /**
- * 库存中心service组件的但愿测试类
+ * 库存中心service组件的单元测试类
  */
 @RunWith(SpringRunner.class)
 @SpringBootTest
@@ -91,6 +91,7 @@ public class InventoryServiceTest {
      * 测试通知库存中心，"完成退货入库"事件发生了
      * @throws Exception
      */
+    @Test
     public void testInformReturnGoodsInputFinished() throws Exception{
         //准备连个库存数据，分别是goodsSkuId为3和4
         //这两份数据的销售库存为50，已销售库存为100
@@ -116,7 +117,7 @@ public class InventoryServiceTest {
     }
 
     /**
-     * 测试通知库存中心，"提交订单"时间发生了
+     * 测试通知库存中心，"提交订单"事件发生了
      * @throws Exception
      */
     @Test
@@ -147,7 +148,7 @@ public class InventoryServiceTest {
     }
 
     /**
-     * 测试通知库存中心，"支付订单"时间发生了
+     * 测试通知库存中心，"支付订单"事件发生了
      * @throws Exception
      */
     @Test
@@ -177,7 +178,7 @@ public class InventoryServiceTest {
     }
 
     /**
-     * 测试通知库存中心，"取消订单"时间发生了
+     * 测试通知库存中心，"取消订单"事件发生了
      * @throws Exception
      */
     @Test
@@ -206,6 +207,11 @@ public class InventoryServiceTest {
         assertAsyncOperation();
     }
 
+    /**
+     * 测试查询商品sku的库存
+     * @throws Exception
+     */
+    @Test
     public void testGetSaleStockQuantity() throws Exception{
         Long goodsSkuId = 1L;
         Long saleStockQuantity = 100L;

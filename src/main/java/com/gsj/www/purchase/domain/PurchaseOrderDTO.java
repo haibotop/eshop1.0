@@ -24,19 +24,19 @@ public class PurchaseOrderDTO extends AbstractObject {
     /**
      * 采购联系人
      */
-    private String purchaseContactor;
+    private String contactor;
     /**
      * 采购联系人电话号码
      */
-    private String purchaseContactPhoneNumber;
+    private String contactPhoneNumber;
     /**
      * 采购联系人邮箱地址
      */
-    private String purchaseContactEmail;
+    private String contactEmail;
     /**
      * 采购单备注
      */
-    private String purchaseOrderComment;
+    private String remark;
     /**
      * 采购员
      */
@@ -44,7 +44,7 @@ public class PurchaseOrderDTO extends AbstractObject {
     /**
      * 采购单的状态
      */
-    private Integer purcahseOrderStatus;
+    private Integer status;
     /**
      * 采购单的创建时间
      */
@@ -53,71 +53,95 @@ public class PurchaseOrderDTO extends AbstractObject {
      * 采购单的修改时间
      */
     private Date gmtModified;
+    /**
+     * 采购条目集合
+     */
     private List<PurchaseOrderItemDTO> items;
 
     public Long getId() {
         return id;
     }
+
     public void setId(Long id) {
         this.id = id;
     }
+
     public Long getSupplierId() {
         return supplierId;
     }
+
     public void setSupplierId(Long supplierId) {
         this.supplierId = supplierId;
     }
+
     public Date getExpectArrivalTime() {
         return expectArrivalTime;
     }
+
     public void setExpectArrivalTime(Date expectArrivalTime) {
         this.expectArrivalTime = expectArrivalTime;
     }
-    public String getPurchaseContactor() {
-        return purchaseContactor;
+
+    public String getContactor() {
+        return contactor;
     }
-    public void setPurchaseContactor(String purchaseContactor) {
-        this.purchaseContactor = purchaseContactor;
+
+    public void setContactor(String contactor) {
+        this.contactor = contactor;
     }
-    public String getPurchaseContactPhoneNumber() {
-        return purchaseContactPhoneNumber;
+
+    public String getContactPhoneNumber() {
+        return contactPhoneNumber;
     }
-    public void setPurchaseContactPhoneNumber(String purchaseContactPhoneNumber) {
-        this.purchaseContactPhoneNumber = purchaseContactPhoneNumber;
+
+    public void setContactPhoneNumber(String contactPhoneNumber) {
+        this.contactPhoneNumber = contactPhoneNumber;
     }
-    public String getPurchaseContactEmail() {
-        return purchaseContactEmail;
+
+    public String getContactEmail() {
+        return contactEmail;
     }
-    public void setPurchaseContactEmail(String purchaseContactEmail) {
-        this.purchaseContactEmail = purchaseContactEmail;
+
+    public void setContactEmail(String contactEmail) {
+        this.contactEmail = contactEmail;
     }
-    public String getPurchaseOrderComment() {
-        return purchaseOrderComment;
+
+    public String getRemark() {
+        return remark;
     }
-    public void setPurchaseOrderComment(String purchaseOrderComment) {
-        this.purchaseOrderComment = purchaseOrderComment;
+
+    public void setRemark(String remark) {
+        this.remark = remark;
     }
+
     public String getPurchaser() {
         return purchaser;
     }
+
     public void setPurchaser(String purchaser) {
         this.purchaser = purchaser;
     }
-    public Integer getPurcahseOrderStatus() {
-        return purcahseOrderStatus;
+
+    public Integer getStatus() {
+        return status;
     }
-    public void setPurcahseOrderStatus(Integer purcahseOrderStatus) {
-        this.purcahseOrderStatus = purcahseOrderStatus;
+
+    public void setStatus(Integer status) {
+        this.status = status;
     }
+
     public Date getGmtCreate() {
         return gmtCreate;
     }
+
     public void setGmtCreate(Date gmtCreate) {
         this.gmtCreate = gmtCreate;
     }
+
     public Date getGmtModified() {
         return gmtModified;
     }
+
     public void setGmtModified(Date gmtModified) {
         this.gmtModified = gmtModified;
     }

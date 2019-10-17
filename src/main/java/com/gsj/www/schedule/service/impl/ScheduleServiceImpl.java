@@ -4,7 +4,7 @@ import com.gsj.www.customer.domain.ReturnGoodsWorksheetDTO;
 import com.gsj.www.order.domain.OrderOrderDTO;
 import com.gsj.www.purchase.domain.PurchaseOrderDTO;
 import com.gsj.www.purchase.domain.PurchaseOrderItemDTO;
-import com.gsj.www.schedule.service.ScheduleFacadeService;
+import com.gsj.www.schedule.service.ScheduleService;
 import com.gsj.www.wms.domain.PurchaseInputOrderDTO;
 import com.gsj.www.wms.domain.PurchaseInputOrderItemDTO;
 import com.gsj.www.wms.domain.ReturnGoodsInputOrderDTO;
@@ -22,8 +22,8 @@ import java.util.List;
  * @author holy
  */
 @Service
-public class ScheduleFacadeServiceImpl implements ScheduleFacadeService {
-    private static final Logger logger = LoggerFactory.getLogger(ScheduleFacadeServiceImpl.class);
+public class ScheduleServiceImpl implements ScheduleService {
+    private static final Logger logger = LoggerFactory.getLogger(ScheduleServiceImpl.class);
     /**
      * WMS中心对外接口service组件
      */
