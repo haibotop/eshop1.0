@@ -1,5 +1,6 @@
-package com.gsj.www.auth.dao;
+package java.com.gsj.www.auth.dao;
 
+import com.gsj.www.auth.dao.AccountPriorityRelationshipDAO;
 import com.gsj.www.auth.domain.AccountPriorityRelationshipDO;
 import com.gsj.www.common.util.DateProvider;
 import org.junit.Test;
@@ -9,6 +10,10 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.annotation.Rollback;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.transaction.annotation.Transactional;
+
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 import static org.hamcrest.Matchers.greaterThan;
 import static org.junit.Assert.assertEquals;
@@ -69,6 +74,72 @@ public class AccountPriorityRelationshipDAOTest {
         Long resultCount = accountPriorityRelationshipDAO.getCountByPriorityId(priorityId);
 
         assertEquals(2L, resultCount.longValue());
+    }
+
+    /**
+     * 测试根据账号id查询账号和权限的关联关系
+     * @throws Exception
+     */
+    @Test
+    public void testListByAccountId() throws Exception{
+        Long accountId = 1L;
+        int count = 20;
+        Map<Long, AccountPriorityRelationshipDO> relationMap = createRelations(accountId, count);
+
+        List<AccountPriorityRelationshipDO> resultRelations = accountPriorityRelationshipDAO.listByAccountId(accountId);
+
+        compareRelations(relationMap, resultRelations);
+    }
+
+    /**
+     * 测试根据账号id删除账号和权限的关联关系
+     * @throws Exception
+     */
+    @Test
+    public void testRemoveByAccountId() throws Exception{
+        Long accountId = 1L;
+        int count = 20;
+        createRelations(accountId, count);
+
+        accountPriorityRelationshipDAO.removeByAccountId(accountId);
+
+        List<AccountPriorityRelationshipDO> resultRelations = accountPriorityRelationshipDAO.listByAccountId(accountId);
+
+        assertEquals(0, resultRelations.size());
+    }
+
+    /**
+     * 比较两个关联关系集合
+     * @param relationMap
+     * @param resultRelations
+     */
+    private void compareRelations(Map<Long, AccountPriorityRelationshipDO> relationMap, List<AccountPriorityRelationshipDO> resultRelations) throws Exception{
+        assertThat(resultRelations.size(), greaterThan(relationMap.size()));
+        for (AccountPriorityRelationshipDO resultRelation : resultRelations) {
+            AccountPriorityRelationshipDO targetRelation = relationMap.get(resultRelation.getId());
+            if(targetRelation == null){
+                continue;
+            }
+            assertEquals(targetRelation, resultRelation);
+        }
+
+    }
+
+    /**
+     * 创建账号和权限关联关系的集合
+     * @param accountId
+     * @param count
+     * @return
+     */
+    private Map<Long, AccountPriorityRelationshipDO> createRelations(Long accountId, int count) throws Exception{
+        Map<Long, AccountPriorityRelationshipDO> relationshipDOMap = new HashMap<>();
+
+        for(int i = 0; i < count; i++){
+            AccountPriorityRelationshipDO relationshipDO = createAccountPriorityRelationshipDO(accountId, (long)i);
+            relationshipDOMap.put(relationshipDO.getId(), relationshipDO);
+        }
+
+        return relationshipDOMap;
     }
 
     /**

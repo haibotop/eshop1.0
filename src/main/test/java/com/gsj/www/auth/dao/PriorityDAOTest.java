@@ -1,6 +1,7 @@
-package com.gsj.www.auth.dao;
+package java.com.gsj.www.auth.dao;
 
 import com.gsj.www.auth.constant.PriorityType;
+import com.gsj.www.auth.dao.PriorityDAO;
 import com.gsj.www.auth.domain.PriorityDO;
 import com.gsj.www.common.util.DateProvider;
 import org.junit.Test;

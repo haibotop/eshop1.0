@@ -36,6 +36,12 @@ public interface AccountDAO {
     void update(AccountDO account);
 
     /**
+     * 更新密码
+     * @param accountDO 账号
+     */
+    void updatePassword(AccountDO accountDO);
+
+    /**
      * 删除账号
      * @param id 账号id
      */

@@ -60,6 +60,15 @@ public class AccountDAOImpl implements AccountDAO {
     }
 
     /**
+     * 更新密码
+     * @param accountDO 账号
+     */
+    @Override
+    public void updatePassword(AccountDO accountDO) {
+        accountMapper.updatePassword(accountDO);
+    }
+
+    /**
      * 删除账号
      * @param id 账号id
      */

@@ -98,12 +98,21 @@ public interface AccountMapper {
      * 更新账号
      * @param account 账号
      */
-    @Update("UPDATE auth_account SET"
-            + "password=#{password},"
+    @Update("UPDATE auth_account SET "
             + "remark=#{remark},"
             + "gmt_modified=#{gmtModified} "
             + "WHERE id=#{id}")
     void update(AccountDO account);
+
+    /**
+     * 更新密码
+     * @param accountDO 账号
+     */
+    @Update("UPDATE auth_account SET " +
+            "password=#{password}," +
+            "gmt_modified=#{gmtModified} " +
+            "WHERE id=#{id}")
+    void updatePassword(AccountDO accountDO);
 
     /**
      * 删除账号
