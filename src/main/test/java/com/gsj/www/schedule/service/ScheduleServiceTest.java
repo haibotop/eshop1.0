@@ -5,7 +5,9 @@ import com.gsj.www.purchase.domain.PurchaseOrderDTO;
 import com.gsj.www.purchase.domain.PurchaseOrderItemDTO;
 import com.gsj.www.schedule.service.ScheduleService;
 import com.gsj.www.wms.domain.PurchaseInputOrderDTO;
+import com.gsj.www.wms.domain.PurchaseInputOrderItemDTO;
 import com.gsj.www.wms.service.WmsService;
+import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -40,6 +42,11 @@ public class ScheduleServiceTest {
     @MockBean
     private WmsService wmsService;
 
+    /**
+     * 测试调度采购入库
+     * @throws Exception
+     */
+    @Test
     public void testSchedulePurchaseInput() throws Exception{
         PurchaseOrderDTO purchaseOrder = createPurchaseOrder();
         PurchaseInputOrderDTO purchaseInputOrder = createPurchaseInputOrder();
@@ -75,10 +82,59 @@ public class ScheduleServiceTest {
         return purchaseOrder;
     }
 
-    private PurchaseOrderItemDTO createPurchaseOrderItem(Long purchaseOrderId, long i, long i1) {
+    /**
+     * 创建采购单条目
+     * @param purchaseOrderId
+     * @param i
+     * @param i1
+     * @return 采购单条目
+     */
+    private PurchaseOrderItemDTO createPurchaseOrderItem(Long purchaseOrderId, long itemId, long goodsSkuId) throws  Exception{
+        PurchaseOrderItemDTO item = new PurchaseOrderItemDTO();
+        item.setId(itemId);
+        item.setPurchaseOrderId(purchaseOrderId);
+        item.setGoodsSkuId(goodsSkuId);
+        item.setPurchaseCount(1000L);
+        item.setPurchasePrice(599.45);
+        item.setGmtCreate(dateProvider.getCurrentTime());
+        item.setGmtModified(dateProvider.getCurrentTime());
+        return item;
     }
 
-    private PurchaseInputOrderDTO createPurchaseInputOrder() {
+    /**
+     * 创建采购入库单
+     * @return
+     */
+    private PurchaseInputOrderDTO createPurchaseInputOrder() throws Exception {
+        PurchaseInputOrderDTO purchaseInputOrder = new PurchaseInputOrderDTO();
+        purchaseInputOrder.setSupplierId(1L);
+        purchaseInputOrder.setExpectArrivalTime(dateProvider.parseDatetime("2019-10-18 12:30:00"));
+        purchaseInputOrder.setPurchaseContactor("张三");
+        purchaseInputOrder.setPurchaseContactPhoneNumber("测试电话");
+        purchaseInputOrder.setPurchaseContactEmail("测试邮箱");
+        purchaseInputOrder.setPurchaseInputOrderComment("测试采购单");
+        purchaseInputOrder.setPurchaser("李四");
+
+        List<PurchaseInputOrderItemDTO> items = new ArrayList<>();
+        for(int i = 0; i < 5; i++){
+            items.add(createPurchaseInputOrderItem((long)i));
+        }
+        purchaseInputOrder.setPurchaseInputOrderItemDTOS(items);
+
+        return purchaseInputOrder;
+    }
+
+    /**
+     * 创建采购入库单条目
+     * @param i 采购单条目
+     * @return
+     */
+    private PurchaseInputOrderItemDTO createPurchaseInputOrderItem(long goodsSkuId) throws Exception{
+        PurchaseInputOrderItemDTO item = new PurchaseInputOrderItemDTO();
+        item.setGoodsSkuId(goodsSkuId);
+        item.setPurchaseCount(1000L);
+        item.setPurchasePrice(599.45);
+        return item;
     }
 
 

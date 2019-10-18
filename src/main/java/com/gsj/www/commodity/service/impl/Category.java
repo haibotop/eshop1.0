@@ -25,7 +25,7 @@ public class Category {
      * @throws Exception
      */
     public <T> T execute(CategoryOperation<T> operation) throws Exception{
-        return operation.doExecute();
+        return operation.doExecute(this);
     }
 
     public Long getCategoryId() {

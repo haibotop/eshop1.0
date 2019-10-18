@@ -1,5 +1,6 @@
-package com.gsj.www.auth.dao;
+package java.com.gsj.www.auth.dao;
 
+import com.gsj.www.auth.dao.RolePriorityRelationshipDAO;
 import com.gsj.www.auth.domain.RolePriorityRelationshipDO;
 import com.gsj.www.common.util.DateProvider;
 import org.junit.Test;
@@ -66,7 +67,7 @@ public class RolePriorityRelationshipDAOTest {
         Long roleId2 = 2L;
         createRolePriorityRelationshipDO(roleId2, priorityId);
 
-        Long resultCount = rolePriorityRelationshipDAO.getCountByPriorityId(priorityId);
+        Long resultCount = rolePriorityRelationshipDAO.countByPriorityId(priorityId);
 
         assertEquals(2L, resultCount.longValue());
     }
