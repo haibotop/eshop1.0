@@ -6,9 +6,9 @@ import java.util.Date;
 import java.util.Objects;
 
 /**
- * 评论聚合统计信息
+ * 评论聚合统计信息VO
  */
-public class CommentAggregateDO extends AbstractObject {
+public class CommentAggregateVO extends AbstractObject {
     /**
      * id
      */
@@ -133,8 +133,8 @@ public class CommentAggregateDO extends AbstractObject {
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
-        if (!(o instanceof CommentAggregateDO)) return false;
-        CommentAggregateDO that = (CommentAggregateDO) o;
+        if (!(o instanceof CommentAggregateVO)) return false;
+        CommentAggregateVO that = (CommentAggregateVO) o;
         return Objects.equals(id, that.id) &&
                 Objects.equals(goodsId, that.goodsId) &&
                 Objects.equals(totalCommentCount, that.totalCommentCount) &&

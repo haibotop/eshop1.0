@@ -1,6 +1,7 @@
 package com.gsj.www.comment.service;
 
 import com.gsj.www.comment.domain.CommentAggregateDO;
+import com.gsj.www.comment.domain.CommentAggregateDTO;
 import com.gsj.www.comment.domain.CommentInfoDTO;
 
 /**
@@ -16,4 +17,12 @@ public interface CommentAggregateService {
      * @return 处理结果
      */
     CommentAggregateDO refreshCommentAggregate(CommentInfoDTO commentInfoDTO);
+
+    /**
+     * 根据商品id查询评论统计信息
+     * @param goodsId 商品id
+     * @return 评论统计信息
+     * @throws Exception
+     */
+    CommentAggregateDTO getCommentAggregateByGoodsId(Long goodsId) throws Exception;
 }

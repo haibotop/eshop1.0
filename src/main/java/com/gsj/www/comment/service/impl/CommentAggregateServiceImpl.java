@@ -4,6 +4,7 @@ import com.gsj.www.comment.constant.CommentType;
 import com.gsj.www.comment.constant.ShowPictures;
 import com.gsj.www.comment.dao.CommentAggregateDAO;
 import com.gsj.www.comment.domain.CommentAggregateDO;
+import com.gsj.www.comment.domain.CommentAggregateDTO;
 import com.gsj.www.comment.domain.CommentInfoDTO;
 import com.gsj.www.comment.service.CommentAggregateService;
 import com.gsj.www.common.util.DateProvider;
@@ -52,6 +53,17 @@ public class CommentAggregateServiceImpl implements CommentAggregateService{
             return null;
         }
         return commentAggregateDO;
+    }
+
+    /**
+     * 根据商品id查询评论统计信息
+     * @param goodsId 商品id
+     * @return 评论统计信息
+     * @throws Exception
+     */
+    @Override
+    public CommentAggregateDTO getCommentAggregateByGoodsId(Long goodsId) throws Exception {
+        return commentAggregateDAO.getCommentAggregateByGoodsId(goodsId).clone(CommentAggregateDTO.class);
     }
 
     /**
@@ -122,4 +134,6 @@ public class CommentAggregateServiceImpl implements CommentAggregateService{
 
         commentAggregateDAO.updateCommentAggregate(commentAggregateDO);
     }
+
+
 }
