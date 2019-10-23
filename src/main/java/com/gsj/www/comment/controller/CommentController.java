@@ -235,7 +235,7 @@ public class CommentController {
             //查询评论列表
             query.setCommnetStatus(CommentStatus.APPROVED);
 
-            List<CommentInfoVO> targetComments = new ArrayList<CommentInfoVO>();
+            List<CommentInfoVO> targetComments = new ArrayList<>();
 
             List<CommentInfoDTO> comments = commentInfoService.listByPage(query);
             for(CommentInfoDTO comment : comments) {
