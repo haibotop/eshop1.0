@@ -1,7 +1,7 @@
 package com.gsj.www.schedule.service;
 
 import com.gsj.www.customer.domain.ReturnGoodsWorksheetDTO;
-import com.gsj.www.order.domain.OrderOrderDTO;
+import com.gsj.www.order.domain.OrderInfoDTO;
 import com.gsj.www.purchase.domain.PurchaseOrderDTO;
 import com.gsj.www.wms.domain.PurchaseInputOrderDTO;
 import com.gsj.www.wms.domain.ReturnGoodsInputOrderDTO;
@@ -21,24 +21,24 @@ public interface ScheduleService {
 
     /**
      * 通知库存中心，“提交订单”事件发生了
-     * @param orderOrderDTO 订单DTO
+     * @param orderInfoDTO 订单DTO
      * @return 处理结果
      */
-    Boolean informSubmitOrderEvent(OrderOrderDTO orderOrderDTO);
+    Boolean informSubmitOrderEvent(OrderInfoDTO orderInfoDTO);
 
     /**
      * 通知库存中心，“支付订单”事件发生了
-     * @param orderOrderDTO 订单DTO
+     * @param orderInfoDTO 订单DTO
      * @return 处理结果
      */
-    Boolean informPayOrderEvent(OrderOrderDTO orderOrderDTO);
+    Boolean informPayOrderEvent(OrderInfoDTO orderInfoDTO);
 
     /**
      * 通知库存中心，“取消订单”事件发生了
-     * @param orderOrderDTO 订单DTO
+     * @param orderInfoDTO 订单DTO
      * @return 处理结果
      */
-    Boolean informCancelOrderEvent(OrderOrderDTO orderOrderDTO);
+    Boolean informCancelOrderEvent(OrderInfoDTO orderInfoDTO);
 
     /**
      * 通知库存中心，“完成退货入库”事件发生了
@@ -57,18 +57,18 @@ public interface ScheduleService {
 
     /**
      * 调度销售出库
-     * @param orderOrderDTO 订单DTO
+     * @param orderInfoDTO 订单DTO
      * @return 处理结果
      */
-    Boolean scheduleSaleDelivery(OrderOrderDTO orderOrderDTO);
+    Boolean scheduleSaleDelivery(OrderInfoDTO orderInfoDTO);
 
     /**
      * 调度退货入库
-     * @param orderOrderDTO 订单DTO
+     * @param orderInfoDTO 订单DTO
      * @param returnGoodsWorksheetDTO 退货工单DTO
      * @return 处理结果
      */
-    Boolean scheduleReturnGoodsInput(OrderOrderDTO orderOrderDTO,
+    Boolean scheduleReturnGoodsInput(OrderInfoDTO orderInfoDTO,
                                      ReturnGoodsWorksheetDTO returnGoodsWorksheetDTO);
 
 }

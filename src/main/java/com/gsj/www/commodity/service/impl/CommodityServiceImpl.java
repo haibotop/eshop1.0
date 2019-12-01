@@ -1,21 +1,19 @@
 package com.gsj.www.commodity.service.impl;
 
 import com.gsj.www.commodity.domain.GoodsSkuDTO;
-import com.gsj.www.commodity.service.CommodityFacadeService;
+import com.gsj.www.commodity.service.CommodityService;
 import com.gsj.www.common.util.DateProvider;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.Date;
-
 /**
  * 商品中心对外接口service实现类组件
  */
 @Service
-public class CommodityFacadeServiceImpl implements CommodityFacadeService {
-    private static final Logger logger = LoggerFactory.getLogger(CommodityFacadeServiceImpl.class);
+public class CommodityServiceImpl implements CommodityService {
+    private static final Logger logger = LoggerFactory.getLogger(CommodityServiceImpl.class);
 
     /**
      * 时间辅助类

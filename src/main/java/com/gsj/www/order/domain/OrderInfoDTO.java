@@ -6,7 +6,7 @@ import java.util.List;
 /**
  * 订单信息DTO
  */
-public class OrderOrderDTO {
+public class OrderInfoDTO {
 
     /**
      * id

@@ -1,11 +1,12 @@
-package com.gsj.www.logistics;
+package com.gsj.www.logistics.service;
 
 import com.gsj.www.commodity.domain.GoodsSkuDTO;
 
 /**
  * 物流中心对外提供的接口
+ * @author holy
  */
-public interface LogisticsFacadeService {
+public interface LogisticsService {
 
     /**
      * 计算商品sku的运费

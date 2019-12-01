@@ -6,7 +6,7 @@ import com.gsj.www.inventory.dao.GoodsStockDAO;
 import com.gsj.www.inventory.domain.GoodsStockDO;
 import com.gsj.www.inventory.service.InventoryService;
 import com.gsj.www.order.domain.OrderItemDTO;
-import com.gsj.www.order.domain.OrderOrderDTO;
+import com.gsj.www.order.domain.OrderInfoDTO;
 import com.gsj.www.wms.domain.*;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -133,7 +133,7 @@ public class InventoryServiceTest {
             createGoodsStock(goodsSkuId,oldSaleStockQuantity,oldLockedStockQuantity,oldSaledStockQuantity);
         }
 
-        OrderOrderDTO order = createOrder(goodsSkuIds, purchaseQuantity);
+        OrderInfoDTO order = createOrder(goodsSkuIds, purchaseQuantity);
 
         //执行方法逻辑
         inventoryService.informSubmitOrderEvent(order);
@@ -163,7 +163,7 @@ public class InventoryServiceTest {
         for (Long goodsSkuId : goodsSkuIds) {
             createGoodsStock(goodsSkuId, oldSaleStockQuantity, oldLockedStockQuantity, oldSaledStockQuantity);
         }
-        OrderOrderDTO order = createOrder(goodsSkuIds, purchaseQuantity);
+        OrderInfoDTO order = createOrder(goodsSkuIds, purchaseQuantity);
 
         //执行方法逻辑
         inventoryService.informPayOrderEvent(order);
@@ -193,7 +193,7 @@ public class InventoryServiceTest {
         for (Long goodsSkuId : goodsSkuIds) {
             createGoodsStock(goodsSkuId, oldSaleStockQuantity, oldLockedStockQuantity, oldSaledStockQuantity);
         }
-        OrderOrderDTO order = createOrder(goodsSkuIds, purchaseQuantity);
+        OrderInfoDTO order = createOrder(goodsSkuIds, purchaseQuantity);
 
         //执行方法逻辑
         inventoryService.informCancelOrderEvent(order);
@@ -295,8 +295,8 @@ public class InventoryServiceTest {
      * @param purchaseQuantity
      * @return
      */
-    private OrderOrderDTO createOrder(Long[] goodsSkuIds, Long purchaseQuantity) throws Exception{
-        OrderOrderDTO order = new OrderOrderDTO();
+    private OrderInfoDTO createOrder(Long[] goodsSkuIds, Long purchaseQuantity) throws Exception{
+        OrderInfoDTO order = new OrderInfoDTO();
         order.setId(1L);
         order.setUserAccountId(1L);
         order.setUsername("test");

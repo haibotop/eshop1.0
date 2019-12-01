@@ -1,6 +1,6 @@
 package com.gsj.www.wms.service.impl;
 
-import com.gsj.www.order.domain.OrderOrderDTO;
+import com.gsj.www.order.domain.OrderInfoDTO;
 import com.gsj.www.wms.domain.PurchaseInputOrderDTO;
 import com.gsj.www.wms.domain.ReturnGoodsInputOrderDTO;
 import com.gsj.www.wms.domain.SaleDeliveryOrderDTO;
@@ -45,31 +45,31 @@ public class WmsServiceImpl implements WmsService {
 
     /**
      * 通知WMS中心，"提交订单"事件发生了
-     * @param orderOrderDTO 订单DTO
+     * @param orderInfoDTO 订单DTO
      * @return
      */
     @Override
-    public Boolean informSubmitOrderEvent(OrderOrderDTO orderOrderDTO) {
+    public Boolean informSubmitOrderEvent(OrderInfoDTO orderInfoDTO) {
         return true;
     }
 
     /**
      * 通知WMS中心，"支付订单"事件发生了
-     * @param orderOrderDTO 订单DTO
+     * @param orderInfoDTO 订单DTO
      * @return
      */
     @Override
-    public Boolean informPayOrderEvent(OrderOrderDTO orderOrderDTO) {
+    public Boolean informPayOrderEvent(OrderInfoDTO orderInfoDTO) {
         return true;
     }
 
     /**
      * 通知WMS中心，"取消订单"事件发生了
-     * @param orderOrderDTO 订单DTO
+     * @param orderInfoDTO 订单DTO
      * @return
      */
     @Override
-    public Boolean informCancelOrderEvent(OrderOrderDTO orderOrderDTO) {
+    public Boolean informCancelOrderEvent(OrderInfoDTO orderInfoDTO) {
         return true;
     }
 }

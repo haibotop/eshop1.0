@@ -4,7 +4,6 @@ import com.gsj.www.common.util.DateProvider;
 import com.gsj.www.inventory.dao.GoodsStockDAO;
 import com.gsj.www.inventory.domain.GoodsStockDO;
 import com.gsj.www.order.domain.OrderItemDTO;
-import com.gsj.www.order.domain.OrderOrderDTO;
 
 import java.util.List;
 import java.util.Map;

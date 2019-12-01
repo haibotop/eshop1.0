@@ -5,7 +5,7 @@ import com.gsj.www.commodity.domain.GoodsSkuDTO;
 /**
  * 商品中心对外提供的接口
  */
-public interface CommodityFacadeService {
+public interface CommodityService {
     /**
      * 根据id查询商品sku
      * @param goodsSkuId 商品sku id

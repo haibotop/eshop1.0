@@ -8,7 +8,7 @@ import com.gsj.www.cart.domain.ShoppingCartItemDO;
 import com.gsj.www.cart.domain.ShoppingCartItemDTO;
 import com.gsj.www.cart.service.ShoppingCartService;
 import com.gsj.www.commodity.domain.GoodsSkuDTO;
-import com.gsj.www.commodity.service.CommodityFacadeService;
+import com.gsj.www.commodity.service.CommodityService;
 import com.gsj.www.common.util.DateProvider;
 import com.gsj.www.inventory.service.InventoryService;
 import com.gsj.www.promotion.domain.PromotionActivityDTO;
@@ -49,7 +49,7 @@ public class ShoppingCartServiceImpl implements ShoppingCartService{
      * 商品中心对外接口service组件
      */
     @Autowired
-    private CommodityFacadeService commodityFacadeService;
+    private CommodityService commodityService;
     /**
      * 库存中心对外接口service组件
      */
@@ -161,7 +161,7 @@ public class ShoppingCartServiceImpl implements ShoppingCartService{
      * @param item 购物车条目
      */
     private void setGoodsRelatedData(ShoppingCartItemDTO item) throws Exception {
-        GoodsSkuDTO goodsSkuDTO = commodityFacadeService.getGoodsSkuById(item.getGoodsSkuId());
+        GoodsSkuDTO goodsSkuDTO = commodityService.getGoodsSkuById(item.getGoodsSkuId());
 
         item.setGoodsId(goodsSkuDTO.getGoodsId());
         item.setGoodsHeight(goodsSkuDTO.getGoodsHeight());

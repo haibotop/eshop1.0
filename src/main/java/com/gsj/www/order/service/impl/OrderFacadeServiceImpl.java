@@ -1,6 +1,6 @@
 package com.gsj.www.order.service.impl;
 
-import com.gsj.www.order.domain.OrderOrderDTO;
+import com.gsj.www.order.domain.OrderInfoDTO;
 import com.gsj.www.order.service.OrderFacadeService;
 import org.springframework.stereotype.Service;
 
@@ -87,8 +87,8 @@ public class OrderFacadeServiceImpl implements OrderFacadeService {
      * @return 订单信息DTO集合
      */
     @Override
-    public List<OrderOrderDTO> listNotPublishedCommentOrders() {
-        return new ArrayList<OrderOrderDTO>();
+    public List<OrderInfoDTO> listNotPublishedCommentOrders() {
+        return new ArrayList<OrderInfoDTO>();
     }
 
     /**

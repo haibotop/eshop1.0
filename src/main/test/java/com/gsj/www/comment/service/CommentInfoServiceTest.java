@@ -6,7 +6,7 @@ import com.gsj.www.comment.domain.CommentInfoDO;
 import com.gsj.www.comment.domain.CommentInfoDTO;
 import com.gsj.www.common.util.DateProvider;
 import com.gsj.www.order.domain.OrderItemDTO;
-import com.gsj.www.order.domain.OrderOrderDTO;
+import com.gsj.www.order.domain.OrderInfoDTO;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -83,16 +83,16 @@ public class CommentInfoServiceTest {
      */
     @Test
     public void testSaveAutoPublishedCommentInfo() throws Exception {
-        OrderOrderDTO orderOrderDTO = createorderOrderDTO();
+        OrderInfoDTO orderInfoDTO = createorderOrderDTO();
         OrderItemDTO orderItemDTO = createOrderItemDTO();
         CommentInfoDTO commentInfoDTO = createAutoPublishedCommentInfoDTO(
-                orderOrderDTO, orderItemDTO);
+                orderInfoDTO, orderItemDTO);
         CommentInfoDO commentInfoDO = convertCommentInfoDTO2DO(commentInfoDTO);
 
         when(commentInfoDAO.saveCommentInfo(commentInfoDO)).thenReturn(1L);
 
         CommentInfoDTO resultCommentInfoDTO = commentInfoService.saveAutoPublishedCommentInfo(
-                orderOrderDTO, orderItemDTO);
+                orderInfoDTO, orderItemDTO);
 
         verify(commentInfoDAO, times(1)).saveCommentInfo(commentInfoDO);
         assertEquals(commentInfoDTO, resultCommentInfoDTO);
@@ -189,12 +189,12 @@ public class CommentInfoServiceTest {
      * @return 订单信息DTO对象
      * @throws Exception
      */
-    private OrderOrderDTO createorderOrderDTO() throws Exception {
-        OrderOrderDTO orderOrderDTO = new OrderOrderDTO();
-        orderOrderDTO.setId(1L);
-        orderOrderDTO.setUserAccountId(1L);
-        orderOrderDTO.setUsername("test");
-        return orderOrderDTO;
+    private OrderInfoDTO createorderOrderDTO() throws Exception {
+        OrderInfoDTO orderInfoDTO = new OrderInfoDTO();
+        orderInfoDTO.setId(1L);
+        orderInfoDTO.setUserAccountId(1L);
+        orderInfoDTO.setUsername("test");
+        return orderInfoDTO;
     }
 
     /**
@@ -213,18 +213,18 @@ public class CommentInfoServiceTest {
 
     /**
      * 创建一个自动发表的评论DTO
-     * @param orderOrderDTO
+     * @param orderInfoDTO
      * @param orderItemDTO
      * @return
      * @throws Exception
      */
     private CommentInfoDTO createAutoPublishedCommentInfoDTO(
-            OrderOrderDTO orderOrderDTO, OrderItemDTO orderItemDTO) throws Exception {
+            OrderInfoDTO orderInfoDTO, OrderItemDTO orderItemDTO) throws Exception {
         CommentInfoDTO commentInfoDTO = new CommentInfoDTO();
 
-        commentInfoDTO.setUserAccountId(orderOrderDTO.getUserAccountId());
-        commentInfoDTO.setUsername(orderOrderDTO.getUsername());
-        commentInfoDTO.setOrderInfoId(orderOrderDTO.getId());
+        commentInfoDTO.setUserAccountId(orderInfoDTO.getUserAccountId());
+        commentInfoDTO.setUsername(orderInfoDTO.getUsername());
+        commentInfoDTO.setOrderInfoId(orderInfoDTO.getId());
         commentInfoDTO.setOrderItemId(orderItemDTO.getId());
         commentInfoDTO.setGoodsId(orderItemDTO.getGoodsId());
         commentInfoDTO.setGoodsSkuId(orderItemDTO.getGoodsSkuId());

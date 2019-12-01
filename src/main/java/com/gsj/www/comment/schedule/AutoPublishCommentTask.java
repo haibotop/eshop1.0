@@ -4,7 +4,7 @@ import com.gsj.www.comment.domain.CommentInfoDTO;
 import com.gsj.www.comment.service.CommentAggregateService;
 import com.gsj.www.comment.service.CommentInfoService;
 import com.gsj.www.order.domain.OrderItemDTO;
-import com.gsj.www.order.domain.OrderOrderDTO;
+import com.gsj.www.order.domain.OrderInfoDTO;
 import com.gsj.www.order.service.OrderFacadeService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -44,22 +44,22 @@ public class AutoPublishCommentTask {
     public void execute(){
         try {
             //先从订单中心查询确认时间超过时间超过7天，而且还没有发表评论的订单
-            List<OrderOrderDTO> orderOrderDTOS = orderFacadeService.listNotPublishedCommentOrders();
-            List<Long> orderInfoIds = new ArrayList<Long>(orderOrderDTOS.size());
+            List<OrderInfoDTO> orderInfoDTOS = orderFacadeService.listNotPublishedCommentOrders();
+            List<Long> orderInfoIds = new ArrayList<Long>(orderInfoDTOS.size());
 
-            if(orderOrderDTOS != null && orderOrderDTOS.size() > 0){
+            if(orderInfoDTOS != null && orderInfoDTOS.size() > 0){
                 //遍历所有的订单
-                for (OrderOrderDTO orderOrderDTO : orderOrderDTOS) {
-                    if(orderOrderDTO.getOrderItemDTOList() == null && orderOrderDTO.getOrderItemDTOList().size() == 0){
+                for (OrderInfoDTO orderInfoDTO : orderInfoDTOS) {
+                    if(orderInfoDTO.getOrderItemDTOList() == null && orderInfoDTO.getOrderItemDTOList().size() == 0){
                         continue;
                     }
 
-                    orderInfoIds.add(orderOrderDTO.getId());
+                    orderInfoIds.add(orderInfoDTO.getId());
 
                     //遍历订单中的订单项
-                    for (OrderItemDTO orderItemDTO : orderOrderDTO.getOrderItemDTOList()) {
+                    for (OrderItemDTO orderItemDTO : orderInfoDTO.getOrderItemDTOList()) {
                         //先保存自动发表的评论信息
-                        CommentInfoDTO commentInfoDTO = commentInfoService.saveAutoPublishedCommentInfo(orderOrderDTO,orderItemDTO);
+                        CommentInfoDTO commentInfoDTO = commentInfoService.saveAutoPublishedCommentInfo(orderInfoDTO,orderItemDTO);
 
                         //更新评论统计信息
                         commentAggregateService.refreshCommentAggregate(commentInfoDTO);

@@ -9,7 +9,7 @@ import com.gsj.www.comment.service.CommentInfoService;
 import com.gsj.www.common.util.DateProvider;
 import com.gsj.www.common.util.ObjectUtils;
 import com.gsj.www.order.domain.OrderItemDTO;
-import com.gsj.www.order.domain.OrderOrderDTO;
+import com.gsj.www.order.domain.OrderInfoDTO;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -83,15 +83,15 @@ public class CommentInfoServiceImpl implements CommentInfoService {
 
     /**
      * 新增自动发表的评论信息
-     * @param orderOrderDTO 订单信息DTO对象
+     * @param orderInfoDTO 订单信息DTO对象
      * @param orderItemDTO 订单条目DTO对象
      * @return 处理结果
      */
     @Override
-    public CommentInfoDTO saveAutoPublishedCommentInfo(OrderOrderDTO orderOrderDTO, OrderItemDTO orderItemDTO) {
+    public CommentInfoDTO saveAutoPublishedCommentInfo(OrderInfoDTO orderInfoDTO, OrderItemDTO orderItemDTO) {
         CommentInfoDTO commentInfoDTO = null;
         try {
-            commentInfoDTO = createAutoPublishedCommentInfoDTO(orderOrderDTO,orderItemDTO);
+            commentInfoDTO = createAutoPublishedCommentInfoDTO(orderInfoDTO,orderItemDTO);
             CommentInfoDO commentInfoDO = commentInfoDTO.clone(CommentInfoDO.class);
             commentInfoDAO.saveCommentInfo(commentInfoDO);
             commentInfoDTO.setId(commentInfoDO.getId());
@@ -173,18 +173,18 @@ public class CommentInfoServiceImpl implements CommentInfoService {
 
     /**
      * 创建评论信息DTO对象
-     * @param orderOrderDTO 订单信息DTO对象
+     * @param orderInfoDTO 订单信息DTO对象
      * @param orderItemDTO 订单条目DTO对象
      * @return 评论信息DTO对象
      * @throws Exception
      */
     private CommentInfoDTO createAutoPublishedCommentInfoDTO(
-            OrderOrderDTO orderOrderDTO,OrderItemDTO orderItemDTO) throws Exception{
+            OrderInfoDTO orderInfoDTO, OrderItemDTO orderItemDTO) throws Exception{
         CommentInfoDTO commentInfoDTO = new CommentInfoDTO();
 
-        commentInfoDTO.setUserAccountId(orderOrderDTO.getUserAccountId());
-        commentInfoDTO.setUsername(orderOrderDTO.getUsername());
-        commentInfoDTO.setOrderInfoId(orderOrderDTO.getId());
+        commentInfoDTO.setUserAccountId(orderInfoDTO.getUserAccountId());
+        commentInfoDTO.setUsername(orderInfoDTO.getUsername());
+        commentInfoDTO.setOrderInfoId(orderInfoDTO.getId());
         commentInfoDTO.setOrderItemId(orderItemDTO.getId());
         commentInfoDTO.setGoodsId(orderItemDTO.getGoodsId());
         commentInfoDTO.setGoodsSkuId(orderItemDTO.getGoodsSkuId());

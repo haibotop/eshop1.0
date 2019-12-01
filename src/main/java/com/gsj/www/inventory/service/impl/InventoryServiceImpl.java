@@ -4,7 +4,7 @@ import com.gsj.www.inventory.dao.GoodsStockDAO;
 import com.gsj.www.inventory.domain.GoodsStockDO;
 import com.gsj.www.inventory.service.InventoryService;
 import com.gsj.www.inventory.updater.*;
-import com.gsj.www.order.domain.OrderOrderDTO;
+import com.gsj.www.order.domain.OrderInfoDTO;
 import com.gsj.www.wms.domain.PurchaseInputOrderDTO;
 import com.gsj.www.wms.domain.ReturnGoodsInputOrderDTO;
 import com.gsj.www.wms.domain.SubmitOrderStockUpdaterFactory;
@@ -33,17 +33,17 @@ public class InventoryServiceImpl implements InventoryService {
      * 提交订单库存更新组件工厂
      */
     @Autowired
-    private SubmitOrderStockUpdaterFactory<OrderOrderDTO> submitOrderStockUpdaterFactory;
+    private SubmitOrderStockUpdaterFactory<OrderInfoDTO> submitOrderStockUpdaterFactory;
     /**
      * 支付订单库存更新组件工厂
      */
     @Autowired
-    private PayOrderStockUpdaterFactory<OrderOrderDTO> payOrderStockUpdaterFactory;
+    private PayOrderStockUpdaterFactory<OrderInfoDTO> payOrderStockUpdaterFactory;
     /**
      * 取消订单库存更新组件工厂
      */
     @Autowired
-    private CancelOrderStockUpdateFactory<OrderOrderDTO> cancelOrderStockUpdateFactory;
+    private CancelOrderStockUpdateFactory<OrderInfoDTO> cancelOrderStockUpdateFactory;
     /**
      * 商品库存管理模块DAO组件
      */
@@ -85,13 +85,13 @@ public class InventoryServiceImpl implements InventoryService {
 
     /**
      * 通知库存中心，"提交订单"事件发生了
-     * @param orderOrderDTO 订单DTO
+     * @param orderInfoDTO 订单DTO
      * @return 处理结果
      */
     @Override
-    public Boolean informSubmitOrderEvent(OrderOrderDTO orderOrderDTO) {
+    public Boolean informSubmitOrderEvent(OrderInfoDTO orderInfoDTO) {
         try {
-            GoodsStockUpdater goodsStockUpdaterCommand = submitOrderStockUpdaterFactory.create(orderOrderDTO);
+            GoodsStockUpdater goodsStockUpdaterCommand = submitOrderStockUpdaterFactory.create(orderInfoDTO);
             goodsStockUpdaterCommand.updateGoodsStock();
         }catch (Exception e){
             logger.error("error",e);
@@ -102,13 +102,13 @@ public class InventoryServiceImpl implements InventoryService {
 
     /**
      * 通知库存中心，"支付订单"事件发生了
-     * @param orderOrderDTO 订单DTO
+     * @param orderInfoDTO 订单DTO
      * @return 处理结果
      */
     @Override
-    public Boolean informPayOrderEvent(OrderOrderDTO orderOrderDTO) {
+    public Boolean informPayOrderEvent(OrderInfoDTO orderInfoDTO) {
         try{
-            GoodsStockUpdater goodsStockUpdaterCommand = submitOrderStockUpdaterFactory.create(orderOrderDTO);
+            GoodsStockUpdater goodsStockUpdaterCommand = submitOrderStockUpdaterFactory.create(orderInfoDTO);
             goodsStockUpdaterCommand.updateGoodsStock();
         }catch (Exception e){
             logger.error("error",e);
@@ -119,13 +119,13 @@ public class InventoryServiceImpl implements InventoryService {
 
     /**
      * 通知库存中心，"取消订单"事件发生了
-     * @param orderOrderDTO 订单DTO
+     * @param orderInfoDTO 订单DTO
      * @return 处理结果
      */
     @Override
-    public Boolean informCancelOrderEvent(OrderOrderDTO orderOrderDTO) {
+    public Boolean informCancelOrderEvent(OrderInfoDTO orderInfoDTO) {
         try {
-            GoodsStockUpdater goodsStockUpdaterCommand = submitOrderStockUpdaterFactory.create(orderOrderDTO);
+            GoodsStockUpdater goodsStockUpdaterCommand = submitOrderStockUpdaterFactory.create(orderInfoDTO);
             goodsStockUpdaterCommand.updateGoodsStock();
         }catch (Exception e){
             logger.error("error",e);

@@ -1,6 +1,6 @@
 package com.gsj.www.order.service;
 
-import com.gsj.www.order.domain.OrderOrderDTO;
+import com.gsj.www.order.domain.OrderInfoDTO;
 
 import java.util.List;
 /**
@@ -61,7 +61,7 @@ public interface OrderFacadeService {
      * 从订单中心获取，确认收货时间超过了七天，而且还没有发表评论的订单
      * @return 订单信息DTO集合
      */
-    List<OrderOrderDTO> listNotPublishedCommentOrders();
+    List<OrderInfoDTO> listNotPublishedCommentOrders();
 
     /**
      * 通知订单中心，"订单批量发表评论"事件发生了

@@ -6,7 +6,7 @@ import com.gsj.www.inventory.domain.GoodsStockDO;
 import com.gsj.www.inventory.updater.AbstractGoodsStockUpdaterFactory;
 import com.gsj.www.inventory.updater.GoodsStockUpdater;
 import com.gsj.www.order.domain.OrderItemDTO;
-import com.gsj.www.order.domain.OrderOrderDTO;
+import com.gsj.www.order.domain.OrderInfoDTO;
 import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;
@@ -37,10 +37,10 @@ public class SubmitOrderStockUpdaterFactory<T> extends AbstractGoodsStockUpdater
      */
     @Override
     protected List<Long> getGoodsSkuIds(T parameter) throws Exception {
-        OrderOrderDTO orderOrderDTO = (OrderOrderDTO) parameter;
+        OrderInfoDTO orderInfoDTO = (OrderInfoDTO) parameter;
         List<Long> goodsSkuIds = new ArrayList<Long>();
 
-        List<OrderItemDTO> orderItemDTOS = orderOrderDTO.getOrderItemDTOList();
+        List<OrderItemDTO> orderItemDTOS = orderInfoDTO.getOrderItemDTOList();
         for (OrderItemDTO orderItemDTO : orderItemDTOS) {
             goodsSkuIds.add(orderItemDTO.getGoodsSkuId());
         }
@@ -56,9 +56,9 @@ public class SubmitOrderStockUpdaterFactory<T> extends AbstractGoodsStockUpdater
      */
     @Override
     protected GoodsStockUpdater create(List<GoodsStockDO> goodsStockDOS, T parameter) throws Exception {
-        OrderOrderDTO orderOrderDTO = (OrderOrderDTO) parameter;
+        OrderInfoDTO orderInfoDTO = (OrderInfoDTO) parameter;
         Map<Long, OrderItemDTO> orderItemDTOMap = new HashMap<Long, OrderItemDTO>();
-        for (OrderItemDTO orderItemDTO : orderOrderDTO.getOrderItemDTOList()) {
+        for (OrderItemDTO orderItemDTO : orderInfoDTO.getOrderItemDTOList()) {
             orderItemDTOMap.put(orderItemDTO.getGoodsSkuId(), orderItemDTO);
         }
 

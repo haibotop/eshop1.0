@@ -1,6 +1,6 @@
 package com.gsj.www.inventory.service;
 
-import com.gsj.www.order.domain.OrderOrderDTO;
+import com.gsj.www.order.domain.OrderInfoDTO;
 import com.gsj.www.wms.domain.PurchaseInputOrderDTO;
 import com.gsj.www.wms.domain.ReturnGoodsInputOrderDTO;
 
@@ -19,24 +19,24 @@ public interface InventoryService {
 
     /**
      * 通知库存中心，“提交订单”事件发生了
-     * @param orderOrderDTO 订单DTO
+     * @param orderInfoDTO 订单DTO
      * @return 处理结果
      */
-    Boolean informSubmitOrderEvent(OrderOrderDTO orderOrderDTO);
+    Boolean informSubmitOrderEvent(OrderInfoDTO orderInfoDTO);
 
     /**
      * 通知库存中心，“支付订单”事件发生了
-     * @param orderOrderDTO 订单DTO
+     * @param orderInfoDTO 订单DTO
      * @return 处理结果
      */
-    Boolean informPayOrderEvent(OrderOrderDTO orderOrderDTO);
+    Boolean informPayOrderEvent(OrderInfoDTO orderInfoDTO);
 
     /**
      * 通知库存中心，“取消订单”事件发生了
-     * @param orderOrderDTO 订单DTO
+     * @param orderInfoDTO 订单DTO
      * @return 处理结果
      */
-    Boolean informCancelOrderEvent(OrderOrderDTO orderOrderDTO);
+    Boolean informCancelOrderEvent(OrderInfoDTO orderInfoDTO);
 
     /**
      * 通知库存中心，“完成退货入库”事件发生了
