@@ -1,19 +1,16 @@
 package com.gsj.www.auth.service.impl;
 
-import com.gsj.www.auth.composite.PriorityNode;
-import com.gsj.www.auth.dao.AccountPriorityRelationshipDAO;
 import com.gsj.www.auth.dao.PriorityDAO;
-import com.gsj.www.auth.dao.RolePriorityRelationshipDAO;
 import com.gsj.www.auth.domain.PriorityDO;
 import com.gsj.www.auth.domain.PriorityDTO;
 import com.gsj.www.auth.service.PriorityService;
-import com.gsj.www.auth.visitor.PriorityNodeRelateCheckVisitor;
-import com.gsj.www.auth.visitor.PriorityNodeRemoveVisitor;
+import com.gsj.www.common.bean.SpringApplicationContext;
 import com.gsj.www.common.util.DateProvider;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -25,6 +22,7 @@ import java.util.List;
  * @create 2019 - 06 - 21 7:06
  */
 @Service
+@Transactional
 public class PriorityServiceImpl implements PriorityService {
     private static final Logger logger = LoggerFactory.getLogger(PriorityServiceImpl.class);
 
@@ -34,20 +32,15 @@ public class PriorityServiceImpl implements PriorityService {
     @Autowired
     private PriorityDAO priorityDAO;
     /**
-     * 角色和权限关系管理模块的DAO组件
-     */
-    @Autowired
-    private RolePriorityRelationshipDAO rolePriorityRelationshipDAO;
-    /**
-     * 账号和权限关系管理模块的DAO组件
-     */
-    @Autowired
-    private AccountPriorityRelationshipDAO accountPriorityRelationshipDAO;
-    /**
      * 日期辅助组件
      */
     @Autowired
     private DateProvider dateProvider;
+    /**
+     * spring容器组件
+     */
+    @Autowired
+    private SpringApplicationContext context;
 
     /**
      * 查询根权限
@@ -157,29 +150,21 @@ public class PriorityServiceImpl implements PriorityService {
      * @return 处理结果
      */
     @Override
-    public Boolean removePriority(Long id) {
-        try {
-            // 根据id查询权限
-            PriorityDO priorityDO = priorityDAO.getPriorityById(id);
-            PriorityNode priorityNode = priorityDO.clone(PriorityNode.class);
+    public Boolean removePriority(Long id) throws Exception{
+        // 根据id查询权限
+        Priority priority = priorityDAO.getPriorityById(id).clone(Priority.class);
 
-            // 检查这个权限以及其下任何一个子权限，是否被角色或者账号给关联着
-            PriorityNodeRelateCheckVisitor relateCheckVisitor = new PriorityNodeRelateCheckVisitor(
-                    priorityDAO, rolePriorityRelationshipDAO, accountPriorityRelationshipDAO);
-            relateCheckVisitor.visit(priorityNode);
-            Boolean relateCheckResult = relateCheckVisitor.getRelateCheckResult();
+        // 检查这个权限以及其下任何一个子权限，是否被角色或者账号给关联着
+        RelatedCheckPriorityOperation relatedCheckPriorityOperation = context.getBean(RelatedCheckPriorityOperation.class);
+        Boolean relateCheckResult = priority.execute(relatedCheckPriorityOperation);
 
-            if(relateCheckResult) {
-                return false;
-            }
-
-            // 递归删除当前权限以及其下所有的子权限
-            PriorityNodeRemoveVisitor removeVisitor = new PriorityNodeRemoveVisitor(priorityDAO);
-            removeVisitor.visit(priorityNode);
-        } catch (Exception e) {
-            logger.error("error", e);
+        if(relateCheckResult) {
             return false;
         }
+
+        // 递归删除当前权限以及其下所有的子权限
+        RemovePriorityOperation removePriorityOperation = context.getBean(RemovePriorityOperation.class);
+        priority.execute(removePriorityOperation);
 
         return true;
     }

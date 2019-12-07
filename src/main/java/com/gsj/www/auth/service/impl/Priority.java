@@ -1,18 +1,20 @@
-package com.gsj.www.auth.composite;
+package com.gsj.www.auth.service.impl;
 
-import com.gsj.www.auth.visitor.PriorityNodeVisitor;
+import com.gsj.www.common.util.AbstractObject;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
 /**
- * 权限树节点
- *
- * @author Holy
- * @create 2019 - 06 - 20 22:54
+ * 权限
+ * @author holy
  */
-public class PriorityNode {
+public class Priority extends AbstractObject {
+    private static final Logger logger = LoggerFactory.getLogger(Priority.class);
+
     /**
      * id
      */
@@ -48,68 +50,92 @@ public class PriorityNode {
     /**
      * 子权限节点
      */
-    private List<PriorityNode> children = new ArrayList<PriorityNode>();
+    private List<Priority> children = new ArrayList<Priority>();
 
     /**
-     * 接收一个权限树访问者
-     * @param visitor 权限树访问者
+     * 接受一个权限树访问者
+     * @param operation 权限树访问者
+     * @param <T>
+     * @return
+     * @throws Exception
      */
-    public void accept(PriorityNodeVisitor visitor) {
-        visitor.visit(this);
+    public <T> T execute(PriorityOperation<T> operation) throws Exception{
+        return operation.doExecute(this);
+    }
+
+    public static Logger getLogger() {
+        return logger;
     }
 
     public Long getId() {
         return id;
     }
+
     public void setId(Long id) {
         this.id = id;
     }
+
     public String getCode() {
         return code;
     }
+
     public void setCode(String code) {
         this.code = code;
     }
+
     public String getUrl() {
         return url;
     }
+
     public void setUrl(String url) {
         this.url = url;
     }
+
     public String getPriorityComment() {
         return priorityComment;
     }
+
     public void setPriorityComment(String priorityComment) {
         this.priorityComment = priorityComment;
     }
+
     public Integer getPriorityType() {
         return priorityType;
     }
+
     public void setPriorityType(Integer priorityType) {
         this.priorityType = priorityType;
     }
+
     public Long getParentId() {
         return parentId;
     }
+
     public void setParentId(Long parentId) {
         this.parentId = parentId;
     }
+
     public Date getGmtCreate() {
         return gmtCreate;
     }
+
     public void setGmtCreate(Date gmtCreate) {
         this.gmtCreate = gmtCreate;
     }
+
     public Date getGmtModified() {
         return gmtModified;
     }
+
     public void setGmtModified(Date gmtModified) {
         this.gmtModified = gmtModified;
     }
-    public List<PriorityNode> getChildren() {
+
+    public List<Priority> getChildren() {
         return children;
     }
-    public void setChildren(List<PriorityNode> children) {
+
+    public void setChildren(List<Priority> children) {
         this.children = children;
     }
 }

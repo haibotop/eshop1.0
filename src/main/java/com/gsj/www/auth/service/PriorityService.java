@@ -48,5 +48,5 @@ public interface PriorityService {
      * @param id 权限id
      * @return 处理结果
      */
-    Boolean removePriority(Long id);
+    Boolean removePriority(Long id) throws Exception;
 }
